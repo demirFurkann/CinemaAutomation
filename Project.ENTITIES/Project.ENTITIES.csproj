@@ -53,6 +53,7 @@
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\BoxOffice.cs" />
     <Compile Include="Models\Film.cs" />
+    <Compile Include="Models\FilmSaloon.cs" />
     <Compile Include="Models\MovieSession.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Saloon.cs" />

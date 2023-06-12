@@ -21,9 +21,8 @@ namespace Project.ENTITIES.Models
 
         public int? MovieSessionID { get; set; }
 
-
         //Relational Properties
         public virtual MovieSession MovieSession { get; set; }
-        public virtual List<Ticket> Tickets { get; set; }
+
     }
 }

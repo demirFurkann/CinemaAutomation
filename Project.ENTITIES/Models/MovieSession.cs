@@ -16,6 +16,7 @@ namespace Project.ENTITIES.Models
 
 
         //Foreign key
+
         public int? SaloonID { get; set; }
         public int? FilmID { get; set; }
 
@@ -23,8 +24,9 @@ namespace Project.ENTITIES.Models
 
         public virtual Saloon Saloon { get; set; }
         public virtual Film Film { get; set; }
-        public virtual List<Ticket> Tickets { get; set; }
+        public virtual List<Ticket> Ticket { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
+
 
 
     }

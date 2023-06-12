@@ -24,17 +24,16 @@ namespace Project.ENTITIES.Models
 
 
         //Foreign Key
-        public int? MovieSessionID { get; set; }
+
+        public int? MovieID { get; set; }
         public int? BoxOfficeID { get; set; }
-        public int? ReservationID { get; set; }
-
-
 
         //Relational Properties
+        public virtual  MovieSession  MovieSession { get; set; }
+        public virtual BoxOffice BoxOffice { get; set; }
+       
 
-        public virtual MovieSession MovieSession { get; set; }
-        public virtual BoxOffice BoxOffice{ get; set; }
-        public virtual Reservation Reservation { get; set; }
+
 
 
     }
