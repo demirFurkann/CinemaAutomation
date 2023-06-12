@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class MovieSession : BaseEntity
+    public class Seans : BaseEntity
     {
         //Seanslar
         public string SessionNumber { get; set; }
@@ -26,6 +26,7 @@ namespace Project.ENTITIES.Models
         public virtual Film Film { get; set; }
         public virtual List<Ticket> Ticket { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
+        public virtual List<Seat> Seats { get; set; }
 
 
 

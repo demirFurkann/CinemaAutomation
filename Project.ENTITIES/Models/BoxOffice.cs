@@ -9,11 +9,13 @@ namespace Project.ENTITIES.Models
     public class BoxOffice:BaseEntity 
     {
         // Gişe işlemleri
-        public string OfficeName { get; set; }
+        public string OfficeNumber { get; set; }
 
 
 
         //Relational Properties
         public virtual List<Ticket> Ticket { get; set; }
+        public virtual List<AppUser> AppUsers { get; set; }
+
     }
 }

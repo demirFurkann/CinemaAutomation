@@ -12,9 +12,8 @@ namespace Project.ENTITIES.Models
         // Bilet işlemleri için alim tarihi ve onaylımı kontrolu
         public decimal  Price { get; set; }
         public DateTime PurchaseDate { get; set; }
-        public string ConfirmationCode { get; set; }
-        //Silinme nedenini öğrenmek için
-        public string CancellationReason { get; set; }
+
+
         public TicketType Type { get; set; }
 
 
@@ -25,11 +24,11 @@ namespace Project.ENTITIES.Models
 
         //Foreign Key
 
-        public int? MovieID { get; set; }
+        public int? SeansID { get; set; }
         public int? BoxOfficeID { get; set; }
 
         //Relational Properties
-        public virtual  MovieSession  MovieSession { get; set; }
+        public virtual  Seans  Seans { get; set; }
         public virtual BoxOffice BoxOffice { get; set; }
        
 

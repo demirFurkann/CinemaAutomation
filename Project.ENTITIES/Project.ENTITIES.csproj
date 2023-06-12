@@ -54,9 +54,10 @@
     <Compile Include="Models\BoxOffice.cs" />
     <Compile Include="Models\Film.cs" />
     <Compile Include="Models\FilmSaloon.cs" />
-    <Compile Include="Models\MovieSession.cs" />
+    <Compile Include="Models\Seans.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Saloon.cs" />
+    <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

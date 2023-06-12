@@ -13,16 +13,22 @@ namespace Project.ENTITIES.Models
         public bool IsApproved { get; set; }
         public decimal TotalPrice { get; set; }
 
-
+        // Onaylama kodu
+        public string ConfirmationCode { get; set; }
+        //Silinme nedenini öğrenmek için
+        public string CancellationReason { get; set; }
 
 
 
         //Foreign Key
 
-        public int? MovieSessionID { get; set; }
+        public int? SeansID { get; set; }
+        public int? AppUserID { get; set; }
 
         //Relational Properties
-        public virtual MovieSession MovieSession { get; set; }
+        public virtual Seans Seans { get; set; }
+        public virtual AppUser AppUser{ get; set; }
+
 
     }
 }
