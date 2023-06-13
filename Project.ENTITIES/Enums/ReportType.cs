@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Enums
 {
-   public enum TicketType
+    public enum ReportType
     {
-        //Bilet tipleri
-        Standart=1,
-        VIP=2,
-        Student=3,
-        OnlineTicket=4,
-        
+        Daily,
+        Weekly,
+        Monthly,
     }
 }

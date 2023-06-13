@@ -34,6 +34,7 @@ namespace Project.ENTITIES.Models
         public virtual BoxOffice BoxOffice { get; set; }
         public virtual Film Film { get; set; }
         public virtual List<Ticket> Ticket { get; set; }
+        public virtual List<ReportItem> ReportItems { get; set; }
 
     }
 }

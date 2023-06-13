@@ -29,6 +29,7 @@ namespace Project.ENTITIES.Models
 
         public virtual AppUserProfile AppUserProfile { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
+        public virtual List<ReportItem> ReportItems { get; set; }
 
     }
 }
