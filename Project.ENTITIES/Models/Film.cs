@@ -12,10 +12,23 @@ namespace Project.ENTITIES.Models
         public string Duration { get; set; }
         public string Type { get; set; }
 
-        //Relational Properties 
 
-        public virtual List<Seans> Seans { get; set; }
+
+
+
+
+
+
+        //Relational Properties 
         public virtual List<FilmSaloon> FilmSaloons { get; set; }
+        public virtual List<Reservation> Reservations { get; set; }
+        public virtual List<Seans> Seans { get; set; }
+        public virtual List<Ticket> Ticket { get; set; }
+
+
+
+
+
 
 
     }

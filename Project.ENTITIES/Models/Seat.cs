@@ -19,12 +19,13 @@ namespace Project.ENTITIES.Models
         }
 
         //Foreign Key
-        public int? SeansID { get; set; }
 
+        public int? SaloonID { get; set; }
 
         //Relational Properties
+        public virtual Saloon Saloon { get; set; }
 
-        public virtual  Seans Seans { get; set; }
+
 
     }
 }

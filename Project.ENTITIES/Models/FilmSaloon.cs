@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class FilmSaloon:BaseEntity
+    public class FilmSaloon : BaseEntity
     {
         public int SaloonID { get; set; }
         public int FilmID { get; set; }
 
 
         //Relational Properties
-
         public virtual Film Film { get; set; }
-        public virtual Saloon Saloon { get; set; }
+        public virtual Saloon Salon { get; set; }
+
+
     }
 }

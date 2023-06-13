@@ -23,13 +23,12 @@ namespace Project.ENTITIES.Models
         }
 
         //Foreign Key
-        public int? BoxOfficeID { get; set; }
-        public int? ReservationID { get; set; }
+
 
         //Relational Properties
 
         public virtual AppUserProfile AppUserProfile { get; set; }
-        public virtual BoxOffice BoxOffice { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
+
     }
 }

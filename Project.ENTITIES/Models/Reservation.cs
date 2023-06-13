@@ -10,11 +10,12 @@ namespace Project.ENTITIES.Models
     {
         //Rezervasyon işlemleri
         public DateTime ReservationTime { get; set; }
-        public bool IsApproved { get; set; }
         public decimal TotalPrice { get; set; }
 
-        // Onaylama kodu
+        // Onaylama işlemleri
+        public bool IsApproved { get; set; }
         public string ConfirmationCode { get; set; }
+        
         //Silinme nedenini öğrenmek için
         public string CancellationReason { get; set; }
 
@@ -22,13 +23,17 @@ namespace Project.ENTITIES.Models
 
         //Foreign Key
 
-        public int? SeansID { get; set; }
         public int? AppUserID { get; set; }
+        public int? BoxOfficeID { get; set; }
+        public int? FilmID { get; set; }
+
 
         //Relational Properties
-        public virtual Seans Seans { get; set; }
-        public virtual AppUser AppUser{ get; set; }
 
+        public virtual AppUser AppUser { get; set; }
+        public virtual BoxOffice BoxOffice { get; set; }
+        public virtual Film Film { get; set; }
+        public virtual List<Ticket> Ticket { get; set; }
 
     }
 }
