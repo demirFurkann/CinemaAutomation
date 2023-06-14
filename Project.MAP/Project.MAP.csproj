@@ -51,11 +51,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Options\AppUserMap.cs" />
+    <Compile Include="Options\BaseMap.cs" />
+    <Compile Include="Options\BoxOfficeMap.cs" />
+    <Compile Include="Options\EmployeeMap.cs" />
+    <Compile Include="Options\FilmMap.cs" />
+    <Compile Include="Options\FilmSaloonMap.cs" />
+    <Compile Include="Options\ProfileMap.cs" />
+    <Compile Include="Options\ReservationMap.cs" />
+    <Compile Include="Options\SaloonMap.cs" />
+    <Compile Include="Options\SeansMap.cs" />
+    <Compile Include="Options\SeatMap.cs" />
+    <Compile Include="Options\TicketMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj">
+      <Project>{CF05EDEE-249F-4AE9-AD47-0787F5BC7066}</Project>
+      <Name>Project.ENTITIES</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

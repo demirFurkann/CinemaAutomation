@@ -26,11 +26,13 @@ namespace Project.ENTITIES.Models
         public int? SeansID { get; set; }
         public int? SeatID { get; set; }
         public int? AppUserID { get; set; }
+        public int? EmployeeID { get; set; }    
 
         //Relational Properties
         public virtual Seans Seans { get; set; }
         public virtual List<Seat> Seats{ get; set; }
         public virtual AppUser AppUser { get; set; }
+        public virtual Employee Employee { get; set; }
 
     }
 }

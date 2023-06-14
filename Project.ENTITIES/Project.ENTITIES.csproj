@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\DataStatus.cs" />
-    <Compile Include="Enums\ReportType.cs" />
     <Compile Include="Enums\SeatStatus.cs" />
     <Compile Include="Enums\TicketType.cs" />
     <Compile Include="Enums\UserRole.cs" />
@@ -53,6 +52,7 @@
     <Compile Include="Models\AppUserProfile.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\BoxOffice.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Film.cs" />
     <Compile Include="Models\FilmSaloon.cs" />
     <Compile Include="Models\Seans.cs" />

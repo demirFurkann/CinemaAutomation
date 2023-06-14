@@ -17,11 +17,6 @@ namespace Project.ENTITIES.Models
         public TicketType Type { get; set; }
 
 
-        //Onay takip 
-        public int? ApprovedByUserId { get; set; }
-        public AppUser ApprovedByUser { get; set; }
-
-
         //Foreign Key
         public int? BoxOfficeID { get; set; }
 
