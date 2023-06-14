@@ -14,7 +14,8 @@ namespace Project.ENTITIES.Models
 
 
         //Relational Properties
-        public virtual List<Reservation> Reservations { get; set; }
+        public virtual List<Ticket> Tickets { get; set; }
+
 
 
     }

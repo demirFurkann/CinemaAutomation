@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class Saloon:BaseEntity
+    public class Saloon : BaseEntity
     {
         public string SaloonNumber { get; set; }
         public int Capaciyt { get; set; }
@@ -14,8 +14,8 @@ namespace Project.ENTITIES.Models
 
 
         //Relational Properties
-        public virtual List<FilmSaloon> FilmSaloons { get; set; }
-        public virtual List<Seat> Seats { get; set; }
+        public virtual List<Seans> Seans { get; set; }
+
 
 
     }

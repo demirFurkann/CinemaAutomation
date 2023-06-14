@@ -26,10 +26,10 @@ namespace Project.ENTITIES.Models
 
 
         //Relational Properties
-
         public virtual AppUserProfile AppUserProfile { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
-        public virtual List<ReportItem> ReportItems { get; set; }
+
+
 
     }
 }
