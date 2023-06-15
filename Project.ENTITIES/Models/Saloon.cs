@@ -9,15 +9,16 @@ namespace Project.ENTITIES.Models
     public class Saloon : BaseEntity
     {
         public string SaloonNumber { get; set; }
-        public int Capaciyt { get; set; }
+        public int Capacity { get; set; }
 
 
 
         //Relational Properties
        
         public virtual List<FilmSaloon> FilmSaloons { get; set; }
+        public virtual List<Seat> Seats { get; set; }
 
 
-
+        // seat bağla
     }
 }

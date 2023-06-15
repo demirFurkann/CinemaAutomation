@@ -54,11 +54,11 @@
     <Compile Include="Options\AppUserMap.cs" />
     <Compile Include="Options\BaseMap.cs" />
     <Compile Include="Options\BoxOfficeMap.cs" />
-    <Compile Include="Options\EmployeeMap.cs" />
     <Compile Include="Options\FilmMap.cs" />
     <Compile Include="Options\FilmSaloonMap.cs" />
     <Compile Include="Options\ProfileMap.cs" />
     <Compile Include="Options\ReservationMap.cs" />
+    <Compile Include="Options\ReservationSeatMap.cs" />
     <Compile Include="Options\SaloonMap.cs" />
     <Compile Include="Options\SeansMap.cs" />
     <Compile Include="Options\SeatMap.cs" />

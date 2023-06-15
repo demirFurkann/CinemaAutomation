@@ -9,7 +9,7 @@ namespace Project.ENTITIES.Models
     public class Seans : BaseEntity
     {
         //Seanslar
-        public string SessionNumber { get; set; }
+        public string SeansNumber { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 

@@ -11,13 +11,14 @@ namespace Project.ENTITIES.Models
         public string MovieName { get; set; }
         public string Duration { get; set; }
         public string Type { get; set; }
+        public string Info { get; set; }
 
 
 
 
         //Relational Properties 
 
-        
+
         public virtual List<FilmSaloon> FilmSaloons{ get; set; }
 
 

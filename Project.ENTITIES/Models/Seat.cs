@@ -9,7 +9,8 @@ namespace Project.ENTITIES.Models
 {
     public class Seat : BaseEntity
     {
-        public string SeatNumber { get; set; }
+        public string SeatNo { get; set; }
+        public string Row { get; set; }
 
         public SeatStatus Status { get; set; }
 
@@ -20,12 +21,20 @@ namespace Project.ENTITIES.Models
 
         //Foreign Key
 
-        public int? ReservationID { get; set; }
+        public int? SaloonID { get; set; }
 
         //Relational Properties
 
-        public virtual Reservation Reservation { get; set; }
+        public virtual Saloon Saloon { get; set; }
 
+        public virtual List<ReservationSeat> ReservationSeats { get; set; }
+
+
+        //bu olmaz değişcek 
+
+
+        //Seat Rezervasyon
+        //List tipinde
 
 
 

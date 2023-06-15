@@ -27,19 +27,19 @@ namespace Project.DAL.Context
             modelBuilder.Configurations.Add(new SeansMap());
             modelBuilder.Configurations.Add(new SeatMap());
             modelBuilder.Configurations.Add(new TicketMap());
-            modelBuilder.Configurations.Add(new EmployeeMap());
+            modelBuilder.Configurations.Add(new ReservationSeatMap());
         }
 
-        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
         public DbSet<AppUserProfile> Profile { get; set; }
-        public DbSet<BoxOffice> BoxOffices { get; set; }
-        public DbSet<Film> Films { get; set; }
-        public DbSet<FilmSaloon> FilmSaloons { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<Saloon> Saloons { get; set; }
+        public DbSet<BoxOffice> BoxOffice { get; set; }
+        public DbSet<Film> Film { get; set; }
+        public DbSet<FilmSaloon> FilmSaloon { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<Saloon> Saloon { get; set; }
         public DbSet<Seans> Seans { get; set; }
-        public DbSet<Seat> Seats { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Seat> Seat { get; set; }
+        public DbSet<Ticket> Ticket { get; set; }
+        public DbSet<ReservationSeat> ReservationSeat { get; set; }
     }
 }
