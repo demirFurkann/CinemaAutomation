@@ -54,6 +54,17 @@
     <Compile Include="DesignPatterns\SingletonPattern\DBTool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRep\BaseRepository.cs" />
+    <Compile Include="Repositories\ConcRep\AppUserProfileRepository.cs" />
+    <Compile Include="Repositories\ConcRep\AppUserRepository.cs" />
+    <Compile Include="Repositories\ConcRep\BoxOfficeRepository.cs" />
+    <Compile Include="Repositories\ConcRep\FilmRepository.cs" />
+    <Compile Include="Repositories\ConcRep\FilmSaloonRepository.cs" />
+    <Compile Include="Repositories\ConcRep\ReservationRepository.cs" />
+    <Compile Include="Repositories\ConcRep\ReservationSeatRepository.cs" />
+    <Compile Include="Repositories\ConcRep\SaloonRepository.cs" />
+    <Compile Include="Repositories\ConcRep\SeansRepository.cs" />
+    <Compile Include="Repositories\ConcRep\SeatRepository.cs" />
+    <Compile Include="Repositories\ConcRep\TicketRepository.cs" />
     <Compile Include="Repositories\IntRep\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,9 +81,7 @@
       <Name>Project.ENTITIES</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\ConcRep\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
