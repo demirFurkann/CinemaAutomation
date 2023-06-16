@@ -60,6 +60,8 @@
     <Compile Include="Models\Saloon.cs" />
     <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TicketSeans.cs" />
+    <Compile Include="Models\TicketSeat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

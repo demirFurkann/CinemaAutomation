@@ -12,7 +12,7 @@ namespace Project.ENTITIES.Models
         // Bilet işlemleri için alim tarihi ve onaylımı kontrolu
         public decimal  Price { get; set; }
         public DateTime PurchaseDate { get; set; }
-
+        public int RezervationID { get; set; } // 
 
         public TicketType Type { get; set; }
 
@@ -22,10 +22,10 @@ namespace Project.ENTITIES.Models
 
 
         //Relational Properties
-        public virtual List<Seans> Seans { get; set; }
         public virtual BoxOffice BoxOffice { get; set; }
 
-
+        public virtual TicketSeans TicketSeans { get; set; }
+        public virtual List<TicketSeat> TicketSeats { get; set; }
 
 
 
