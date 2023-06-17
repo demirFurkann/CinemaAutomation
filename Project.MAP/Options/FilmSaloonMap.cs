@@ -15,7 +15,7 @@ namespace Project.MAP.Options
             HasKey(x => new
             {
                 x.SaloonID,
-                x.FilmID,
+                x.FilmID ,
             });
         }
     }
