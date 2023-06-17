@@ -13,7 +13,7 @@ namespace Project.ENTITIES.Models
 
 
 
-        //Relational Properties
+        //Relational Properties added
        
         public virtual List<FilmSaloon> FilmSaloons { get; set; }
         public virtual List<Seat> Seats { get; set; }
