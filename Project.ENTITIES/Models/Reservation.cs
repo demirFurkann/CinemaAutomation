@@ -28,10 +28,10 @@ namespace Project.ENTITIES.Models
         public int? AppUserID { get; set; }
 
         //Relational Properties
-        public virtual Seans Seans { get; set; }
-        
+        public virtual Seans Seans { get; set; }       
         public virtual AppUser AppUser { get; set; }
         public virtual List<ReservationSeat> ReservationSeats { get; set; }
+        public virtual List<Ticket> Tickets  { get; set; }
 
 
     }

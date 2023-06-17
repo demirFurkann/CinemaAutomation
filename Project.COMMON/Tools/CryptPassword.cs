@@ -88,5 +88,4 @@ namespace Project.COMMON.Tools
             return decryptedCode;
         }
     }
-
 }

@@ -21,7 +21,5 @@ namespace Project.ENTITIES.Models
 
         public virtual Saloon Saloon { get; set; }
         public virtual Film Film { get; set; }
-
-
     }
 }
