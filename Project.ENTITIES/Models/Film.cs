@@ -17,12 +17,8 @@ namespace Project.ENTITIES.Models
 
 
         //Relational Properties 
-
-
-        public virtual List<FilmSaloon> FilmSaloons{ get; set; }
-
-
-
+        public List<Seans> Seans { get; set; }
+        
 
     }
 }

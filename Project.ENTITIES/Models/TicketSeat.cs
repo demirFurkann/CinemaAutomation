@@ -12,7 +12,7 @@ namespace Project.ENTITIES.Models
         public int SeatID { get; set; }
 
         //Relational Properties
-        public virtual List<Seat> Seats { get; set; }
+        public virtual Seat Seats { get; set; }
         public virtual Ticket Ticket { get; set; }
     }
 }

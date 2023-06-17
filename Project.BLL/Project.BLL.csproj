@@ -58,14 +58,12 @@
     <Compile Include="Repositories\ConcRep\AppUserRepository.cs" />
     <Compile Include="Repositories\ConcRep\BoxOfficeRepository.cs" />
     <Compile Include="Repositories\ConcRep\FilmRepository.cs" />
-    <Compile Include="Repositories\ConcRep\FilmSaloonRepository.cs" />
     <Compile Include="Repositories\ConcRep\ReservationRepository.cs" />
     <Compile Include="Repositories\ConcRep\ReservationSeatRepository.cs" />
     <Compile Include="Repositories\ConcRep\SaloonRepository.cs" />
     <Compile Include="Repositories\ConcRep\SeansRepository.cs" />
     <Compile Include="Repositories\ConcRep\SeatRepository.cs" />
     <Compile Include="Repositories\ConcRep\TicketRepository.cs" />
-    <Compile Include="Repositories\ConcRep\TicketSeansRepository.cs" />
     <Compile Include="Repositories\ConcRep\TicketSeatRepository.cs" />
     <Compile Include="Repositories\IntRep\IRepository.cs" />
   </ItemGroup>

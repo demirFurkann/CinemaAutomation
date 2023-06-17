@@ -52,6 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\MyContext.cs" />
+    <Compile Include="Migrations\202306171445539_InitialCreate.cs" />
+    <Compile Include="Migrations\202306171445539_InitialCreate.designer.cs">
+      <DependentUpon>202306171445539_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306171455282_Yasemin2.cs" />
+    <Compile Include="Migrations\202306171455282_Yasemin2.designer.cs">
+      <DependentUpon>202306171455282_Yasemin2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +76,14 @@
       <Project>{4afa7e46-058a-441b-ac79-db073a73fc0c}</Project>
       <Name>Project.MAP</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202306171445539_InitialCreate.resx">
+      <DependentUpon>202306171445539_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306171455282_Yasemin2.resx">
+      <DependentUpon>202306171455282_Yasemin2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
