@@ -17,7 +17,7 @@ namespace Project.ENTITIES.Models
         public int FilmId { get; set; }
 
         //Relational Properties
-        public virtual List<Reservation> Reservations   { get; set; }
+        public virtual List<Reservation> Reservations  { get; set; }
 
         public virtual Saloon Saloon { get; set; }
         public virtual Film Film { get; set; }
