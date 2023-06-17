@@ -28,6 +28,8 @@ namespace Project.DAL.Context
             modelBuilder.Configurations.Add(new SeatMap());
             modelBuilder.Configurations.Add(new TicketMap());
             modelBuilder.Configurations.Add(new ReservationSeatMap());
+            modelBuilder.Configurations.Add(new TicketSeansMap());
+            modelBuilder.Configurations.Add(new TicketSeatMap());
         }
 
         public DbSet<AppUser> AppUser { get; set; }
@@ -41,5 +43,7 @@ namespace Project.DAL.Context
         public DbSet<Seat> Seat { get; set; }
         public DbSet<Ticket> Ticket { get; set; }
         public DbSet<ReservationSeat> ReservationSeat { get; set; }
+        public DbSet<TicketSeans> TicketSeans { get; set;}
+        public DbSet<TicketSeat> TicketSeat { get; set; }
     }
 }

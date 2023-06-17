@@ -63,6 +63,8 @@
     <Compile Include="Options\SeansMap.cs" />
     <Compile Include="Options\SeatMap.cs" />
     <Compile Include="Options\TicketMap.cs" />
+    <Compile Include="Options\TicketSeansMap.cs" />
+    <Compile Include="Options\TicketSeatMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
