@@ -11,15 +11,14 @@ namespace Project.ENTITIES.Models
     {
         // Bilet işlemleri için alim tarihi ve onaylımı kontrolu
         public decimal  Price { get; set; }
-        public DateTime PurchaseDate { get; set; }
-        //public int RezervationID { get; set; } // 
-
+        public DateTime PurchaseDate { get; set; }  
         public TicketType Type { get; set; }
 
 
         //Foreign Key
         public int? BoxOfficeID { get; set; }
         public int? ReservationID { get; set; }
+        public int? SeansID { get; set; }
 
 
         //Relational Properties
