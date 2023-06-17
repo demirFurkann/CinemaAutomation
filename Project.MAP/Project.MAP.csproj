@@ -55,7 +55,6 @@
     <Compile Include="Options\BaseMap.cs" />
     <Compile Include="Options\BoxOfficeMap.cs" />
     <Compile Include="Options\FilmMap.cs" />
-    <Compile Include="Options\FilmSaloonMap.cs" />
     <Compile Include="Options\ProfileMap.cs" />
     <Compile Include="Options\ReservationMap.cs" />
     <Compile Include="Options\ReservationSeatMap.cs" />
@@ -63,7 +62,6 @@
     <Compile Include="Options\SeansMap.cs" />
     <Compile Include="Options\SeatMap.cs" />
     <Compile Include="Options\TicketMap.cs" />
-    <Compile Include="Options\TicketSeansMap.cs" />
     <Compile Include="Options\TicketSeatMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

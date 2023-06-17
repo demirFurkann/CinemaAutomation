@@ -24,8 +24,7 @@ namespace Project.ENTITIES.Models
         //Relational Properties
         public virtual BoxOffice BoxOffice { get; set; }
 
-        public virtual TicketSeans TicketSeans { get; set; }
-        public virtual List<TicketSeat> TicketSeats { get; set; }
+        public virtual Seans Seans { get; set; }
 
 
 

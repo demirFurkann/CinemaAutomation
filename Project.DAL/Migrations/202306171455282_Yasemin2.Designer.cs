@@ -7,13 +7,13 @@ namespace Project.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class yaso5 : IMigrationMetadata
+    public sealed partial class Yasemin2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(yaso5));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Yasemin2));
         
         string IMigrationMetadata.Id
         {
-            get { return "202306142105243_yaso5"; }
+            get { return "202306171455282_Yasemin2"; }
         }
         
         string IMigrationMetadata.Source

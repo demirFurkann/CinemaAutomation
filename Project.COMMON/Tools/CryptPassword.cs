@@ -45,7 +45,7 @@ namespace Project.COMMON.Tools
 
 
 
-            List<string> parts = Regex.Split(a, @"(?<=[*_?])").ToList(); 
+            List<string> parts = Regex.Split(a, @"(?<=[*_?])").ToList();
 
 
 
@@ -87,4 +87,6 @@ namespace Project.COMMON.Tools
             }
             return decryptedCode;
         }
+    }
+
 }

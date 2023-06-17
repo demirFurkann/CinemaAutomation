@@ -13,18 +13,14 @@ namespace Project.ENTITIES.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-
-
-        //Foreign key
-        public int? FilmSaloonID { get; set; }
-        
-
+        public int SaloonId { get; set; }
+        public int FilmId { get; set; }
 
         //Relational Properties
-        public virtual FilmSaloon FilmSaloon { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
-        public virtual List<TicketSeans> TicketSeans { get; set; }
 
+        public virtual Saloon Saloon { get; set; }
+        public virtual Film Film { get; set; }
 
 
     }
