@@ -14,7 +14,7 @@ namespace Project.ENTITIES.Models
         public DateTime EndTime { get; set; }
 
 
-
+        //Deneme
         //Foreign key
         public int? FilmSaloonID { get; set; }
         
