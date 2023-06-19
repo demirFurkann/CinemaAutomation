@@ -1,0 +1,56 @@
+﻿@using Project.ENTITIES.Enums
+@model RegisterNowPageVM
+
+@{
+    ViewBag.Title = "RegisterNow";
+}
+
+
+
+
+
+
+<h2>RegisterNow</h2>
+
+<h2>@ViewBag.Mevcut</h2>
+
+@using (Html.BeginForm("RegisterNow", "Register", FormMethod.Post, new { @class = "form-signin" }))
+{
+
+    <div class="login-wrap">
+        @Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı Giriniz" })
+        @Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Şifre Belirleyiniz" })
+
+
+        <div>
+            <label for="Role">Role:</label>
+            @Html.DropDownListFor(m => m.User.Roles, new SelectList(Enum.GetValues(typeof(UserRole))), "-- Rol Seçiniz --", new { @class = "form-control" })
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+    <br />
+
+
+    <h3>Profil Bilgileri</h3>
+    <br />
+
+    @Html.TextBoxFor(x => x.Profile.FirstName, new { @class = "form-control", placeholder = "İsim Giriniz" })
+    @Html.TextBoxFor(x => x.Profile.LastName, new { @class = "form-control", placeholder = "Soyİsim Giriniz" })
+
+    <button class="btn btn-primary">Kayıt</button>
+
+
+
+
+}
+
+
+
