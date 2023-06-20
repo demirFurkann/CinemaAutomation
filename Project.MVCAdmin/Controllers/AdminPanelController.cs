@@ -9,7 +9,7 @@ namespace Project.MVCAdmin.Controllers
     public class AdminPanelController : Controller
     {
         // GET: AdminPanel
-        public ActionResult Home()
+        public ActionResult AdminScreen()
         {
             return View();
         }

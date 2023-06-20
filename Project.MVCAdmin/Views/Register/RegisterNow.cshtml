@@ -19,12 +19,12 @@
         @Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı Giriniz" })
         @Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Şifre Belirleyiniz" })
 
-        @*@Html.DropDownListFor(x => x.User.Roles, Model.Roles, new { @class = "form-control" })*@
+        @Html.DropDownListFor(x => x.User.Roles, Model.Roles, new { @class = "form-control" })
 
-        <div>
+        @*<div>
             <label for="Role">Role:</label>
             @Html.DropDownListFor(m => m.User.Roles, Model.Roles, "-- Rol Seçiniz --", new { @class = "form-control" })
-        </div>
+        </div>*@
      
 
     </div>

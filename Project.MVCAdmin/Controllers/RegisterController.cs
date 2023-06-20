@@ -66,13 +66,13 @@ namespace Project.MVCAdmin.Controllers
             // UserName alınmış mı 
 
 
-            if (_appUser.Any(x => x.UserName == user.UserName))
+            if (_appUser.Any(x => x.UserName.Equals( user.UserName)))
             {
                 ViewBag.Mevcut = "Farklı Bir İsim Seçiniz";
                 return View();
             }
             // Passwordu şifreleme
-            user.Password = CryptPassword.Crypt(user.Password);
+            //user.Password = CryptPassword.Crypt(user.Password);
            
 
             AppUser domainUser = new AppUser
@@ -104,18 +104,23 @@ namespace Project.MVCAdmin.Controllers
             // Login ekranından sonra View Doldurulucak 
             return RedirectToAction("LoginOK");
         }
-
-       
+        public ActionResult LoginOK()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult LoginOk(AdminUserVM user)
         {
+            var userLogin = _appUser.FirstOrDefault(x => x.UserName == user.UserName && x.Password == user.Password);
 
-            string decryptedPassword = CryptPassword.DeCrypt(user.Password);
-
-            var foundUser = _appUser.FirstOrDefault(x => x.UserName == user.UserName && x.Password == decryptedPassword);
-
-            if (foundUser != null && foundUser.Role == UserRole.Admin)
+            if(userLogin != null)
             {
-                return RedirectToAction("Home", "AdminPanel");
+                if (userLogin.Role.Equals(UserRole.Admin))
+                {
+                    // Admin girişi
+                    return RedirectToAction("AdminScreen", "AdminPanel");
+                }
+               
             }
 
             return View();

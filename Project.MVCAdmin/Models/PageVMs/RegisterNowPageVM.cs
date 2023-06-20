@@ -15,7 +15,7 @@ namespace Project.MVCAdmin.Models.PageVMs
         public List<SelectListItem> Roles { get; set; }
         public RegisterNowPageVM()
         {
-           
+
             Roles = new List<SelectListItem>();
         }
     }
