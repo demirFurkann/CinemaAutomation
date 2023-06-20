@@ -1,4 +1,5 @@
-﻿using Project.BLL.Repositories.ConcRep;
+﻿using Microsoft.Ajax.Utilities;
+using Project.BLL.Repositories.ConcRep;
 using Project.COMMON.Tools;
 using Project.ENTITIES.Enums;
 using Project.ENTITIES.Models;
@@ -8,6 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -26,27 +28,35 @@ namespace Project.MVCAdmin.Controllers
             _appProfile = new AppUserProfileRepository();
         }
 
+
+
+
+
+        // Enum'lari listelemek için
+
         private List<SelectListItem> GetRoles()
         {
             var roles = Enum.GetValues(typeof(UserRole))
-         .Cast<UserRole>()
-         .Select(r => new SelectListItem
-         {
-             Value = r.ToString(),
-             Text = r.ToString()
-         })
-         .ToList();
+                       .Cast<UserRole>()
+                       .Select(r => new SelectListItem
+                       {
+                           Value = r.ToString(),
+                           Text = r.ToString()
+                       })
+                       .ToList();
 
             return roles;
         }
 
         public ActionResult RegisterNow()
         {
-          RegisterNowPageVM rpvm = new RegisterNowPageVM();
+            //Todo : Burayi Tekrar Kontrol et
+            RegisterNowPageVM rpvm = new RegisterNowPageVM();
             rpvm.User = new AdminUserVM();
-            rpvm.User.Roles = GetRoles();
 
-            return View();
+            rpvm.Roles = GetRoles();
+
+            return View(rpvm);
 
         }
 
@@ -55,6 +65,7 @@ namespace Project.MVCAdmin.Controllers
         {
             // UserName alınmış mı 
 
+
             if (_appUser.Any(x => x.UserName == user.UserName))
             {
                 ViewBag.Mevcut = "Farklı Bir İsim Seçiniz";
@@ -62,14 +73,15 @@ namespace Project.MVCAdmin.Controllers
             }
             // Passwordu şifreleme
             user.Password = CryptPassword.Crypt(user.Password);
+           
 
             AppUser domainUser = new AppUser
             {
                 UserName = user.UserName,
                 Password = user.Password,
-                Role = (UserRole)Enum.Parse(typeof(UserRole), user.Roles.First(r => r.Selected).Text)
-
-
+               /* Role = (UserRole)Enum.Parse(typeof(UserRole), user.Roles)*/
+                //Role = (UserRole)user.Roles // int kontrol için
+                Role=user.Roles
 
 
             };
@@ -83,10 +95,35 @@ namespace Project.MVCAdmin.Controllers
                     ID = domainUser.ID,
                     FirstName = profile.FirstName,
                     LastName = profile.LastName,
+                    BirthDate = profile.BirthDate
                 };
+                _appProfile.Add(domainProfile);
+
             }
 
             // Login ekranından sonra View Doldurulucak 
+            return RedirectToAction("LoginOK");
+        }
+
+       
+        public ActionResult LoginOk(AdminUserVM user)
+        {
+
+            string decryptedPassword = CryptPassword.DeCrypt(user.Password);
+
+            var foundUser = _appUser.FirstOrDefault(x => x.UserName == user.UserName && x.Password == decryptedPassword);
+
+            if (foundUser != null && foundUser.Role == UserRole.Admin)
+            {
+                return RedirectToAction("Home", "AdminPanel");
+            }
+
+            return View();
+
+        }
+
+        public ActionResult Deneme()
+        {
             return View();
         }
 

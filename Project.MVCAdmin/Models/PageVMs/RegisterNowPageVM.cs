@@ -1,4 +1,5 @@
-﻿using Project.VM.AdminPureVMs;
+﻿using Project.ENTITIES.Enums;
+using Project.VM.AdminPureVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace Project.MVCAdmin.Models.PageVMs
     {
         public AdminUserVM User { get; set; }
         public AdminProfileVM Profile { get; set; }
-        public IEnumerable<SelectListItem> Roles { get; set; }
+        public List<SelectListItem> Roles { get; set; }
+        public RegisterNowPageVM()
+        {
+           
+            Roles = new List<SelectListItem>();
+        }
     }
 }

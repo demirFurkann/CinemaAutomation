@@ -1,11 +1,10 @@
-﻿@using Project.ENTITIES.Enums
-@model RegisterNowPageVM
+﻿@model RegisterNowPageVM
+@using Project.ENTITIES.Enums
+
 
 @{
     ViewBag.Title = "RegisterNow";
 }
-
-
 
 
 
@@ -16,34 +15,30 @@
 
 @using (Html.BeginForm("RegisterNow", "Register", FormMethod.Post, new { @class = "form-signin" }))
 {
-
     <div class="login-wrap">
         @Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı Giriniz" })
         @Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Şifre Belirleyiniz" })
 
+        @*@Html.DropDownListFor(x => x.User.Roles, Model.Roles, new { @class = "form-control" })*@
 
         <div>
             <label for="Role">Role:</label>
-            @Html.DropDownListFor(m => m.User.Roles, new SelectList(Enum.GetValues(typeof(UserRole))), "-- Rol Seçiniz --", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.User.Roles, Model.Roles, "-- Rol Seçiniz --", new { @class = "form-control" })
         </div>
-
+     
 
     </div>
 
     <br />
-
 
     <h3>Profil Bilgileri</h3>
     <br />
 
     @Html.TextBoxFor(x => x.Profile.FirstName, new { @class = "form-control", placeholder = "İsim Giriniz" })
     @Html.TextBoxFor(x => x.Profile.LastName, new { @class = "form-control", placeholder = "Soyİsim Giriniz" })
+    @Html.TextBoxFor(x => x.Profile.BirthDate, new { @class = "form-control", placeholder = "Doğum Tarihi", type = "date" })
 
     <button class="btn btn-primary">Kayıt</button>
-
-
-
-
 }
 
 
