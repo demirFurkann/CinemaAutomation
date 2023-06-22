@@ -18,7 +18,7 @@ namespace Project.ENTITIES.Models
         //Foreign Key
         public int? BoxOfficeID { get; set; }
         public int? ReservationID { get; set; }
-        public int? SeansID { get; set; }
+        public int SeansID { get; set; }
 
 
         //Relational Properties

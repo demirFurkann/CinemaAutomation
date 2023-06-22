@@ -12,6 +12,7 @@ namespace Project.ENTITIES.Models
         public string Duration { get; set; }
         public string Type { get; set; }
         public string Info { get; set; }
+        public string ImagePath { get; set; }
 
 
 

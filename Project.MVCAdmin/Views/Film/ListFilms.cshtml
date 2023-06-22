@@ -1,0 +1,67 @@
+﻿@model ListFilmPageVM
+@{
+    ViewBag.Title = "ListFilms";
+}
+<header class="panel-heading">
+    @Html.ActionLink("Film Ekle", "AddFilm", null, new {@class="btn btn-primary"})
+</header>
+
+<div class="panel-body">
+    <div class="adv-table">
+        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <thead>
+                <tr>
+                    <th>Film ID</th>
+                    <th class="hidden-phone">Film Adı</th>
+                    <th class="hidden-phone">Film Süresi</th>
+                    <th class="hidden-phone">Film Tipi</th>
+                    <th class="hidden-phone">Film Bilgisi</th>
+                    <th class="hidden-phone">Film Fotoğrafi</th>
+
+                    <th class="hidden-phone">Sil</th>
+                    <th class="hidden-phone">Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (FilmVM item in Model.Films)
+                {
+                    <tr class="gradeX">
+
+
+
+
+                        <td>@item.ID</td>
+                        <td>@item.MovieName</td>
+                        <td class="hidden-phone">@item.Duration</td>
+                        <td class="center hidden-phone">@item.Type</td>
+                        <td class="center hidden-phone">@item.Info</td>
+
+                     
+
+
+
+
+                        <td class="center hidden-phone">
+
+                            <img width="30" height="30" title="@item.MovieName" src="@item.ImagePath" />
+
+                        </td>
+                       
+
+                        <td class="center hidden-phone"> @Html.ActionLink("Sil", "DeleteFilm", new { id = item.ID }, new { @class = "btn btn-danger" })  </td>
+                        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateFilm", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+
+                    </tr>
+                }
+
+
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
