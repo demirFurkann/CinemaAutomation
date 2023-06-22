@@ -1,0 +1,77 @@
+{
+  "_from": "datatables.net-bs5@~1.13.1",
+  "_id": "datatables.net-bs5@1.13.1",
+  "_inBundle": false,
+  "_integrity": "sha512-kNmvUc23FKmK+QNpPPlNYYy+L/OQmiheRT7kTsp3cxHbtXsV7d6u/5TMxT70HH2VvlUivrgRcEtye4Mp+8mbKw==",
+  "_location": "/datatables.net-bs5",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "datatables.net-bs5@~1.13.1",
+    "name": "datatables.net-bs5",
+    "escapedName": "datatables.net-bs5",
+    "rawSpec": "~1.13.1",
+    "saveSpec": null,
+    "fetchSpec": "~1.13.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/datatables.net-bs5/-/datatables.net-bs5-1.13.1.tgz",
+  "_shasum": "e5613b58512d9d9a0040a8f5cfc93b0b484e6082",
+  "_spec": "datatables.net-bs5@~1.13.1",
+  "_where": "E:\\_OKLER\\Templates\\Porto-Admin\\HTML",
+  "author": {
+    "name": "SpryMedia Ltd",
+    "url": "http://datatables.net"
+  },
+  "bugs": {
+    "url": "https://datatables.net/forums"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "datatables.net": ">=1.12.1",
+    "jquery": ">=1.7"
+  },
+  "deprecated": false,
+  "description": "DataTables for jQuery with styling for [Bootstrap5](https://getbootstrap.com/)",
+  "files": [
+    "css/**/*.css",
+    "js/**/*.js",
+    "js/**/*.mjs",
+    "types/**/*.d.ts",
+    "images/*"
+  ],
+  "homepage": "https://datatables.net",
+  "ignore": [
+    "composer.json",
+    "datatables.json",
+    "package.json"
+  ],
+  "keywords": [
+    "Bootstrap",
+    "Bootstrap5",
+    "Datatables",
+    "jQuery",
+    "table",
+    "filter",
+    "sort"
+  ],
+  "license": "MIT",
+  "main": "js/dataTables.bootstrap5.js",
+  "module": "js/dataTables.bootstrap5.mjs",
+  "moduleType": [
+    "globals",
+    "amd",
+    "node"
+  ],
+  "name": "datatables.net-bs5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DataTables/Dist-DataTables-Bootstrap5.git"
+  },
+  "style": "css/dataTables.bootstrap5.css",
+  "types": "./types/types.d.ts",
+  "version": "1.13.1"
+}

@@ -29,6 +29,9 @@ namespace Project.MVCAdmin.Controllers
         }
 
 
+
+
+
         // Enum'lari listelemek için
 
         private List<SelectListItem> GetRoles()
@@ -108,7 +111,9 @@ namespace Project.MVCAdmin.Controllers
         [HttpPost]
         public ActionResult LoginOk(AdminUserVM user)
         {
-            AppUser userLogin = _appUser.FirstOrDefault(x => x.UserName == user.UserName && x.Password == user.Password);
+            AppUser userLogin = _appUser.FirstOrDefault
+                (x => x.UserName == user.UserName
+                && x.Password == user.Password);
 
             if(userLogin != null)
             {

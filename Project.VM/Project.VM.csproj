@@ -67,6 +67,7 @@
     <Compile Include="AdminPureVMs\AdminUserVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PureVMs\FilmVM.cs" />
+    <Compile Include="PureVMs\SaloonVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
