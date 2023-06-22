@@ -50,21 +50,7 @@ namespace Project.MVCAdmin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddFilm(FilmVM film, HttpPostedFileBase image, string fileName)
-        {
-            Film f = new Film
-            {
-                ID = film.ID,
-                MovieName = film.MovieName,
-                Duration = film.Duration,
-                ImagePath = film.ImagePath = ImageUploader.UploadImage("/Pictures/", image, fileName),
-                Type = film.Type,
-                Info = film.Info,
-
-            };
-            _filmRep.Add(f);
-            return View();
-        }
+       
         public ActionResult UpdateFilm(int id)
         {
             AddUpdateFilmPageVM flpvm = new AddUpdateFilmPageVM
