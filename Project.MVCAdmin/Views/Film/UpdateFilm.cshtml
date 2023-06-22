@@ -1,0 +1,97 @@
+﻿@model AddUpdateFilmPageVM
+@{
+    ViewBag.Title = "UpdateFilm";
+}
+
+@using (Html.BeginForm("UpdateFilm", "Film", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.HiddenFor(x => x.Film.ID)
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <section class="panel">
+                <header class="panel-heading">
+                    Film Güncelleme Sayfası
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2"> Film  Adı</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Film.MovieName, new { @class = "form-control-genislik" })
+                        </div>
+                    </div>
+
+                    <br /> <br />
+                    <div class="form-group">
+                        <label class="col-sm-2">Film Süresi</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Film.Duration, new { @class = "form-control-genislik" })
+                        </div>
+                    </div>
+                    <br /> <br />
+
+                    <div class="form-group">
+                        <label class="col-sm-2">Film Tipi</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Film.Type, new { @class = "form-control-genislik" })
+                        </div>
+                    </div>
+                    <br /> <br />
+
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2">Film Bilgisi</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Film.Info, new { @class = "form-control-genislik" })
+                        </div>
+                    </div>
+                    <br /> <br />
+
+
+
+
+                    <br /> <br />
+
+                    <div class="form-group">
+                        <label class=" col-sm-2"> Resim Seçiniz </label>
+                        <div class="col-sm-10">
+
+                            <input type="file" name="image" class="form-control genislik" />
+
+
+                            <br />
+                            @Html.TextBox("fileName", null, new { @class = "form-control genislik", placeholder = "Resim İsmi Giriniz" })
+                        </div>
+
+                    </div>
+                    <br /> <br />
+                    <div class="form-group">
+                        <label class=" col-sm-2"> Görsel Silme </label>
+                        <div class="col-sm-10">
+
+                            <br />
+                            <button class="btn btn-warning" onclick="deleteImage('/Pictures/MyImage/.jpg')">Görseli sil</button>
+                        </div>
+                        <br /> <br />
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2">İşlem:</label>
+                            <div class="col-sm-10">
+                                <button class="btn btn-primary">Güncelle</button>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+</section>
+        </div>
+    </div>
+
+}
+
