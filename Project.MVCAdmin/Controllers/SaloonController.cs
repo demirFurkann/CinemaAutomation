@@ -20,11 +20,12 @@ namespace Project.MVCAdmin.Controllers
             _saloonRep = new SaloonRepository();
 
         }
-        public ActionResult ListSaloons()
+        public ActionResult Index()
         {
             List<SaloonVM> saloons = _saloonRep.
                 Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new SaloonVM
                 {
+                    ID=x.ID,
                     Capacity = x.Capacity,
                     SaloonNumber = x.SaloonNumber,
 
