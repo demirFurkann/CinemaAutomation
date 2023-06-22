@@ -5944,6 +5944,8 @@
     <Content Include="Views\Seans.cshtml" />
     <Content Include="Views\Saloon\AddSaloon.cshtml" />
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
+    <Content Include="Views\Saloon\Index.cshtml" />
+    <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
