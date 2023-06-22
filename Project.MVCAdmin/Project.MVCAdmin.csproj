@@ -128,14 +128,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminPanelController.cs" />
-    <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SaloonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomTools\ImageUploader.cs" />
-    <Compile Include="Models\PageVMs\AddUpdateFilmPageVM.cs" />
-    <Compile Include="Models\PageVMs\ListFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\RegisterNowPageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -159,7 +156,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Pictures\MicrosoftTeams-image.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -192,9 +188,7 @@
     <Content Include="Views\Register\LoginOk.cshtml" />
     <Content Include="Views\Register\Deneme.cshtml" />
     <Content Include="Views\AdminPanel\AdminScreen.cshtml" />
-    <Content Include="Views\Film\AddFilm.cshtml" />
-    <Content Include="Views\Film\ListFilms.cshtml" />
-    <Content Include="Views\Film\UpdateFilm.cshtml" />
+    <Content Include="Views\Saloon\Ekle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
