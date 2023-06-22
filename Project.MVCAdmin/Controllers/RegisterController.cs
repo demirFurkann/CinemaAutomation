@@ -124,10 +124,5 @@ namespace Project.MVCAdmin.Controllers
 
         }
 
-        public ActionResult Deneme()
-        {
-            return View();
-        }
-
-    }
-}
+      }
+ }
