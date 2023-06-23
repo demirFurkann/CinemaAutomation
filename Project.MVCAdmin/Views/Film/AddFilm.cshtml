@@ -4,97 +4,198 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<header class="page-header">
+    <h2>Film Ekle</h2>
+
+    <div class="right-wrapper text-end">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="index.html">
+                    <i class="bx bx-home-alt"></i>
+                </a>
+            </li>
+
+            <li><span>Filmler</span></li>
+
+            <li><span>Film Ekle</span></li>
+
+        </ol>
+
+    </div>
+</header>
+
+<!-- start: page -->
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+
+                <h2 class="card-title">Film Ekle</h2>
+            </header>
+            <div class="card-body">
+                @using (Html.BeginForm("AddFilm","Film",FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <form class="form-horizontal form-bordered" method="post" action="/Film/AddFilm">
 
 
-<h2>AddFilm</h2>
-<style>
-    .genislik {
-        width: 300px;
-    }
-</style>
-
-@using (Html.BeginForm("AddFilm", "Film", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-
-    <div class="row">
-        <div class="col-sm-12">
-
-            <section class="pan@el">
-                <header class="panel-heading">
-                    Film Ekleme Sayfası
-                </header>
-
-                <div class="panel-body">
-
-
-                    <div class="form-group">
-                        <label class="col-sm-2">Film İsmi</label>
-                        <div class="col-sm-10">
-
-
-
-                            @Html.TextBoxFor(x => x.Film.MovieName, new { @class = "form-control-genislik" })
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Film Adı</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(x=> x.Film.MovieName, new {@class="form-control"})
+                            </div>
                         </div>
-                    </div>
 
 
-                    <br /> <br />
 
-                    <div class="form-group">
-                        <label class="col-sm-2">Film Süresi </label>
-                        <div class="col-sm-10">
-                            @Html.TextBoxFor(x => x.Film.Duration, new { @class = "form-control-genislik" })
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Film Süresi</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(x => x.Film.Duration, new { @class = "form-control" })
+
+                            </div>
                         </div>
-                    </div>
-                    <br /> <br />
 
-                    <div class="form-group">
-                        <label class="col-sm-2">Film Tipi</label>
-                        <div class="col-sm-10">
-                            @Html.TextBoxFor(x => x.Film.Type, new { @class = "form-control-genislik" })
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Film Türü</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(x => x.Film.Type, new { @class = "form-control" })
+
+                            </div>
                         </div>
-                    </div>
 
-                    <br /> <br />
-                    <div class="form-group">
-                        <label class="col-sm-2">Film Bilgi</label>
-                        <div class="col-sm-10">
-                            @Html.TextBoxFor(x => x.Film.Info, new { @class = "form-control-genislik" })
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Film Bilgisi</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(x => x.Film.Info, new { @class = "form-control" })
+
+                            </div>
                         </div>
-                    </div>
-                    <br /> <br />
 
-
-
-
-                    <div class="form-group">
-                        <label class="col-sm-2">Resim seciniz</label>
-                        <div class="col-sm-10">
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Resim</label>
 
                             <input type="file" name="image" class="form-control genislik" />
                             <br />
 
                             @Html.TextBox("fileName", null, new { @class = "form-control-genislik", placeholder = "Resim ismi giriniz" })
-
                         </div>
-                    </div>
-                    <br /> <br />
 
 
-
-                    <div class="form-group">
-                        <label class="col-sm-2">İşlem:</label>
-                        <div class="col-sm-10">
-                            <button class="btn btn-primary">Ekle</button>
+                        <div class="form-group row pb-4">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="mb-1 mt-1 me-1 btn btn-primary">Ekle</button>
+                            </div>
                         </div>
-                    </div>
 
-
-                </div>
-
-
-            </section>
-
-        </div>
+                    </form>
+                }
+            </div>
+        </section>
     </div>
-}
+</div>
+
+
+<!-- end: page -->
+@*<h2>AddFilm</h2>
+    <style>
+        .genislik {
+            width: 300px;
+        }
+    </style>
+
+    @using (Html.BeginForm("AddFilm", "Film", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <section class="pan@el">
+                    <header class="panel-heading">
+                        Film Ekleme Sayfası
+                    </header>
+
+                    <div class="panel-body">
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Film İsmi</label>
+                            <div class="col-sm-10">
+
+
+
+                                @Html.TextBoxFor(x => x.Film.MovieName, new { @class = "form-control-genislik" })
+                            </div>
+                        </div>
+
+
+                        <br /> <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Film Süresi </label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Film.Duration, new { @class = "form-control-genislik" })
+                            </div>
+                        </div>
+                        <br /> <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Film Tipi</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Film.Type, new { @class = "form-control-genislik" })
+                            </div>
+                        </div>
+
+                        <br /> <br />
+                        <div class="form-group">
+                            <label class="col-sm-2">Film Bilgi</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Film.Info, new { @class = "form-control-genislik" })
+                            </div>
+                        </div>
+                        <br /> <br />
+
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Resim seciniz</label>
+                            <div class="col-sm-10">
+
+                                <input type="file" name="image" class="form-control genislik" />
+                                <br />
+
+                                @Html.TextBox("fileName", null, new { @class = "form-control-genislik", placeholder = "Resim ismi giriniz" })
+
+                            </div>
+                        </div>
+                        <br /> <br />
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2">İşlem:</label>
+                            <div class="col-sm-10">
+                                <button class="btn btn-primary">Ekle</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+            </div>
+        </div>
+    }*@

@@ -18,10 +18,10 @@ namespace Project.MVCAdmin.Controllers
         {
             _filmRep = new FilmRepository();
         }
-        
+
         private List<FilmVM> GetFilms()
         {
-            return _filmRep.Where(x=> x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new FilmVM
+            return _filmRep.Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new FilmVM
             {
                 ID = x.ID,
                 MovieName = x.MovieName,
@@ -42,7 +42,7 @@ namespace Project.MVCAdmin.Controllers
             };
             _filmRep.GetAll();
             return View(lpvm);
-            
+
         }
 
         public ActionResult AddFilm()
@@ -50,7 +50,22 @@ namespace Project.MVCAdmin.Controllers
             return View();
         }
         [HttpPost]
-       
+        public ActionResult AddFilm(FilmVM film, HttpPostedFileBase image, string fileName)
+        {
+            Film f = new Film
+            {
+                MovieName = film.MovieName,
+                ID = film.ID,
+                Duration = film.Duration,
+                ImagePath = film.ImagePath = ImageUploader.UploadImage("/Pictures/", image, fileName),
+                Info = film.Info,
+                Type = film.Type,
+
+            };
+            _filmRep.Add(f);
+            return RedirectToAction("ListFilms");
+        }
+
         public ActionResult UpdateFilm(int id)
         {
             AddUpdateFilmPageVM flpvm = new AddUpdateFilmPageVM
@@ -70,7 +85,7 @@ namespace Project.MVCAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateFilm(FilmVM film,HttpPostedFileBase image,string fileName)
+        public ActionResult UpdateFilm(FilmVM film, HttpPostedFileBase image, string fileName)
         {
             Film updated = _filmRep.Find(film.ID);
             updated.MovieName = film.MovieName;
@@ -89,7 +104,7 @@ namespace Project.MVCAdmin.Controllers
             _filmRep.Delete(_filmRep.Find(id));
 
             return RedirectToAction("ListFilms");
-            
+
         }
     }
 }
