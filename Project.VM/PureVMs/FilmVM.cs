@@ -10,9 +10,11 @@ namespace Project.VM.PureVMs
     {
         public int ID { get; set; }
         public string MovieName { get; set; }
-        public string Duration { get; set; }
+        public double Duration { get; set; }
         public string Type { get; set; }
         public string Info { get; set; }
         public string ImagePath { get; set; }
+       
+
     }
 }

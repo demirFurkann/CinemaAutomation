@@ -1,0 +1,56 @@
+﻿@model ListSeansPageVM
+@{
+    ViewBag.Title = "ListSeans";
+}
+
+
+@using (Html.BeginForm("ListSeans", "Seans", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-4">
+            @if (Model.Films != null)
+            {
+                @Html.DropDownListFor(x => x.Film.ID, new SelectList(Model.Films, "ID", "MovieName"), "Lütfen Seçiniz", new { @class = "form-control" })
+            }
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary">Filtrele</button>
+        </div>
+    </div>
+}
+
+@if (Model.Seans != null && Model.Seans.Count > 0)
+{
+    <h4>Seanslar:</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Seans Numarası</th>
+                <th>Başlangıç Saati</th>
+                <th>Bitiş Saati</th>
+                <th>Salon Numarası</th>
+                <th>Güncelle/Sil</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var seans in Model.Seans)
+            {
+                <tr>
+                    <td>@seans.SeansNumber</td>
+                    <td>@seans.StartTime.ToString("HH:mm")</td>
+                    <td>@seans.EndTime.ToString("HH:mm")</td>
+                    <td>@seans.SaloonNumber</td>
+                    <td class="actions">
+                        <a href="/Seans/UpdateSeans/@seans.ID" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="/Seans/DeleteSeans/@seans.ID" class="on-default remove-row"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">Gösterilecek seans bulunamadı.</div>
+}
