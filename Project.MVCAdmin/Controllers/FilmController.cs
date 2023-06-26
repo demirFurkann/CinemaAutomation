@@ -31,7 +31,6 @@ namespace Project.MVCAdmin.Controllers
                 Type = x.Type,
 
             }).ToList();
-            return list;
         }
 
         public ActionResult ListFilms()
