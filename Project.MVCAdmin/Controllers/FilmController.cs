@@ -104,7 +104,7 @@ namespace Project.MVCAdmin.Controllers
         {
             _filmRep.Delete(_filmRep.Find(id));
 
-            return RedirectToAction("ListFilms");
+            return RedirectToAction("Index");
 
         }
     }

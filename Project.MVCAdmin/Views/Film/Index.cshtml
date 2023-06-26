@@ -27,7 +27,7 @@
 <section class="card">
     <header class="card-header">
 
-        <h2 class="card-title">Salon Listesi</h2>
+        <h2 class="card-title">Film Listesi</h2>
     </header>
     <div class="card-body">
         <div class="row">
@@ -71,7 +71,10 @@
                        
                         <td class="actions">
                             <a href="/Film/UpdateFilm/@item.ID" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="/Film/DeleteFilm/@item.ID" class="on-default remove-row"><i class="far fa-trash-alt"></i></a>
+                            <a href="/Film/DeleteFilm/@item.ID" class="on-default remove-row"
+                               onclick="return confirm('Bu filmi sildiğinizde bağlı olan tüm seansları da silinecketir! Bu filmi silmek istediğinize emini misinniz ? ')">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
                         </td>
                     </tr>
                 }
