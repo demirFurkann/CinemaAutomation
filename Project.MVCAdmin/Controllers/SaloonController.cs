@@ -25,6 +25,7 @@ namespace Project.MVCAdmin.Controllers
             List<SaloonVM> saloons = _saloonRep.
                 Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new SaloonVM
                 {
+                    ID=x.ID,
                     Capacity = x.Capacity,
                     SaloonNumber = x.SaloonNumber,
 
@@ -59,22 +60,36 @@ namespace Project.MVCAdmin.Controllers
             return View(saloonVM);
         }
 
+        //[HttpPost]
+        //public ActionResult AddSaloon(string SaloonNumber,string Capacity)//SaloonVM salon)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var saloon = new Saloon()
+        //        {
+        //            SaloonNumber = SaloonNumber,
+        //            Capacity = Convert.ToInt32(Capacity)
+        //        };
+        //        _saloonRep.Add(saloon);
+
+
+        //        return RedirectToAction("ListSaloons", "Saloon"); // Ekleme işlemi başarılı, ana sayfaya yönlendir.
+        //    }
+
+        //    return View();
+        //}
         [HttpPost]
-        public ActionResult AddSaloon(string SaloonNumber,string Capacity)//SaloonVM salon)
+        public ActionResult AddSaloon(SaloonVM saloon,string SaloonNumber,string Capacity)
         {
-            if (ModelState.IsValid)
+           Saloon s = new Saloon
             {
-                var saloon = new Saloon()
-                {
-                    SaloonNumber = SaloonNumber,
-                    Capacity = Convert.ToInt32(Capacity)
-                };
-                _saloonRep.Add(saloon);
+                ID = saloon.ID,
+                SaloonNumber =saloon.SaloonNumber,
+               Capacity= saloon.Capacity,
+               
 
-
-                return RedirectToAction("ListSaloons", "Saloon"); // Ekleme işlemi başarılı, ana sayfaya yönlendir.
-            }
-
+            };
+           _saloonRep.Add(s);
             return View();
         }
 

@@ -1,0 +1,50 @@
+﻿@model AddUpdateSaloonPageVM
+@{
+    ViewBag.Title = "UpdateSaloon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateSaloon", "Saloon", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.HiddenFor(x => x.Saloon.ID)
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <section class="panel">
+                <header class="panel-heading">
+                    Saloon Güncelleme Sayfası
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2"> Saloon  Number</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Saloon.SaloonNumber, new { @class = "form-control-genislik" })
+                        </div>
+                    </div>
+
+                    <br /> <br />
+                    <div class="form-group">
+                        <label class="col-sm-2">Film Süresi</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Saloon.Capacity, new { @class = "form-control-genislik" })
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2">İşlem:</label>
+                            <div class="col-sm-10">
+                                <button class="btn btn-primary">Güncelle</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+            </section>
+        </div>
+    </div>
+ }
+}

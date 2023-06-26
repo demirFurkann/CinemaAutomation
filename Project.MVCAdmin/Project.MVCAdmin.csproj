@@ -131,12 +131,15 @@
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SaloonController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomTools\ImageUploader.cs" />
+    <Compile Include="Models\PageVMs\AddUpdateAdminUserPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateSaloonPageVM.cs" />
+    <Compile Include="Models\PageVMs\ListAdminUserPageVM.cs" />
     <Compile Include="Models\PageVMs\ListFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\ListSaloonPageVM.cs" />
     <Compile Include="Models\PageVMs\RegisterNowPageVM.cs" />
@@ -5945,6 +5948,11 @@
     <Content Include="Views\Seans.cshtml" />
     <Content Include="Views\Saloon\AddSaloon.cshtml" />
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
+    <Content Include="Views\Saloon\ListSaloons.cshtml" />
+    <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
+    <Content Include="Views\User\ListAppUser.cshtml" />
+    <Content Include="Views\User\AddAppUser.cshtml" />
+    <Content Include="Views\User\UpdateAppUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,9 +10,10 @@ namespace Project.VM.AdminPureVMs
 {
     public class AdminUserVM
     {
-       
+        public int ID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public UserRole Roles { get; set; }
+
     }
 }
