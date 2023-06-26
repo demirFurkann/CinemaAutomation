@@ -1,10 +1,10 @@
-﻿@model AddUpdateFilmPageVM
+﻿@model AddUpdateSeansPageVM
 @{
-    ViewBag.Title = "UpdateFilm";
+    ViewBag.Title = "UpdateSeans";
 }
 
 <header class="page-header">
-    <h2>Film Güncelle</h2>
+    <h2>Seans Ekle</h2>
 
     <div class="right-wrapper text-end">
         <ol class="breadcrumbs">
@@ -14,9 +14,9 @@
                 </a>
             </li>
 
-            <li><span>Filmler</span></li>
+            <li><span>Seanslar</span></li>
 
-            <li><span>Film Ekle</span></li>
+            <li><span>Seans Ekle</span></li>
 
         </ol>
 
@@ -33,20 +33,29 @@
                     <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
                 </div>
 
-                <h2 class="card-title">Film Ekle</h2>
+                <h2 class="card-title">Seans Ekle</h2>
             </header>
             <div class="card-body">
-                @using (Html.BeginForm("UpdateFilm", "Film", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("AddSeans", "Seans", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    @Html.HiddenFor(x=> x.Film.ID)
-                    <form class="form-horizontal form-bordered" method="post" action="/Film/AddFilm">
 
+                    <form class="form-horizontal form-bordered" method="post" action="/Seans/AddSeans">
+
+
+
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Salon Numarası</label>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(x => x.Seans.SaloonID, new SelectList(Model.Saloons, "ID", "SaloonNumber"), "Lütfen seçiniz", new { @class = "form-control" })
+                            </div>
+                        </div>
 
                         <div class="form-group row pb-4">
                             <label class="col-lg-3 control-label text-lg-end pt-2"
                                    for="inputDefault">Film Adı</label>
                             <div class="col-lg-6">
-                                @Html.TextBoxFor(x => x.Film.MovieName, new { @class = "form-control" })
+                                @Html.DropDownListFor(x => x.Seans.FilmID, new SelectList(Model.Films, "ID", "MovieName"), "Lütfen seçiniz", new { @class = "form-control" })
                             </div>
                         </div>
 
@@ -54,40 +63,32 @@
 
                         <div class="form-group row pb-4">
                             <label class="col-lg-3 control-label text-lg-end pt-2"
-                                   for="inputDefault">Film Süresi</label>
+                                   for="inputDefault">Seans Numarası</label>
                             <div class="col-lg-6">
-                                @Html.TextBoxFor(x => x.Film.Duration, new { @class = "form-control" })
-
+                                @Html.TextBoxFor(x => x.Seans.SeansNumber, new { @class = "form-control" })
                             </div>
                         </div>
 
+
+
                         <div class="form-group row pb-4">
                             <label class="col-lg-3 control-label text-lg-end pt-2"
-                                   for="inputDefault">Film Türü</label>
+                                   for="inputDefault">Başlangiç Saati</label>
                             <div class="col-lg-6">
-                                @Html.TextBoxFor(x => x.Film.Type, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Seans.StartTime, new { type = "datetime-local" })
 
                             </div>
                         </div>
 
                         <div class="form-group row pb-4">
                             <label class="col-lg-3 control-label text-lg-end pt-2"
-                                   for="inputDefault">Film Bilgisi</label>
+                                   for="inputDefault">Bitiş Saati</label>
                             <div class="col-lg-6">
-                                @Html.TextBoxFor(x => x.Film.Info, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Seans.Duration, new { @class = "form-control" })
 
                             </div>
                         </div>
 
-                        <div class="form-group row pb-4">
-                            <label class="col-lg-3 control-label text-lg-end pt-2"
-                                   for="inputDefault">Resim</label>
-
-                            <input type="file" name="image" class="form-control genislik" />
-                            <br />
-
-                            @Html.TextBox("fileName", null, new { @class = "form-control-genislik", placeholder = "Resim ismi giriniz" })
-                        </div>
 
 
                         <div class="form-group row pb-4">
@@ -103,4 +104,8 @@
         </section>
     </div>
 </div>
+
+
+
+
 

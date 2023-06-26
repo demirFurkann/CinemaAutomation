@@ -132,6 +132,7 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SaloonController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\SeansController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,9 +140,11 @@
     <Compile Include="Models\PageVMs\AddUpdateAdminUserPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateSaloonPageVM.cs" />
+    <Compile Include="Models\PageVMs\AddUpdateSeansPageVM.cs" />
     <Compile Include="Models\PageVMs\ListAdminUserPageVM.cs" />
     <Compile Include="Models\PageVMs\ListFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\ListSaloonPageVM.cs" />
+    <Compile Include="Models\PageVMs\ListSeansPageVM.cs" />
     <Compile Include="Models\PageVMs\RegisterNowPageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -5350,7 +5353,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Pictures\f55e8d9e-ad00-40ef-a6af-34c07fbe2eb5.hf.png" />
     <Content Include="Pictures\MicrosoftTeams-image.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -5953,6 +5955,11 @@
     <Content Include="Views\User\ListAppUser.cshtml" />
     <Content Include="Views\User\AddAppUser.cshtml" />
     <Content Include="Views\User\UpdateAppUser.cshtml" />
+    <Content Include="Views\Saloon\Index.cshtml" />
+    <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
+    <Content Include="Views\Seans\ListSeans.cshtml" />
+    <Content Include="Views\Seans\AddSeans.cshtml" />
+    <Content Include="Views\Seans\UpdateSeans.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
