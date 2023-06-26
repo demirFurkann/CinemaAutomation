@@ -66,22 +66,22 @@ namespace Project.MVCAdmin.Controllers
             // UserName alınmış mı 
 
 
-            if (_appUser.Any(x => x.UserName.Equals( user.UserName)))
+            if (_appUser.Any(x => x.UserName.Equals(user.UserName)))
             {
                 ViewBag.Mevcut = "Farklı Bir İsim Seçiniz";
                 return View();
             }
             // Passwordu şifreleme
-            //user.Password = CryptPassword.Crypt(user.Password);
-           
+            user.Password = CryptPassword.Crypt(user.Password);
+
 
             AppUser domainUser = new AppUser
             {
                 UserName = user.UserName,
                 Password = user.Password,
-               /* Role = (UserRole)Enum.Parse(typeof(UserRole), user.Roles)*/
+                /* Role = (UserRole)Enum.Parse(typeof(UserRole), user.Roles)*/
                 //Role = (UserRole)user.Roles // int kontrol için
-                Role=user.Roles
+                Role = user.Roles
 
 
             };
@@ -95,7 +95,8 @@ namespace Project.MVCAdmin.Controllers
                     ID = domainUser.ID,
                     FirstName = profile.FirstName,
                     LastName = profile.LastName,
-                    BirthDate = profile.BirthDate
+                    BirthDate = profile.BirthDate,
+                    Email =profile.Email
                 };
                 _appProfile.Add(domainProfile);
 
@@ -111,23 +112,28 @@ namespace Project.MVCAdmin.Controllers
         [HttpPost]
         public ActionResult LoginOk(AdminUserVM user)
         {
-            AppUser userLogin = _appUser.FirstOrDefault
-                (x => x.UserName == user.UserName
-                && x.Password == user.Password);
 
-            if(userLogin != null)
+            AppUser userLogin = _appUser.FirstOrDefault
+                (x => x.UserName == user.UserName);
+
+            if (userLogin != null)
             {
-                if (userLogin.Role.Equals(UserRole.Admin))
+                string decryptedPassword = CryptPassword.DeCrypt(userLogin.Password);
+                if (decryptedPassword == user.Password)
                 {
-                    // Admin girişi
-                    return RedirectToAction("AdminScreen", "AdminPanel");
+                    if (userLogin.Role.Equals(UserRole.Admin))
+                    {
+                        // Admin girişi
+                        return RedirectToAction("AdminScreen", "AdminPanel");
+                    }
                 }
-               
+                
+
             }
 
             return View();
 
         }
 
-      }
- }
+    }
+}
