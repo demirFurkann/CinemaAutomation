@@ -71,14 +71,14 @@ namespace Project.MVCAdmin.Controllers
                 return View();
             }
             // Passwordu şifreleme
-            //user.Password = CryptPassword.Crypt(user.Password);
-           
+            user.Password = CryptPassword.Crypt(user.Password);
+
 
             AdminUser domainUser = new AdminUser
             {
                 UserName = user.UserName,
                 Password = user.Password,
-               /* Role = (UserRole)Enum.Parse(typeof(UserRole), user.Roles)*/
+                /* Role = (UserRole)Enum.Parse(typeof(UserRole), user.Roles)*/
                 //Role = (UserRole)user.Roles // int kontrol için
                 AdminRole=user.AdminRole
 
@@ -95,8 +95,7 @@ namespace Project.MVCAdmin.Controllers
         public ActionResult LoginOk(AdminUserVM user)
         {
             AdminUser adminUser = _adminUser.FirstOrDefault
-                (x => x.UserName == user.UserName
-                && x.Password == user.Password);
+                (x => x.UserName == user.UserName);
 
             if(adminUser != null)
             {
@@ -112,5 +111,5 @@ namespace Project.MVCAdmin.Controllers
 
         }
 
-      }
- }
+    }
+}

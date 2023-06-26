@@ -37,6 +37,7 @@
 
     @Html.TextBoxFor(x => x.Profile.FirstName, new { @class = "form-control", placeholder = "İsim Giriniz" })
     @Html.TextBoxFor(x => x.Profile.LastName, new { @class = "form-control", placeholder = "Soyİsim Giriniz" })
+    @Html.TextBoxFor(x => x.Profile.Email, new { @class = "form-control", placeholder = "Email Giriniz" })
     @Html.TextBoxFor(x => x.Profile.BirthDate, new { @class = "form-control", placeholder = "Doğum Tarihi", type = "date" })
 
     <button class="btn btn-primary">Kayıt</button>
