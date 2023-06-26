@@ -1,20 +1,13 @@
-﻿
-@model  Project.VM.PureVMs.SaloonVM
+﻿@model AddUpdateSaloonPageVM
 @{
-    ViewBag.Title = "AddSaloon";
+    ViewBag.Title = "UpdateSaloon";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<header class="page-header">
-    <h2>Salon Güncelle</h2>
+@using (Html.BeginForm("UpdateSaloon", "Saloon", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
 
-    <div class="right-wrapper text-end">
-        <ol class="breadcrumbs">
-            <li>
-                <a href="index.html">
-                    <i class="bx bx-home-alt"></i>
-                </a>
-            </li>
+    @Html.HiddenFor(x => x.Saloon.ID)
 
             <li><span>Salon Yönetimi</span></li>
 
@@ -27,45 +20,43 @@
 
 <!-- start: page -->
 <div class="row">
-    <div class="col">
-        <section class="card">
-            <header class="card-header">
-                <div class="card-actions">
-                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
-                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
-                </div>
+        <div class="col-sm-12">
 
-                <h2 class="card-title">Salon Güncelle</h2>
+            <section class="panel">
+                <header class="panel-heading">
+                    Saloon Güncelleme Sayfası
             </header>
-            <div class="card-body">
-                @using (Html.BeginForm("UpdateSaloon", "Saloon", FormMethod.Post, new { enctype = "multipart/form-data", }))
-                {
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2"> Saloon  Number</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Saloon.SaloonNumber, new { @class = "form-control-genislik" })
+                        </div>
+                    </div>
 
-                <form class="form-horizontal form-bordered" method="post" action="/Saloon/UpdateSaloon">
-                    <div class="form-group row pb-4">
-                        <label class="col-lg-3 control-label text-lg-end pt-2"
-                               for="inputDefault">Salon Number</label>
-                        <div class="col-lg-6">
-                            @Html.TextBoxFor(model => model.SaloonNumber, new { @class = "form-control" })
+                    <br /> <br />
+                    <div class="form-group">
+                        <label class="col-sm-2">Film Süresi</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Saloon.Capacity, new { @class = "form-control-genislik" })
                         </div>
                     </div>
-                    <div class="form-group row pb-4">
-                        <label class="col-lg-3 control-label text-lg-end pt-2"
-                               for="inputDefault">Salon Kapasitesi</label>
-                        <div class="col-lg-6">
-                            @Html.TextBoxFor(model => model.Capacity, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group row pb-4">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
-                            <button type="button" class="mb-1 mt-1 me-1 btn btn-primary">Güncelle</button>
+                
+                    <div class="form-group">
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2">İşlem:</label>
+                            <div class="col-sm-10">
+                                <button class="btn btn-primary">Güncelle</button>
+
                         </div>
                     </div>
                 </form>
                 }
             </div>
+
         </section>
     </div>
 </div>
-<!-- end: page -->
+ }
+}

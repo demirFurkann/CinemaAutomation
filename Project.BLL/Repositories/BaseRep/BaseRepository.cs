@@ -57,7 +57,7 @@ namespace Project.BLL.Repositories.BaseRep
         {
             return _db.Set<T>().FirstOrDefault(exp);
         }
-
+      
         public List<T> GetActives()
         {
             return Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted);

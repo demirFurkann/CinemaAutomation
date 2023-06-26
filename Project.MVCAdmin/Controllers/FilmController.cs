@@ -49,6 +49,7 @@ namespace Project.MVCAdmin.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult AddFilm(FilmVM film, HttpPostedFileBase image, string fileName)
         {
