@@ -21,7 +21,7 @@ namespace Project.MVCAdmin.Controllers
         
         private List<FilmVM> GetFilms()
         {
-            return _filmRep.Where(x=> x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new FilmVM
+            var list= _filmRep.Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new FilmVM
             {
                 ID = x.ID,
                 MovieName = x.MovieName,
@@ -31,6 +31,7 @@ namespace Project.MVCAdmin.Controllers
                 Type = x.Type,
 
             }).ToList();
+            return list;
         }
 
         public ActionResult ListFilms()
@@ -49,8 +50,24 @@ namespace Project.MVCAdmin.Controllers
         {
             return View();
         }
+
         [HttpPost]
-       
+        public ActionResult AddFilm(FilmVM film, HttpPostedFileBase image, string fileName)
+        {
+            Film f = new Film
+            {
+                ID = film.ID,
+                MovieName = film.MovieName,
+                Duration = film.Duration,
+                ImagePath = film.ImagePath = ImageUploader.UploadImage("/Pictures/", image, fileName),
+                Type = film.Type,
+                Info = film.Info,
+
+            };
+            _filmRep.Add(f);
+            return View();
+        }
+
         public ActionResult UpdateFilm(int id)
         {
             AddUpdateFilmPageVM flpvm = new AddUpdateFilmPageVM

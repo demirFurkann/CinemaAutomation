@@ -1,42 +1,44 @@
 ﻿@model RegisterNowPageVM
-@{
-    ViewBag.Title = "LoginOk";
-    Layout = "~/Views/Shared/_LayoutRegister.cshtml";
-}
-
-<h2>LoginOk</h2>
-
-<div class=" w3l-login-form">
-    <h2>Login Here</h2>
-    @using (Html.BeginForm("LoginOK", "Register", FormMethod.Post))
-    {
-
-
-        <div class=" w3l-form-group">
-
-            <label>Kullanıcı Adı:</label>
-            <div class="group">
-                <i class="fas fa-user"></i>
-                @Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control", placeholder = "Kullanıcı İsmi Giriniz" })
-            </div>
-        </div>
-        <div class=" w3l-form-group">
-            <label>Şifre:</label>
-            <div class="group">
-                <i class="fas fa-unlock"></i>
-                @Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Lütfen Şifrenizi Giriniz" })
-            </div>
-        </div>
-
-
-
-
-        <div class="forgot">
-            <a href="#">Şifremi Unuttum?</a>
-            <p><input type="checkbox">Beni Unutma</p>
-        </div>
-        <button type="submit">Giriş Yap</button>
-        <p class="w3l-login-form">Yoksa Henüz kayıt olmadın mı<a href="/Register/RegisterNow" class="register"> Kayıt Ol</a></p>
-
+    @{
+        ViewBag.Title = "LoginOk";
+        Layout = "~/Views/Shared/_LayoutRegister.cshtml";
     }
-</div>
+
+    <h2>LoginOk</h2>
+<html>
+    <div class=" w3l-login-form">
+        <h2>Login Here</h2>
+        @using (Html.BeginForm("LoginOK", "Register", FormMethod.Post))
+        {
+
+
+            <div class=" w3l-form-group">
+
+                <label>Kullanıcı Adı:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    @Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control", placeholder = "Kullanıcı İsmi Giriniz" })
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>Şifre:</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    @Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Lütfen Şifrenizi Giriniz" })
+                </div>
+            </div>
+
+
+
+
+            <div class="forgot">
+                <a href="#">Şifremi Unuttum?</a>
+                <p><input type="checkbox">Beni Unutma</p>
+            </div>
+            <button type="submit">Giriş Yap</button>
+            <p class="w3l-login-form">Yoksa Henüz kayıt olmadın mı<a href="/Register/RegisterNow" class="register"> Kayıt Ol</a></p>
+
+        }
+    </div>
+
+</html>
