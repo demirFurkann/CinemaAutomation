@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Enums
 {
-    public enum UserRole
+    public enum AdminRole
     {
-        Member = 1,
-        VIP = 2,
+        Admin=1,
+        BoxOfficeAttendant=2,
+        BoxOfficeSupervisor=3,
+        DepartmanManager=4
     }
+   
+
 }

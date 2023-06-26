@@ -54,7 +54,9 @@
     <Compile Include="Enums\DataStatus.cs" />
     <Compile Include="Enums\SeatStatus.cs" />
     <Compile Include="Enums\TicketType.cs" />
+    <Compile Include="Enums\AdminRole.cs" />
     <Compile Include="Enums\UserRole.cs" />
+    <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\AppUserProfile.cs" />
     <Compile Include="Models\BaseEntity.cs" />

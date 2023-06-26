@@ -127,11 +127,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminPanelController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SaloonController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\SeansController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -5941,23 +5941,23 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Register\RegisterNow.cshtml" />
-    <Content Include="Views\Register\LoginOk.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Register\Deneme.cshtml" />
-    <Content Include="Views\AdminPanel\AdminScreen.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Film\AddFilm.cshtml" />
-    <Content Include="Views\Film\ListFilms.cshtml" />
+    <Content Include="Views\Film\Index.cshtml" />
     <Content Include="Views\Film\UpdateFilm.cshtml" />
     <Content Include="Views\Seans.cshtml" />
     <Content Include="Views\Saloon\AddSaloon.cshtml" />
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
     <Content Include="Views\Saloon\ListSaloons.cshtml" />
     <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
-    <Content Include="Views\User\ListAppUser.cshtml" />
-    <Content Include="Views\User\AddAppUser.cshtml" />
-    <Content Include="Views\User\UpdateAppUser.cshtml" />
+    <Content Include="Views\AdminUser\Index.cshtml" />
+    <Content Include="Views\AdminUser\AddAdminUser.cshtml" />
+    <Content Include="Views\AdminUser\UpdateAdminUser.cshtml" />
     <Content Include="Views\Saloon\Index.cshtml" />
     <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
-    <Content Include="Views\Seans\ListSeans.cshtml" />
+    <Content Include="Views\Seans\Index.cshtml" />
     <Content Include="Views\Seans\AddSeans.cshtml" />
     <Content Include="Views\Seans\UpdateSeans.cshtml" />
   </ItemGroup>

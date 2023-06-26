@@ -59,7 +59,7 @@ namespace Project.MVCAdmin.Controllers
             return seansVMs;
         }
 
-        public ActionResult ListSeans()
+        public ActionResult Index()
         {
             List<FilmVM> films = GetFilms();
 
@@ -71,7 +71,7 @@ namespace Project.MVCAdmin.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult ListSeans(ListSeansPageVM model)
+        public ActionResult Index(ListSeansPageVM model)
         {
             if (model.Film != null && model.Film.ID != 0)
             {
@@ -123,7 +123,7 @@ namespace Project.MVCAdmin.Controllers
                 EndTime = endTime
             };
             _seansRep.Add(s);
-            return RedirectToAction("ListSeans");
+            return RedirectToAction("Index");
         }
         public ActionResult UpdateSeans(int id)
         {
@@ -168,14 +168,14 @@ namespace Project.MVCAdmin.Controllers
 
             _seansRep.Update(updated);
 
-            return RedirectToAction("ListSeans");
+            return RedirectToAction("Index");
         }
 
         public ActionResult DeleteSeans(int id)
         {
             _seansRep.Delete(_seansRep.Find(id));
 
-            return RedirectToAction("ListSeans");
+            return RedirectToAction("Index");
         }
     }
 }

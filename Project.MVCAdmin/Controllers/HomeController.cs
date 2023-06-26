@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace Project.MVCAdmin.Controllers
 {
-    public class AdminPanelController : Controller
+    public class HomeController : Controller
     {
         // GET: AdminPanel
-        public ActionResult AdminScreen()
+        public ActionResult Index()
         {
             return View();
         }

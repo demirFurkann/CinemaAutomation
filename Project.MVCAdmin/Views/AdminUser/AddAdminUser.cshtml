@@ -1,6 +1,6 @@
 ﻿@model AddUpdateAdminUserPageVM
 @{
-    ViewBag.Title = "AddAppUser";
+    ViewBag.Title = "AddAdminUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -24,7 +24,7 @@
                 <h2 class="card-title">Kullanıcı Ekle</h2>
             </header>
             <div class="card-body">
-                @using (Html.BeginForm("AddAppUser", "User", FormMethod.Post, new { role = "form" }))
+                @using (Html.BeginForm("AddAdminUser", "AdminUser", FormMethod.Post, new { role = "form" }))
                 {
 
                     <form class="form-horizontal form-bordered" method="post" action="/Saloon/AddSaloon">
@@ -46,7 +46,7 @@
                             <label class="col-lg-3 control-label text-lg-end pt-2"
                                    for="inputDefault">Role</label>
                             <div class="col-lg-6">
-                                @Html.EnumDropDownListFor(x => x.AdminUser.Roles, new { @class = "form-control-genislik" })
+                                @Html.EnumDropDownListFor(x => x.AdminUser.AdminRole, new { @class = "form-control-genislik" })
 
                             </div>
                         </div>

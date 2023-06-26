@@ -31,6 +31,7 @@ namespace Project.DAL.Context
         }
 
         public DbSet<AppUser> AppUser { get; set; }
+        public DbSet<AdminUser> AdminUser { get; set; }
         public DbSet<AppUserProfile> Profile { get; set; }
         public DbSet<BoxOffice> BoxOffice { get; set; }
         public DbSet<Film> Film { get; set; }

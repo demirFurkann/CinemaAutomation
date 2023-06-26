@@ -10,20 +10,18 @@ namespace Project.ENTITIES.Models
 {
     public class AppUser : BaseEntity
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public Guid ActivationCode { get; set; }
-        public bool Active { get; set; }
-
-        public UserRole Role { get; set; }
-
         public AppUser()
         {
             ActivationCode = Guid.NewGuid();
         }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public Guid ActivationCode { get; set; }
+        public bool Active { get; set; }
+        public UserRole Role { get; set; }
 
         //Foreign Key
-
 
         //Relational Properties
         public virtual AppUserProfile AppUserProfile { get; set; }

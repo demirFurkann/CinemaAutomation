@@ -33,7 +33,7 @@ namespace Project.MVCAdmin.Controllers
             }).ToList();
         }
 
-        public ActionResult ListFilms()
+        public ActionResult Index()
         {
             List<FilmVM> films = GetFilms();
             ListFilmPageVM lpvm = new ListFilmPageVM
@@ -64,7 +64,7 @@ namespace Project.MVCAdmin.Controllers
 
             };
             _filmRep.Add(f);
-            return RedirectToAction("ListFilms");
+            return RedirectToAction("Index");
         }
 
         public ActionResult UpdateFilm(int id)
@@ -96,7 +96,7 @@ namespace Project.MVCAdmin.Controllers
             updated.Info = film.Info;
 
             _filmRep.Update(updated);
-            return RedirectToAction("ListFilms");
+            return RedirectToAction("Index");
 
         }
 

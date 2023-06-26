@@ -19,18 +19,17 @@ namespace Project.MVCAdmin.Controllers
 {
     public class RegisterController : Controller
     {
-        AppUserRepository _appUser;
-        AppUserProfileRepository _appProfile;
+        AdminUserRepository _adminUser;
 
         public RegisterController()
         {
-            _appUser = new AppUserRepository();
-            _appProfile = new AppUserProfileRepository();
+            _adminUser = new AdminUserRepository();
         }
 
-
-
-
+        public ActionResult Index()
+        {
+            return View();
+        }
 
         // Enum'lari listelemek için
 
@@ -61,12 +60,12 @@ namespace Project.MVCAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterNow(AdminUserVM user, AdminProfileVM profile)
+        public ActionResult RegisterNow(AdminUserVM user)
         {
             // UserName alınmış mı 
 
 
-            if (_appUser.Any(x => x.UserName.Equals( user.UserName)))
+            if (_adminUser.Any(x => x.UserName.Equals( user.UserName)))
             {
                 ViewBag.Mevcut = "Farklı Bir İsim Seçiniz";
                 return View();
@@ -75,49 +74,33 @@ namespace Project.MVCAdmin.Controllers
             //user.Password = CryptPassword.Crypt(user.Password);
            
 
-            AppUser domainUser = new AppUser
+            AdminUser domainUser = new AdminUser
             {
                 UserName = user.UserName,
                 Password = user.Password,
                /* Role = (UserRole)Enum.Parse(typeof(UserRole), user.Roles)*/
                 //Role = (UserRole)user.Roles // int kontrol için
-                Role=user.Roles
+                AdminRole=user.AdminRole
 
 
             };
-            _appUser.Add(domainUser);
+            _adminUser.Add(domainUser);
 
-
-            if (!string.IsNullOrEmpty(profile.FirstName.Trim()) || !string.IsNullOrEmpty(profile.LastName.Trim()))
-            {
-                AppUserProfile domainProfile = new AppUserProfile
-                {
-                    ID = domainUser.ID,
-                    FirstName = profile.FirstName,
-                    LastName = profile.LastName,
-                    BirthDate = profile.BirthDate
-                };
-                _appProfile.Add(domainProfile);
-
-            }
 
             // Login ekranından sonra View Doldurulucak 
             return RedirectToAction("LoginOK");
         }
-        public ActionResult LoginOK()
-        {
-            return View();
-        }
+     
         [HttpPost]
         public ActionResult LoginOk(AdminUserVM user)
         {
-            AppUser userLogin = _appUser.FirstOrDefault
+            AdminUser adminUser = _adminUser.FirstOrDefault
                 (x => x.UserName == user.UserName
                 && x.Password == user.Password);
 
-            if(userLogin != null)
+            if(adminUser != null)
             {
-                if (userLogin.Role.Equals(UserRole.Admin))
+                if (adminUser.AdminRole.Equals(AdminRole.Admin))
                 {
                     // Admin girişi
                     return RedirectToAction("AdminScreen", "AdminPanel");

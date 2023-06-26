@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRep\BaseRepository.cs" />
     <Compile Include="Repositories\ConcRep\AppUserProfileRepository.cs" />
+    <Compile Include="Repositories\ConcRep\AdminUserRepository.cs" />
     <Compile Include="Repositories\ConcRep\AppUserRepository.cs" />
     <Compile Include="Repositories\ConcRep\BoxOfficeRepository.cs" />
     <Compile Include="Repositories\ConcRep\FilmRepository.cs" />

@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\MyContext.cs" />
+    <Compile Include="Migrations\202306261238036_appuseradminuserchanges.cs" />
+    <Compile Include="Migrations\202306261238036_appuseradminuserchanges.designer.cs">
+      <DependentUpon>202306261238036_appuseradminuserchanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +72,11 @@
       <Project>{4afa7e46-058a-441b-ac79-db073a73fc0c}</Project>
       <Name>Project.MAP</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202306261238036_appuseradminuserchanges.resx">
+      <DependentUpon>202306261238036_appuseradminuserchanges.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

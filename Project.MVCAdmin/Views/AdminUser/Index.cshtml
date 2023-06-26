@@ -1,11 +1,11 @@
 ﻿@model ListAdminUserPageVM
 @{
-    ViewBag.Title = "ListAppUser";
+    ViewBag.Title = "ListAdminUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <header class="panel-heading">
-    @Html.ActionLink("User Ekle", "AddAppUser", null, new { @class = "btn btn-dark" })
+    @Html.ActionLink("User Ekle", "AddAdminUser", null, new { @class = "btn btn-dark" })
 </header>
 
 <div class="panel-body">
@@ -34,10 +34,10 @@
                         <td>@item.ID</td>
                         <td>@item.UserName</td>
                         
-                        <td>@item.Roles</td>
+                        <td>@item.AdminRole</td>
 
-                        <td class="center hidden-phone"> @Html.ActionLink("Sil", "DeleteAppUser", new { id = item.ID }, new { @class = "btn btn-danger" })  </td>
-                        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateAppUser", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                        <td class="center hidden-phone"> @Html.ActionLink("Sil", "DeleteAdminUser", new { id = item.ID }, new { @class = "btn btn-danger" })  </td>
+                        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateAdminUser", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
 
                     </tr>
                  }

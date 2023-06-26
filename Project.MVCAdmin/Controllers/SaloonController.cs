@@ -102,14 +102,14 @@ namespace Project.MVCAdmin.Controllers
 
 
             _saloonRep.Update(updated);
-            return RedirectToAction("ListSaloons");
+            return RedirectToAction("Index");
 
         }
         public ActionResult DeleteSaloon(int id)
         {
             _saloonRep.Delete(_saloonRep.Find(id));
 
-            return RedirectToAction("ListSaloons");
+            return RedirectToAction("Index");
 
         }
     }

@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
-namespace Project.VM.AdminPureVMs
+namespace Project.ENTITIES.Models
 {
-    public class AdminUserVM
+    public class AdminUser : BaseEntity
     {
-        public int ID { get; set; }
+        public AdminUser() { }
+
+        public string NameSurname { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public AdminRole AdminRole { get; set; }
-
     }
 }
