@@ -13,6 +13,7 @@ namespace Project.ENTITIES.Models
         public AppUser()
         {
             ActivationCode = Guid.NewGuid();
+            Role = UserRole.Member;
         }
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -20,6 +21,7 @@ namespace Project.ENTITIES.Models
         public Guid ActivationCode { get; set; }
         public bool Active { get; set; }
         public UserRole Role { get; set; }
+
 
         //Foreign Key
 

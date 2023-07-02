@@ -1,0 +1,67 @@
+﻿@model RegisterNowUserPageVM
+@{
+    ViewBag.Title = "RegisterNow";
+}
+
+
+
+<h2>@ViewBag.Kayitli</h2>
+
+
+@using (Html.BeginForm("RegisterNow", "RegisterUser", FormMethod.Post, new { @class = "form-signin" }))
+{
+    <br />
+
+    <center><h2>Üye olunuz</h2></center>
+
+    <div class="login-wrap">
+        @Html.TextBoxFor(x => x.AppUser.UserName, new { @class = "form-control", placeholder = "Kullanıcı ismi belirleyin" })
+        @Html.PasswordFor(x => x.AppUser.Password, new { @class = "form-control", placeholder = "Sifre belirleyin" })
+        @Html.TextBoxFor(x => x.AppUser.Email, new { @class = "form-control", placeholder = "Email giriniz" })
+
+
+        <br />
+
+        Profil bilgileri (iste baglı)
+
+        <br />
+
+        @Html.TextBoxFor(x => x.Profile.FirstName, new { @class = "form-control", placeholder = "İsminizi giriniz" })
+        @Html.TextBoxFor(x => x.Profile.LastName, new { @class = "form-control", placeholder = "Soyisim giriniz" })
+        <label for="gender">Cinsiyet:</label><br />
+        <label>
+            @Html.RadioButtonFor(x => x.Profile.Gender, "Male")
+            Male
+        </label><br />
+        <label>
+            @Html.RadioButtonFor(x => x.Profile.Gender, "Female")
+            Female
+        </label>
+
+
+        <div class="form-group row pb-4">
+            <label class="col-lg-3 control-label text-lg-end pt-2"
+                   for="inputDefault"></label>
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.Profile.BirthDate, new { type = "datetime-local" })
+
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary">Üye ol</button>
+
+        @*<div>
+            @Html.ActionLink("Giriş yap", "Index", "RegisterUser")
+        </div>*@
+
+
+    </div>
+}
+
+
+
+
+    </div>
+</body>
+</html>

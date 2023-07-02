@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BoxOfficeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -138,10 +139,12 @@
     </Compile>
     <Compile Include="Models\CustomTools\ImageUploader.cs" />
     <Compile Include="Models\PageVMs\AddUpdateAdminUserPageVM.cs" />
+    <Compile Include="Models\PageVMs\AddUpdateBoxOfficePageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateSaloonPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateSeansPageVM.cs" />
     <Compile Include="Models\PageVMs\ListAdminUserPageVM.cs" />
+    <Compile Include="Models\PageVMs\ListBoxOfficePageVM.cs" />
     <Compile Include="Models\PageVMs\ListFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\ListSaloonPageVM.cs" />
     <Compile Include="Models\PageVMs\ListSeansPageVM.cs" />
@@ -5960,6 +5963,9 @@
     <Content Include="Views\Seans\Index.cshtml" />
     <Content Include="Views\Seans\AddSeans.cshtml" />
     <Content Include="Views\Seans\UpdateSeans.cshtml" />
+    <Content Include="Views\BoxOffice\Index.cshtml" />
+    <Content Include="Views\BoxOffice\AddBoxOffice.cshtml" />
+    <Content Include="Views\BoxOffice\UpdateBoxOffice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

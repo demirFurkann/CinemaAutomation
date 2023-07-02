@@ -12,7 +12,7 @@ namespace Project.COMMON.Tools
     {
         //Kullanılacak Mail Adresi ve şifresi girilecek  gmail tipinde...
 
-        public static void Send(string receiver,string password="Şifre yeri", string body ="Onay Maili",string subject="Email Testi",string sender ="Mail Adresi")
+        public static void Send(string receiver,string password= "atlkbjteiruyhcww", string body ="Onay Maili",string subject="Email Testi",string sender = "yzl3157test@gmail.com")
         {
             MailAddress senderEmail = new MailAddress(sender);
             MailAddress receiverEmail = new MailAddress(receiver);

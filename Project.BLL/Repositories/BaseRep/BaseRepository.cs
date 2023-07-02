@@ -101,5 +101,16 @@ namespace Project.BLL.Repositories.BaseRep
         {
             return _db.Set<T>().Where(exp).ToList();
         }
+
+        public void DeleteRange(List<T> list)
+        {
+            foreach (T item in list) Delete(item);
+            Save();
+        }
+
+        public void UpdateRange(List<T> lit)
+        {
+            foreach(T item in lit) Update(item);
+        }
     }
 }

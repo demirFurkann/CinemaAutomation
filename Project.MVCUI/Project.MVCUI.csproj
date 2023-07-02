@@ -128,9 +128,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegisterUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PageVMs\RegisterNowUserPageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -5923,12 +5925,15 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\RegisterUser\LoginUser.cshtml" />
+    <Content Include="Views\RegisterUser\Index.cshtml" />
+    <Content Include="Views\Shared\Layout.cshtml" />
+    <Content Include="Views\RegisterUser\RegisterNow.cshtml" />
+    <Content Include="Views\RegisterUser\RegisterOk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
@@ -5966,6 +5971,24 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Project.BLL\Project.BLL.csproj">
+      <Project>{5d14d6fb-804f-4c5f-b4af-fabfd51059e0}</Project>
+      <Name>Project.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.COMMON\Project.COMMON.csproj">
+      <Project>{329fc94b-43c9-4756-b269-cd8c99ccb0ff}</Project>
+      <Name>Project.COMMON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj">
+      <Project>{cf05edee-249f-4ae9-ad47-0787f5bc7066}</Project>
+      <Name>Project.ENTITIES</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.VM\Project.VM.csproj">
+      <Project>{31432b7e-4fd5-46c1-ae5d-e48ff6b10ba2}</Project>
+      <Name>Project.VM</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -25,7 +25,7 @@ namespace Project.MVCAdmin.Controllers
 
         private List<FilmVM> GetFilms()
         {
-            return _filmRep.Select(x => new FilmVM
+            return _filmRep.Where(x=> x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new FilmVM
             {
                 ID = x.ID,
                 MovieName = x.MovieName,
@@ -125,6 +125,7 @@ namespace Project.MVCAdmin.Controllers
             _seansRep.Add(s);
             return RedirectToAction("Index");
         }
+
         public ActionResult UpdateSeans(int id)
         {
             List<SaloonVM> saloons = GetSaloons();
@@ -165,6 +166,7 @@ namespace Project.MVCAdmin.Controllers
             updated.EndTime = endTime;
             updated.Film = film;
             updated.Saloon = saloon;
+
 
             _seansRep.Update(updated);
 

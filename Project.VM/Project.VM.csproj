@@ -66,6 +66,9 @@
     <Compile Include="AdminPureVMs\AdminRoleVM.cs" />
     <Compile Include="AdminPureVMs\AdminUserVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PureVMs\AppUserProfileVM.cs" />
+    <Compile Include="PureVMs\AppUserVM.cs" />
+    <Compile Include="PureVMs\BoxOfficeVM.cs" />
     <Compile Include="PureVMs\FilmVM.cs" />
     <Compile Include="PureVMs\SaloonVM.cs" />
     <Compile Include="PureVMs\SeansVM.cs" />
