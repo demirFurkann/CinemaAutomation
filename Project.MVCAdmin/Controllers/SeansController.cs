@@ -114,6 +114,27 @@ namespace Project.MVCAdmin.Controllers
 
             DateTime endTime = startTime.AddMinutes(filmDuration + 10);
 
+            List<Seans> existingSeansList = _seansRep.GetAll();
+
+            foreach (Seans item in existingSeansList)
+            {
+                if ((startTime.CompareTo(item.EndTime)<=0 && endTime.CompareTo(item.StartTime) >= 0 ))
+                {
+                    ModelState.AddModelError(""," Eklemek istediğniz seans, başka bir seans ile çakışıyor");
+                    List<SaloonVM> salons = GetSaloons();
+                    List<FilmVM> films = GetFilms();
+
+                    AddUpdateSeansPageVM spvm = new AddUpdateSeansPageVM
+                    {
+                        Films = films,
+                        Saloons = salons,
+                        Seans = seans
+                    };
+
+                    return View(spvm);
+                }
+            }
+
             Seans s = new Seans
             {
                 Saloon = saloon,

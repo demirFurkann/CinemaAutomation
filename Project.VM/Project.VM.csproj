@@ -72,6 +72,7 @@
     <Compile Include="PureVMs\FilmVM.cs" />
     <Compile Include="PureVMs\SaloonVM.cs" />
     <Compile Include="PureVMs\SeansVM.cs" />
+    <Compile Include="PureVMs\SeatVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

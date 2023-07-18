@@ -53,6 +53,9 @@ namespace Project.MVCAdmin.Controllers
         }
 
         [HttpPost]
+
+        // film bitince başka seansla cakısmasın 
+
         public ActionResult AddFilm(FilmVM film, HttpPostedFileBase image, string fileName)
         {
             Film f = new Film

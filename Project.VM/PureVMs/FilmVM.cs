@@ -14,7 +14,13 @@ namespace Project.VM.PureVMs
         public string Type { get; set; }
         public string Info { get; set; }
         public string ImagePath { get; set; }
-       
+
+        public List<SeansVM> Seanslar { get; set; }
+
+        public FilmVM()
+        {
+            Seanslar = new List<SeansVM>();
+        }
 
     }
 }

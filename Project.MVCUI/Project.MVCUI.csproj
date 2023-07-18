@@ -5931,6 +5931,7 @@
     <Content Include="Views\Shared\Layout.cshtml" />
     <Content Include="Views\RegisterUser\RegisterNow.cshtml" />
     <Content Include="Views\RegisterUser\RegisterOk.cshtml" />
+    <Content Include="Views\Home\SeansSeats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5984,6 +5985,10 @@
     <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj">
       <Project>{cf05edee-249f-4ae9-ad47-0787f5bc7066}</Project>
       <Name>Project.ENTITIES</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.MVCAdmin\Project.MVCAdmin.csproj">
+      <Project>{6c4cad9d-01dc-4db2-bfdc-b54ae257f0f0}</Project>
+      <Name>Project.MVCAdmin</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.VM\Project.VM.csproj">
       <Project>{31432b7e-4fd5-46c1-ae5d-e48ff6b10ba2}</Project>

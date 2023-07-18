@@ -109,7 +109,7 @@ namespace Project.MVCUI.Controllers
                 isActive.Active = true;
                 _appUserRep.Update(isActive);
                 TempData["HesapAktifMi"] = "Hesap Aktif Hale Getirildi";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             TempData["HesapAktifMi"] = "Hesabınız bulunamadı";
             return RedirectToAction("LoginUser");

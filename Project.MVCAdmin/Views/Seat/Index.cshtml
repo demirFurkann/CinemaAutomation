@@ -1,0 +1,90 @@
+﻿@model ListSeatPageVM
+@{
+    ViewBag.Title = "ListSeans";
+}
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="mb-3">
+                <a id="addToTable" href="/Seat/AddSeat" class="btn btn-primary">Yeni Ekle <i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Index", "Seat", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-4">
+                @if (Model.Saloons != null)
+                {
+                    @Html.DropDownListFor(x => x.Saloon.ID, new SelectList(Model.Saloons, "ID", "SaloonNumber"), "Lütfen Seçiniz", new { @class = "form-control chosen-select" })
+                }
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Filtrele</button>
+            </div>
+        </div>
+    }
+
+
+    @if (Model.Seats != null && Model.Seats.Count > 0)
+    {
+        <h4>Koltuklar</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Row</th>
+                    <th>SeatNo</th>
+                    <th>SeatStatus</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (SeatVM seat in Model.Seats)
+                {
+                    <tr>
+                        <td>
+                            @seat.Row
+                        </td>
+                        <td>
+                            @seat.SeatNo
+                        </td>
+                        <td>
+                            @seat.SeatStatus
+                        </td>
+                        <td class="actions">
+                            <a href="/Seat/UpdateSeat/@seat.ID" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="/Seat/DeleteSeat/@seat.ID" class="on-default remove-row"
+                               onclick="return confirm('Bu koltuğu sildiğinizde bağlı olan tüm koltuklari da silinecketir! Bu koltuğu silmek istediğinize emini misinniz ? ')">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">Gösterilecek koltuk bulunamadı.</div>
+    }
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.chosen-select').chosen();
+        });
+    </script>
+
+
+
+
+
+
+
+
