@@ -18,6 +18,10 @@ namespace Project.ENTITIES.Models
         
         //Silinme nedenini öğrenmek için
         public string CancellationReason { get; set; }
+        public Reservation()
+        {
+            ReservationTime= DateTime.Now;
+        }
 
 
 

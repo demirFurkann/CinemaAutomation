@@ -29,6 +29,7 @@ namespace Project.MVCAdmin.Controllers
             {
                 ID = x.ID,
                 MovieName = x.MovieName,
+                 Duration = x.Duration,
             }).ToList();
         }
         private List<SaloonVM> GetSaloons()
@@ -53,7 +54,7 @@ namespace Project.MVCAdmin.Controllers
                 SaloonNumber = seans.Saloon.SaloonNumber,
                 MovieName = seans.Film.MovieName,
                 Duration = seans.Film.Duration,
-                FilmID = seans.Film.ID
+                FilmID=seans.FilmId,
             }).ToList();
 
             return seansVMs;

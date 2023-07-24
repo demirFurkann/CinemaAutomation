@@ -1,0 +1,85 @@
+﻿
+@model List<ReservationVM>
+
+<style>
+    /* Tablo stilleri */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    /* Buton stilleri */
+    a.btn {
+        display: inline-block;
+        padding: 6px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-right: 4px;
+    }
+
+    a.btn-approve {
+        background-color: #28a745;
+        color: #ffffff;
+    }
+
+    a.btn-update {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+
+    a.btn-delete {
+        background-color: #dc3545;
+        color: #ffffff;
+    }
+
+    a.btn:hover {
+        opacity: 0.8;
+    }
+</style>
+
+<h2>Rezervasyonlar</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Onay Kodu</th>
+            <th>Onay Durumu</th>
+            <!-- Diğer sütunlar -->
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservations in Model)
+        {
+            <tr>
+                <td>@reservations.ID</td>
+                <td>@reservations.ConfirmationCode</td>
+                <td>@(reservations.IsApproved ? "Onaylandı" : "Onaylanmadı")</td>
+                <!-- Diğer sütunlar -->
+                <td>
+                    @if (!reservations.IsApproved)
+                    {
+                        <a href="@Url.Action("ApproveReservation", new { id = reservations.ID })" class="btn btn-approve">Onayla</a>
+                    }
+                    <a href="@Url.Action("UpdateReservation", new { id = reservations.ID })" class="btn btn-update">Güncelle</a>
+                    <a href="@Url.Action("DeleteReservation", new { id = reservations.ID })" class="btn btn-delete">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

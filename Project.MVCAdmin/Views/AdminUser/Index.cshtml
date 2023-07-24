@@ -15,8 +15,8 @@
                 <tr>
                     <th>User ID</th>
                     <th class="hidden-phone">UserName</th>
+                    <th class="hidden-phone">NameSurname</th>
                     <th class="hidden-phone">User Role</th>
-
 
                     <th class="hidden-phone">Sil</th>
                     <th class="hidden-phone">Güncelle</th>
@@ -33,10 +33,10 @@
 
                         <td>@item.ID</td>
                         <td>@item.UserName</td>
-                        
+                        <td>@item.NameSurname</td>
                         <td>@item.AdminRole</td>
 
-                        <td class="center hidden-phone"> @Html.ActionLink("Sil", "DeleteAdminUser", new { id = item.ID }, new { @class = "btn btn-danger" })  </td>
+                        <td class="center hidden-phone"> @Html.ActionLink("Sil", "DeleteAppUser", new { id = item.ID }, new { @class = "btn btn-danger" })  </td>
                         <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateAdminUser", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
 
                     </tr>
