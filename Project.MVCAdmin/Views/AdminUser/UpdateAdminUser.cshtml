@@ -4,61 +4,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("UpdateAdminUser", "AdminUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
 
-    @Html.HiddenFor(x => x.AdminUser.ID)
+<header class="page-header">
+    <h2>User Güncelle</h2>
 
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="right-wrapper text-end">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="index.html">
+                    <i class="bx bx-home-alt"></i>
+                </a>
+            </li>
 
-            <section class="panel">
-                <header class="panel-heading">
-                   Kullanıcı Güncelleme Sayfası
-                </header>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-2"> UserName</label>
-                        <div class="col-sm-10">
-                            @Html.TextBoxFor(x => x.AdminUser.UserName, new { @class = "form-control-genislik" })
-                        </div>
-                    </div>
+            <li><span>Kullanıcılar</span></li>
 
-                    <br /> <br />
-                    <div class="form-group">
-                        <label class="col-sm-2">Password</label>
-                        <div class="col-sm-10">
-                            @Html.PasswordFor(x => x.AdminUser.Password, new { @class = "form-control", placeholder = "Şifre Belirleyiniz" })
-                        </div>
-                    </div>
-                    <br /> <br />
-                    <div class="form-group">
-                        <label class="col-sm-2">Roles</label>
-                        <div class="col-sm-10">
-                            @*@Html.DropDownListFor*@
-                            <select name="combobox" id="AdminUser_AdminRole">
-                                <option value="value1">Admin</option>
-                                <option value="value2">BoxOfficeAttendant</option>
-                                <option value="value3"> BoxOfficeSupervisor</option>
-                                <option value="value2">DepartmanManager</option>
-                            </select>
+            <li><span>Kullanıcı Ekle</span></li>
 
-                        </div>
-                    </div>
-                    <div class="form-group">
+        </ol>
 
-                        <div class="form-group">
-                            <label class="col-sm-2">İşlem:</label>
-                            <div class="col-sm-10">
-                                <button class="btn btn-primary">Güncelle</button>
+    </div>
+</header>
+
+<!-- start: page -->
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+
+                <h2 class="card-title">Kullanıcı Ekle</h2>
+            </header>
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateAdminUser", "AdminUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(x => x.AdminUser.ID)
+                    <form class="form-horizontal form-bordered" method="post" action="/AdminUser/AddAdminUser">
+
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Kullanıcı Adı</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(x => x.AdminUser.UserName, new { @class = "form-control" })
+                            </div>
+                        </div><div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Ad Soyad</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(x => x.AdminUser.NameSurname, new { @class = "form-control" })
 
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2"
+                                   for="inputDefault">Password</label>
+                            <div class="col-lg-6">
+                                @Html.PasswordFor(x => x.AdminUser.Password, new { @class = "form-control", placeholder = "Şifre Belirleyiniz" })
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">Roles</label>
+                            <div class="col-sm-10"> 
+                                <select name="combobox" id="AdminUser_AdminRole">
+                                    <option value="value1">Admin</option>
+                                    <option value="value2">BoxOfficeAttendant</option>
+                                    <option value="value3"> BoxOfficeSupervisor</option>
+                                    <option value="value2">DepartmanManager</option>
+                                </select>
+                            </div>
+                            <div class="form-group row pb-4">
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-6">
+                                    <button type="submit" class="mb-1 mt-1 me-1 btn btn-primary">Ekle</button>
+                                </div>
+                            </div>
+                         </div>
+                 </form>
+                }
+            </div>
+        </section>
     </div>
- }
+</div>
 
 

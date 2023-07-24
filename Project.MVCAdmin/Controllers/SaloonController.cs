@@ -46,38 +46,8 @@ namespace Project.MVCAdmin.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult UpdateSaloon(int id)
-        {
+       
 
-            var saloonVM = _saloonRep.Where(x => x.ID == id).Select(x => new SaloonVM
-            {
-                ID = x.ID,
-                Capacity = x.Capacity,
-                SaloonNumber = x.SaloonNumber,
-            }).FirstOrDefault();
-            
-            return View(saloonVM);
-        }
-
-        //[HttpPost]
-        //public ActionResult AddSaloon(string SaloonNumber,string Capacity)//SaloonVM salon)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var saloon = new Saloon()
-        //        {
-        //            SaloonNumber = SaloonNumber,
-        //            Capacity = Convert.ToInt32(Capacity)
-        //        };
-        //        _saloonRep.Add(saloon);
-
-
-        //        return RedirectToAction("ListSaloons", "Saloon"); // Ekleme işlemi başarılı, ana sayfaya yönlendir.
-        //    }
-
-        //    return View();
-        //}
         [HttpPost]
         public ActionResult AddSaloon(SaloonVM saloon,string SaloonNumber,string Capacity)
         {
@@ -86,11 +56,26 @@ namespace Project.MVCAdmin.Controllers
                 ID = saloon.ID,
                 SaloonNumber =saloon.SaloonNumber,
                Capacity= saloon.Capacity,
-               
+                
 
             };
            _saloonRep.Add(s);
             return View();
+        }
+        [HttpGet]
+        public ActionResult UpdateSaloon(int id)
+        {
+            AddUpdateSaloonPageVM updatesaloonpagevm = new AddUpdateSaloonPageVM
+            {
+                Saloon = _saloonRep.Where(x => x.ID == id).Select(x => new SaloonVM
+                {
+                    ID = x.ID,
+                    SaloonNumber=x.SaloonNumber,
+                    Capacity=x.Capacity,
+
+                }).FirstOrDefault()
+            };
+            return View(updatesaloonpagevm);
         }
 
         [HttpPost]

@@ -56,6 +56,14 @@
     <Compile Include="Migrations\202306261238036_appuseradminuserchanges.designer.cs">
       <DependentUpon>202306261238036_appuseradminuserchanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307092117204_InitialMigration.cs" />
+    <Compile Include="Migrations\202307092117204_InitialMigration.designer.cs">
+      <DependentUpon>202307092117204_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307141827139_ıoçı.cs" />
+    <Compile Include="Migrations\202307141827139_ıoçı.designer.cs">
+      <DependentUpon>202307141827139_ıoçı.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,6 +84,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202306261238036_appuseradminuserchanges.resx">
       <DependentUpon>202306261238036_appuseradminuserchanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307092117204_InitialMigration.resx">
+      <DependentUpon>202307092117204_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307141827139_ıoçı.resx">
+      <DependentUpon>202307141827139_ıoçı.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -17,6 +17,8 @@ namespace Project.VM.PureVMs
         public string MovieName { get; set; }
         public double Duration { get; set; }
         public int FilmID { get; set; }
+        public int ReservationID { get; set; }
+        public string ConfirmationCode { get; set; }
 
 
     }

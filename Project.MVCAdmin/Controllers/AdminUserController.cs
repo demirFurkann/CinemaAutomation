@@ -24,12 +24,13 @@ namespace Project.MVCAdmin.Controllers
 
         public ActionResult Index()
         {
-            List<AdminUserVM> adminUsers= _adminUserRep.Where(x=>x.AdminRole != ENTITIES.Enums.AdminRole.Admin).Select(x=> new AdminUserVM
+            List<AdminUserVM> adminUsers= _adminUserRep.Where(x=>x.AdminRole != ENTITIES.Enums.AdminRole.Admin&& x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x=> new AdminUserVM
             {
                 ID=x.ID,
                 UserName= x.UserName,
                 Password= x.Password,
-                AdminRole=x.AdminRole
+                AdminRole=x.AdminRole,
+                NameSurname=x.NameSurname,
                 
 
             }).ToList();
@@ -57,6 +58,7 @@ namespace Project.MVCAdmin.Controllers
                UserName= adminUser.UserName,
                Password= adminUser.Password,
                AdminRole= adminUser.AdminRole,
+               NameSurname=adminUser.NameSurname,
 
             };
             _adminUserRep.Add(ap);
@@ -71,6 +73,7 @@ namespace Project.MVCAdmin.Controllers
                 {
                     ID = x.ID,
                     UserName = x.UserName,
+                    NameSurname = x.NameSurname,
                     Password = x.Password,
                     AdminRole = x.AdminRole
                 }).FirstOrDefault()
@@ -85,6 +88,7 @@ namespace Project.MVCAdmin.Controllers
         {
             AdminUser updated = _adminUserRep.Find(adminUser.ID);
             updated.UserName= adminUser.UserName;
+            updated.NameSurname= adminUser.NameSurname;
             updated.Password= adminUser.Password;
             updated.AdminRole = adminUser.AdminRole;
 
