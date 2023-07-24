@@ -11,6 +11,7 @@ namespace Project.ENTITIES.Models
     {
         public string SeatNo { get; set; }
         public string Row { get; set; }
+        public decimal SeatPrice { get; set; }
 
         public SeatStatus SeatStatus { get; set; }
 

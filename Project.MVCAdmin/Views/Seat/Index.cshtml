@@ -36,7 +36,7 @@
                     <th>Row</th>
                     <th>SeatNo</th>
                     <th>SeatStatus</th>
-                    
+                    <th>Price</th>
 
                 </tr>
             </thead>
@@ -50,8 +50,12 @@
                         <td>
                             @seat.SeatNo
                         </td>
+
                         <td>
                             @seat.SeatStatus
+                        </td>
+                        <td>
+                            @seat.SeatPrice
                         </td>
                         <td class="actions">
                             <a href="/Seat/UpdateSeat/@seat.ID" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>

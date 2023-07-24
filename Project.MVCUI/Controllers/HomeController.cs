@@ -2,6 +2,7 @@
 using Project.ENTITIES.Models;
 using Project.MVCAdmin.Models.CustomTools;
 using Project.MVCAdmin.Models.PageVMs;
+using Project.MVCUI.Models.PageVMs;
 using Project.VM.PureVMs;
 using System;
 using System.Collections.Generic;
@@ -122,6 +123,18 @@ namespace Project.MVCUI.Controllers
 
             return View(seansSeatsVM);
         }
+
+        [HttpPost]
+        public ActionResult ReserveSeats(ReservationSeatPageVM model)
+        {
+            // Buradan devam edicez rezevasyon yapıcaz...
+
+
+            return View();
+        }
+
+
+     
 
 
 

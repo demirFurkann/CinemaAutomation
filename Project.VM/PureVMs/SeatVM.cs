@@ -12,7 +12,8 @@ namespace Project.VM.PureVMs
         public int ID { get; set; }
         public string SeatNo { get; set; }
         public string Row { get; set; }
-
+        public bool IsReserved { get; set; }
+        public decimal SeatPrice { get; set; }
         public int SaloonID { get; set; }
         public string SaloonNumber { get; set; }
 

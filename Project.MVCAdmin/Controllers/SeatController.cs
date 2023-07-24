@@ -43,7 +43,8 @@ namespace Project.MVCAdmin.Controllers
                 Row = x.Row,
                 SaloonNumber = x.Saloon.SaloonNumber,
                 SeatNo = x.SeatNo,
-                SeatStatus = x.SeatStatus
+                SeatStatus = x.SeatStatus,
+                SeatPrice=x.SeatPrice,
             }).ToList();
             return seatVM;
 
@@ -115,7 +116,8 @@ namespace Project.MVCAdmin.Controllers
                         SeatNo = $"{j}",
                         Row = $"{seatRow[i]}",
                         Saloon = saloon,
-                        SeatStatus= SeatStatus.Empty
+                        SeatStatus= seat.SeatStatus,
+                        SeatPrice= seat.SeatPrice,
                     };
                     _seatRep.Add(s);
                 }
