@@ -67,6 +67,7 @@ namespace Project.MVCAdmin.Controllers
             return RedirectToAction("Index");
         }
 
+
         public ActionResult UpdateFilm(int id)
         {
             AddUpdateFilmPageVM flpvm = new AddUpdateFilmPageVM

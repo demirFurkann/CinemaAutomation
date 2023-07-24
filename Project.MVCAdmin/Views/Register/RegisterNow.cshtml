@@ -10,37 +10,56 @@
 
 
 
-<h2>RegisterNow</h2>
+<h2>
+    Şimdi Üye Ol !
+</h2>
 
 <h2>@ViewBag.Mevcut</h2>
 
 @using (Html.BeginForm("RegisterNow", "Register", FormMethod.Post, new { @class = "form-signin" }))
 {
-    <div class="login-wrap">
-        @Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı Giriniz" })
-        @Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Şifre Belirleyiniz" })
-
-        @Html.DropDownListFor(x => x.User.Roles, Model.Roles, new { @class = "form-control" })
-
-        @*<div>
-            <label for="Role">Role:</label>
-            @Html.DropDownListFor(m => m.User.Roles, Model.Roles, "-- Rol Seçiniz --", new { @class = "form-control" })
-        </div>*@
-     
-
+    <div class="form-group row pb-4">
+        <label class="col-lg-3 control-label text-lg-end pt-2"></label>
+        <div class="col-lg-12">
+            <section class="form-group-vertical">
+                @*<input class="form-control" type="text" placeholder="Username">*@
+                @Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı Giriniz" })
+                @*<input class="form-control" type="text" placeholder="Email">*@
+                @Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Şifre Belirleyiniz" })
+                @*<input class="form-control last" type="password" placeholder="Password">*@
+                @Html.DropDownListFor(x => x.User.AdminRole, Model.Roles, new { @class = "form-control" })
+            </section>
+        </div>
     </div>
-
-    <br />
-
-    <h3>Profil Bilgileri</h3>
-    <br />
-
-    @Html.TextBoxFor(x => x.Profile.FirstName, new { @class = "form-control", placeholder = "İsim Giriniz" })
-    @Html.TextBoxFor(x => x.Profile.LastName, new { @class = "form-control", placeholder = "Soyİsim Giriniz" })
-    @Html.TextBoxFor(x => x.Profile.Email, new { @class = "form-control", placeholder = "Email Giriniz" })
-    @Html.TextBoxFor(x => x.Profile.BirthDate, new { @class = "form-control", placeholder = "Doğum Tarihi", type = "date" })
-
-    <button class="btn btn-primary">Kayıt</button>
+    <div class="form-group row pb-4 has-success">
+        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputSuccess">Name</label>
+        <div class="col-lg-12">
+            @*<input type="text" class="form-control" id="inputSuccess">*@
+            @Html.TextBoxFor(x => x.Profile.FirstName, new { @class = "form-control", placeholder = "İsim Giriniz" })
+        </div>
+    </div>
+    <div class="form-group row pb-4 has-warning">
+        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputWarning">Surname</label>
+        <div class="col-lg-12">
+            @*<input type="text" class="form-control" id="inputWarning">*@
+            @Html.TextBoxFor(x => x.Profile.LastName, new { @class = "form-control", placeholder = "Soyİsim Giriniz" })
+        </div>
+    </div>
+    <div class="form-group row pb-4 has-danger">
+        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputError">Email</label>
+        <div class="col-lg-12">
+            @*<input type="text" class="form-control" id="inputError">*@
+            @Html.TextBoxFor(x => x.Profile.Email, new { @class = "form-control", placeholder = "Email Giriniz" })
+        </div>
+    </div>
+    <div class="form-group row pb-4 has-info">
+        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputError">Date Of Birth</label>
+        <div class="col-lg-12">
+            @*<input type="text" class="form-control" id="inputError">*@
+            @Html.TextBoxFor(x => x.Profile.BirthDate, new { @class = "form-control", placeholder = "Doğum Tarihi", type = "date" })
+        </div>
+    </div>
+    <button class="btn btn-gradient">Kayıt Ol</button>
 }
 
 

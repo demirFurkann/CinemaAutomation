@@ -1,0 +1,130 @@
+﻿@*@model AddUpdateReservationPageVM
+    @{
+        ViewBag.Title = "AddReservation";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+    <header class="page-header">
+        <h2>Rezervasyon Ekle</h2>
+
+        <div class="right-wrapper text-end">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="bx bx-home-alt"></i>
+                    </a>
+                </li>
+                <li><span>Rezervasyonlar</span></li>
+                <li><span>Rezervasyon Ekle</span></li>
+            </ol>
+        </div>
+    </header>
+
+    <h2>Rezervasyon Ekle</h2>
+
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    <h2 class="card-title">Rezervasyon Ekle</h2>
+                </header>
+                <div class="card-body">
+                    @using (Html.BeginForm("AddReservation", "Reservation", FormMethod.Post))
+                    {
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2" for="UserName">Adınız</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(x => x.Reservation.FirstName, new { @class = "form-control", id = "UserName" })
+                            </div>
+                        </div>
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2" for="TotalPrice">Total Fiyat</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(x => x.Reservation.TotalPrice, new { @class = "form-control", id = "TotalPrice" })
+                            </div>
+                        </div>
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2" for="ConfirmationCode">Doğrulama Kodu</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="ConfirmationCode" name="ConfirmationCode" value="@Model.Reservation.ConfirmationCode" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2" for="Films">Filmler</label>
+                            <div class="col-lg-6">
+                                <select class="form-control" id="Films" name="Reservation.FilmID">
+                                    <option value="0">Seç</option>
+                                    @foreach (var film in Model.Films)
+                                    {
+                                        <option value="@film.ID">@film.MovieName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row pb-4">
+                            <label class="col-lg-3 control-label text-lg-end pt-2" for="Seans">Seanslar</label>
+                            <div class="col-lg-6">
+                                <select class="form-control" id="Seans" name="Reservation.SeansID">
+                                    <option value="0">Seç</option>
+                                    @foreach (var seans in Model.Seans)
+                                    {
+                                        <option value="@seans.ID">@seans.SeansNumber</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10 offset-sm-2">
+                                <button type="submit" class="btn btn-primary">Ekle</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>*@
+
+@model AddUpdateReservationPageVM
+
+<h2>Rezervasyon Ekle</h2>
+
+@using (Html.BeginForm("AddReservation", "Reservation", FormMethod.Post))
+{
+    <div>
+        <label>Kullanıcı Adı:</label>
+        @Html.TextBoxFor(m => m.AppUser.UserName)
+    </div>
+
+    <div>
+        <label>Film:</label>
+        @Html.DropDownListFor(m => m.Reservation.FilmID, new SelectList(Model.Films, "ID", "MovieName"), "Film Seçin")
+    </div>
+
+    <div>
+        <label>Seans:</label>
+        @Html.DropDownListFor(m => m.Reservation.SeansID, new SelectList(Model.Seans, "ID", "SeansNumber"), "Seans Seçin")
+    </div>
+
+    <div>
+        <label>Toplam Fiyat:</label>
+        @Html.TextBoxFor(m => m.Reservation.TotalPrice)
+    </div>
+
+    <div>
+        <label>Onay Kodu:</label>
+        @Html.TextBoxFor(m => m.Reservation.ConfirmationCode)
+    </div>
+
+    <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 4px;">
+        Rezervasyonu Ekle
+    </button>
+}
+

@@ -130,6 +130,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\SaloonController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\SeansController.cs" />
@@ -139,10 +140,12 @@
     <Compile Include="Models\CustomTools\ImageUploader.cs" />
     <Compile Include="Models\PageVMs\AddUpdateAdminUserPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateFilmPageVM.cs" />
+    <Compile Include="Models\PageVMs\AddUpdateReservationPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateSaloonPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateSeansPageVM.cs" />
     <Compile Include="Models\PageVMs\ListAdminUserPageVM.cs" />
     <Compile Include="Models\PageVMs\ListFilmPageVM.cs" />
+    <Compile Include="Models\PageVMs\ListReservationPageVM.cs" />
     <Compile Include="Models\PageVMs\ListSaloonPageVM.cs" />
     <Compile Include="Models\PageVMs\ListSeansPageVM.cs" />
     <Compile Include="Models\PageVMs\RegisterNowPageVM.cs" />
@@ -5951,15 +5954,17 @@
     <Content Include="Views\Saloon\AddSaloon.cshtml" />
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
     <Content Include="Views\Saloon\ListSaloons.cshtml" />
-    <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
     <Content Include="Views\AdminUser\Index.cshtml" />
     <Content Include="Views\AdminUser\AddAdminUser.cshtml" />
     <Content Include="Views\AdminUser\UpdateAdminUser.cshtml" />
     <Content Include="Views\Saloon\Index.cshtml" />
-    <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
     <Content Include="Views\Seans\Index.cshtml" />
     <Content Include="Views\Seans\AddSeans.cshtml" />
     <Content Include="Views\Seans\UpdateSeans.cshtml" />
+    <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
+    <Content Include="Views\Reservation\AddReservation.cshtml" />
+    <Content Include="Views\Reservation\UpdateReservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
