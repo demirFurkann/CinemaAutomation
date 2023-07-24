@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BoxOfficeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -134,20 +135,25 @@
     <Compile Include="Controllers\SaloonController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\SeansController.cs" />
+    <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomTools\ImageUploader.cs" />
     <Compile Include="Models\PageVMs\AddUpdateAdminUserPageVM.cs" />
+    <Compile Include="Models\PageVMs\AddUpdateBoxOfficePageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateReservationPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateSaloonPageVM.cs" />
     <Compile Include="Models\PageVMs\AddUpdateSeansPageVM.cs" />
+    <Compile Include="Models\PageVMs\AddUpdateSeatPageVM.cs" />
     <Compile Include="Models\PageVMs\ListAdminUserPageVM.cs" />
+    <Compile Include="Models\PageVMs\ListBoxOfficePageVM.cs" />
     <Compile Include="Models\PageVMs\ListFilmPageVM.cs" />
     <Compile Include="Models\PageVMs\ListReservationPageVM.cs" />
     <Compile Include="Models\PageVMs\ListSaloonPageVM.cs" />
     <Compile Include="Models\PageVMs\ListSeansPageVM.cs" />
+    <Compile Include="Models\PageVMs\ListSeatPageVM.cs" />
     <Compile Include="Models\PageVMs\RegisterNowPageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -5961,6 +5967,12 @@
     <Content Include="Views\Seans\Index.cshtml" />
     <Content Include="Views\Seans\AddSeans.cshtml" />
     <Content Include="Views\Seans\UpdateSeans.cshtml" />
+    <Content Include="Views\BoxOffice\Index.cshtml" />
+    <Content Include="Views\BoxOffice\AddBoxOffice.cshtml" />
+    <Content Include="Views\BoxOffice\UpdateBoxOffice.cshtml" />
+    <Content Include="Views\Seat\Index.cshtml" />
+    <Content Include="Views\Seat\AddSeat.cshtml" />
+    <Content Include="Views\Seat\UpdateSeat.cshtml" />
     <Content Include="Views\Saloon\UpdateSaloon.cshtml" />
     <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Reservation\AddReservation.cshtml" />

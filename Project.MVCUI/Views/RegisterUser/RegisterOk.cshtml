@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kayıt Başarılı</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .jumbotron {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Tebrikler, Kayıt Oldunuz!</h1>
+        <p>Lütfen Email adresinize gönderdiğimiz aktivasyon linkini tıklayarak hesabınızı aktifleştirin.</p>
+    </div>
+
+    <script>
+        
+        setTimeout(function () {
+            window.location = "/RegisterUser/Index";
+        }, 5000);
+    </script>
+</body>
+</html>
+<h2>@TempData["HesapAtkifMi"]</h2>

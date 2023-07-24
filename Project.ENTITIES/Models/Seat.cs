@@ -12,11 +12,11 @@ namespace Project.ENTITIES.Models
         public string SeatNo { get; set; }
         public string Row { get; set; }
 
-        public SeatStatus Status { get; set; }
+        public SeatStatus SeatStatus { get; set; }
 
         public Seat()
         {
-            Status = SeatStatus.Empty;
+            SeatStatus = SeatStatus.Empty;
         }
 
         //Foreign Key

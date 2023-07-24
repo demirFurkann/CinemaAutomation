@@ -25,7 +25,7 @@ namespace Project.MVCAdmin.Controllers
 
         private List<FilmVM> GetFilms()
         {
-            return _filmRep.Select(x => new FilmVM
+            return _filmRep.Where(x=> x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new FilmVM
             {
                 ID = x.ID,
                 MovieName = x.MovieName,
@@ -115,6 +115,27 @@ namespace Project.MVCAdmin.Controllers
 
             DateTime endTime = startTime.AddMinutes(filmDuration + 10);
 
+            List<Seans> existingSeansList = _seansRep.GetAll();
+
+            foreach (Seans item in existingSeansList)
+            {
+                if ((startTime.CompareTo(item.EndTime)<=0 && endTime.CompareTo(item.StartTime) >= 0 ))
+                {
+                    ModelState.AddModelError(""," Eklemek istediğniz seans, başka bir seans ile çakışıyor");
+                    List<SaloonVM> salons = GetSaloons();
+                    List<FilmVM> films = GetFilms();
+
+                    AddUpdateSeansPageVM spvm = new AddUpdateSeansPageVM
+                    {
+                        Films = films,
+                        Saloons = salons,
+                        Seans = seans
+                    };
+
+                    return View(spvm);
+                }
+            }
+
             Seans s = new Seans
             {
                 Saloon = saloon,
@@ -126,6 +147,7 @@ namespace Project.MVCAdmin.Controllers
             _seansRep.Add(s);
             return RedirectToAction("Index");
         }
+
         public ActionResult UpdateSeans(int id)
         {
             List<SaloonVM> saloons = GetSaloons();
@@ -166,6 +188,7 @@ namespace Project.MVCAdmin.Controllers
             updated.EndTime = endTime;
             updated.Film = film;
             updated.Saloon = saloon;
+
 
             _seansRep.Update(updated);
 

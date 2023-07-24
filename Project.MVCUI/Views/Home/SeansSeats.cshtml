@@ -1,0 +1,41 @@
+﻿@model ListSeansPageVM
+
+<style>
+    .card.koltuk.empty-seat .card-body {
+        background-color: green;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2>@Model.Film.MovieName - @Model.Seans.FirstOrDefault()?.StartTime.ToString("HH:mm") - @Model.Seans.FirstOrDefault()?.EndTime.ToString("HH:mm")</h2>
+    <p>Salon: @Model.Seans.FirstOrDefault()?.SaloonNumber</p>
+    <h4>Koltuklar</h4>
+    <div class="row">
+        @foreach (var seat in Model.Seats.OrderBy(s => s.Row).ThenBy(s => s.SeatNo))
+        {
+            <div class="col-md-3 mb-3">
+                <div class="card koltuk @(GetSeatStatusColor(seat.SeatStatus))">
+                    <div class="card-body">
+                        <h5 class="card-title">Koltuk @seat.SeatNo</h5>
+                        <p class="card-text">Durum: @seat.SeatStatus</p>
+                        <p class="card-text">Row: @seat.Row</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@functions {
+    public string GetSeatStatusColor(Project.ENTITIES.Enums.SeatStatus seatStatus)
+    {
+        if (seatStatus == Project.ENTITIES.Enums.SeatStatus.Empty)
+        {
+            return "empty-seat";
+        }
+        else
+        {
+            return "";
+        }
+    }
+}

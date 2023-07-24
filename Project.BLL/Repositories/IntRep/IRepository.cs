@@ -23,6 +23,8 @@ namespace Project.BLL.Repositories.IntRep
         void Update(T item);
         void Delete(T item);
         void Destroy(T item);
+        void DeleteRange(List<T> list);
+        void UpdateRange(List<T> lit);
 
 
         // Linq sorgulari

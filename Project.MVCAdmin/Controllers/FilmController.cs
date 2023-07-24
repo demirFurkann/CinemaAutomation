@@ -14,9 +14,11 @@ namespace Project.MVCAdmin.Controllers
     public class FilmController : Controller
     {
         FilmRepository _filmRep;
+        SeansRepository _seansRep;
         public FilmController()
         {
             _filmRep = new FilmRepository();
+            _seansRep = new SeansRepository();
         }
 
         private List<FilmVM> GetFilms()
@@ -51,6 +53,9 @@ namespace Project.MVCAdmin.Controllers
         }
 
         [HttpPost]
+
+        // film bitince başka seansla cakısmasın 
+
         public ActionResult AddFilm(FilmVM film, HttpPostedFileBase image, string fileName)
         {
             Film f = new Film
@@ -96,16 +101,32 @@ namespace Project.MVCAdmin.Controllers
             updated.Type = film.Type;
             updated.Info = film.Info;
 
+            List<Seans> updateSeans = _seansRep.Where(x => x.FilmId == updated.ID).ToList();
+            foreach (Seans seans in updateSeans)
+            {
+                seans.Film.Duration = updated.Duration;
+                DateTime endTime = seans.StartTime.AddMinutes(updated.Duration + 10);
+                seans.EndTime = endTime;
+                _seansRep.Update(seans);
+
+            }
             _filmRep.Update(updated);
+
             return RedirectToAction("Index");
 
         }
 
         public ActionResult DeleteFilm(int id)
         {
-            _filmRep.Delete(_filmRep.Find(id));
+            Film film = _filmRep.Find(id);
 
-            return RedirectToAction("ListFilms");
+            List<Seans> seanslar = _seansRep.Where(x => x.FilmId == film.ID);
+
+            _seansRep.DeleteRange(seanslar);
+
+            _filmRep.Delete(film);
+
+            return RedirectToAction("Index");
 
         }
     }

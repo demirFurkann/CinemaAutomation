@@ -1,10 +1,10 @@
-﻿@model ListFilmPageVM
+﻿@model ListBoxOfficePageVM
 @{
-    ViewBag.Title = "ListFilms";
+    ViewBag.Title = "Index";
 }
 
 <header class="page-header">
-    <h2>Film Listesi</h2>
+    <h2>Gişe Listesi</h2>
 
     <div class="right-wrapper text-end">
         <ol class="breadcrumbs">
@@ -14,9 +14,9 @@
                 </a>
             </li>
 
-            <li><span>Film Yönetimi</span></li>
+            <li><span>Gişe Yönetimi</span></li>
 
-            <li><span>Film Listesi</span></li>
+            <li><span>Gişe Listesi</span></li>
 
         </ol>
 
@@ -27,51 +27,39 @@
 <section class="card">
     <header class="card-header">
 
-        <h2 class="card-title">Film Listesi</h2>
+        <h2 class="card-title">Gişe Listesi</h2>
     </header>
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6">
                 <div class="mb-3">
-                    <a id="addToTable" href="/Film/AddFilm" class="btn btn-primary">Yeni Ekle <i class="fas fa-plus"></i></a>
+                    <a id="addToTable" href="/BoxOffice/AddBoxOffice" class="btn btn-primary">Yeni Ekle <i class="fas fa-plus"></i></a>
                 </div>
             </div>
         </div>
         <table class="table table-bordered table-striped mb-0" id="datatable-editable">
             <thead>
                 <tr>
-                    <
-                    <th>Film Adı</th>
-                    <th>Film Süresi</th>
-                    <th>Tipi</th>
-                    <th>Film Bilgisi</th>
-                    <th>Fotoğraf</th>
+                    <th>ID</th>
+                    <th>Gişe Numarası</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                @foreach (FilmVM item in Model.Films)
+                @foreach (BoxOfficeVM item in Model.BoxOffices)
                 {
                     <tr data-item-id="1">
                         <td>
-                            @item.MovieName
+                            @item.ID
                         </td>
                         <td>
-                            @item.Duration
+                            @item.OfficeNumber
                         </td>
-                        <td>
-                            @item.Type
-                        </td>
-                        <td>
-                            @item.Info
-                        </td>
-                        <td>
-                            <img width="30" height="30" title="@item.MovieName" src="@item.ImagePath" />
-                        </td>
+                     
 
-                       
                         <td class="actions">
-                            <a href="/Film/UpdateFilm/@item.ID" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="/Film/DeleteFilm/@item.ID" class="on-default remove-row"
+                            <a href="/BoxOffice/UpdateBoxOffice/@item.ID" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="/BoxOffice/DeleteBoxOffice/@item.ID" class="on-default remove-row"
                                onclick="return confirm('Bu filmi sildiğinizde bağlı olan tüm seansları da silinecketir! Bu filmi silmek istediğinize emini misinniz ? ')">
                                 <i class="far fa-trash-alt"></i>
                             </a>

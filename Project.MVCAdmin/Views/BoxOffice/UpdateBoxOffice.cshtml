@@ -1,11 +1,10 @@
-﻿@model AddUpdateSaloonPageVM
+﻿@model AddUpdateBoxOfficePageVM
 @{
-    ViewBag.Title = "UpdateSaloon";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "UpdateBoxOffice";
 }
 
 <header class="page-header">
-    <h2>Saloon Güncelle</h2>
+    <h2>Ofis Güncelle</h2>
 
     <div class="right-wrapper text-end">
         <ol class="breadcrumbs">
@@ -15,14 +14,15 @@
                 </a>
             </li>
 
-            <li><span>Salonlar</span></li>
+            <li><span>Ofisler</span></li>
 
-            <li><span>Salon Ekle</span></li>
+            <li><span>Ofis Güncelle</span></li>
 
         </ol>
 
     </div>
 </header>
+
 <!-- start: page -->
 <div class="row">
     <div class="col">
@@ -33,37 +33,28 @@
                     <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
                 </div>
 
-                <h2 class="card-title">Salon Ekle</h2>
+                <h2 class="card-title">Ofis Güncelle</h2>
             </header>
             <div class="card-body">
-                @using (Html.BeginForm("UpdateSaloon", "Saloon", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("UpdateBoxOffice", "BoxOffice", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    @Html.HiddenFor(x => x.Saloon.ID)
-                    <form class="form-horizontal form-bordered" method="post" action="/Saloon/AddSaloon">
+                @Html.HiddenFor(x=> x.BoxOffice.ID)
+                    <form class="form-horizontal form-bordered" method="post" action="/BoxOffice/UpdateBoxOffice">
 
 
                         <div class="form-group row pb-4">
                             <label class="col-lg-3 control-label text-lg-end pt-2"
-                                   for="inputDefault">Salon Number</label>
+                                   for="inputDefault">Gişe Numarası</label>
                             <div class="col-lg-6">
-                                @Html.TextBoxFor(x => x.Saloon.SaloonNumber, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.BoxOffice.OfficeNumber, new { @class = "form-control" })
                             </div>
                         </div>
 
 
-
-                        <div class="form-group row pb-4">
-                            <label class="col-lg-3 control-label text-lg-end pt-2"
-                                   for="inputDefault">Salon Kapasitesi</label>
-                            <div class="col-lg-6">
-                                @Html.TextBoxFor(x => x.Saloon.Capacity, new { @class = "form-control" })
-
-                            </div>
-                        </div>
                         <div class="form-group row pb-4">
                             <div class="col-lg-3"></div>
                             <div class="col-lg-6">
-                                <button type="submit" class="mb-1 mt-1 me-1 btn btn-gradient">Ekle</button>
+                                <button type="submit" class="mb-1 mt-1 me-1 btn btn-primary">Ekle</button>
                             </div>
                         </div>
 
@@ -73,3 +64,4 @@
         </section>
     </div>
 </div>
+
