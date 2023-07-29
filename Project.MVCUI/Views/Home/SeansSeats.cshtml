@@ -1,125 +1,92 @@
 ﻿@model ListSeansPageVM
 
+
+
 <style>
-    .seat {
-        width: 50px;
-        height: 50px;
+    .seat-container {
+        width: 60px;
+        height: 80px;
         margin: 5px;
         background-color: #ccc;
         display: inline-block;
         text-align: center;
-        line-height: 50px;
-        font-size: 18px;
+        font-size: 14px;
         cursor: pointer;
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+
+    .yellow-seat {
+        background-color: yellow;
     }
 
     .row {
         margin-bottom: 10px;
     }
 
-    .reserved {
-        background-color: #f00;
-    }
 
     .selected {
         background-color: #00F;
     }
 
-    .disabled {
-        background-color: #666;
+    .empty-seat {
+        background-color: #fff; /* Boş beyaz koltuklar için */
+    }
+
+    .reserved {
+        background-color: yellow; /* Rezerve edilmiş sarı koltuklar için */
+    }
+
+    .occupied {
+        background-color: red; /* Dolu kırmızı koltuklar için */
     }
 </style>
-@functions {
-    public string GetSeatStatusColor(Project.ENTITIES.Enums.SeatStatus seatStatus)
-    {
-        if (seatStatus == Project.ENTITIES.Enums.SeatStatus.Empty)
-        {
-            return "empty-seat";
-        }
-        else if (seatStatus == Project.ENTITIES.Enums.SeatStatus.Reserved)
-        {
-            return "reserved";
-        }
-        else // Selected durumunu da ekleyebilirsiniz.
-        {
-            return "";
-        }
-    }
-}
+
 <div class="container mt-4">
-  
     <h4>Koltuklar</h4>
     <div class="row">
-        @foreach (var seat in Model.Seats.OrderBy(s => s.Row).ThenBy(s => s.SeatNo))
+        @if (Model != null)
         {
-            <div class="col-md-3 mb-3">
-                <div>
-                    @seat.Row
+            foreach (var seat in Model.Seats.OrderBy(s => s.Row).ThenBy(s => s.SeatNo))
+            {
+                <div class="seat-container @GetSeatCssClasses(seat)" onclick="addToCart('@seat.ID', this)">
+                    <!-- Koltuk ikonu veya içeriği burada eklenebilir -->
+                    <span class="seat-row">@seat.Row</span><br />
+                    <span class="seat-no">@seat.SeatNo</span>
+                    <a href="@Url.Action("AddToCart", new { id = seat.ID })">Rezervasyon Yap</a>
+                    
                 </div>
-                <div class="seat @(GetSeatStatusColor(seat.SeatStatus))" onclick="selectSeat('@seat.SeatNo', this)">
-                    @seat.SeatNo
-                </div>
-            </div>
+            }
+        }
+        else
+        {
+            <p>Boşta koltuk yok.</p>
         }
     </div>
 </div>
-
-<button id="reserveBtn" onclick="redirectToReservationPage()">Rezerve Et</button>
-<button id="buyBtn" onclick="buySeats()">Satın Al</button>
-<button id="cancelBtn" onclick="cancelSelection()">İptal Et</button>
-
-<script>
-    const seats = document.querySelectorAll('.seat');
-    let selectedSeats = [];
-
-    function selectSeat(seatNo, seatElement) {
-        const seatStatus = seatElement.classList.contains('reserved') ? 'reserved' : 'empty';
-
-        if (seatStatus !== 'reserved') {
-            seatElement.classList.toggle('selected');
-            const index = selectedSeats.indexOf(seatNo);
-            if (index !== -1) {
-                selectedSeats.splice(index, 1);
-            } else {
-                selectedSeats.push(seatNo);
-            }
+<submit>
+    <button>
+        <a href="@Url.Action("TicketBuy")">Satın Alma</a>
+    </button>
+</submit>
+@functions {
+    // Koltuğa uygun CSS sınıflarını döndüren bir yardımcı fonksiyon
+    string GetSeatCssClasses(SeatVM seat)
+    {
+        if (seat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Reserved)
+        {
+            return "reserved";
+        }
+        else if (seat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Occupied)
+        {
+            return "occupied";
+        }
+        else
+        {
+            return "empty-seat";
         }
     }
+}
 
-    function redirectToReservationPage() {
 
-       
-        const reservationUrl = 'Index';
-         
-        window.location.href = reservationUrl;
-    }
 
-    function reserveSeats() {
-        alert('Seçili koltuklar rezerve edildi: ' + selectedSeats.join(', '));
-        selectedSeats = [];
-        seats.forEach(seat => seat.classList.remove('selected'));
-    }
-
-    function buySeats() {
-        alert('Seçili koltuklar satın alındı: ' + selectedSeats.join(', '));
-        selectedSeats = [];
-        seats.forEach(seat => seat.classList.remove('selected'));
-    }
-
-    function cancelSelection() {
-        selectedSeats = [];
-        seats.forEach(seat => seat.classList.remove('selected'));
-        alert('Seçili koltuklar iptal edildi.');
-    }
-
-    // Modeldeki koltuk durumlarına göre CSS sınıflarını belirleme
-    const seatElements = document.querySelectorAll('.seat');
-    seatElements.forEach(seatElement => {
-        const seatStatus = seatElement.classList.contains('reserved') ? 'reserved' : 'empty';
-        if (seatStatus === 'empty') {
-            seatElement.classList.add('empty-seat');
-        } else if (seatStatus === 'reserved') {
-            seatElement.classList.add('reserved');
-        }
-    });
-</script>

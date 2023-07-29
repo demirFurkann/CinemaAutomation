@@ -19,6 +19,9 @@ namespace Project.ENTITIES.Models
         //Relational Properties
         public virtual List<Reservation> Reservations  { get; set; }
 
+        // koltukları seanslara gore listelemek için
+        public virtual List<Seat> Seats { get; set; }
+
         public virtual Saloon Saloon { get; set; }
         public virtual Film Film { get; set; }
     }

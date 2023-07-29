@@ -10,6 +10,7 @@ namespace Project.MVCAdmin.Models.PageVMs
     {
         public SeatVM Seat { get; set; }
         public List<SaloonVM> Saloons { get; set; }
+        public List<SeansVM> Seans { get; set; }
 
     }
 }

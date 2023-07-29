@@ -70,11 +70,11 @@
     <Compile Include="PureVMs\AppUserVM.cs" />
     <Compile Include="PureVMs\BoxOfficeVM.cs" />
     <Compile Include="PureVMs\FilmVM.cs" />
-    <Compile Include="PureVMs\ReservationSeatVM.cs" />
     <Compile Include="PureVMs\ReservationVM.cs" />
     <Compile Include="PureVMs\SaloonVM.cs" />
     <Compile Include="PureVMs\SeansVM.cs" />
     <Compile Include="PureVMs\SeatVM.cs" />
+    <Compile Include="PureVMs\TicketVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

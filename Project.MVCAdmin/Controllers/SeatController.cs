@@ -16,10 +16,12 @@ namespace Project.MVCAdmin.Controllers
     {
         SaloonRepository _saloonRep;
         SeatRepository _seatRep;
+        SeansRepository _seansRep;
         public SeatController()
         {
             _saloonRep = new SaloonRepository();
             _seatRep = new SeatRepository();
+            _seansRep = new SeansRepository();
         }
 
 
@@ -44,11 +46,19 @@ namespace Project.MVCAdmin.Controllers
                 SaloonNumber = x.Saloon.SaloonNumber,
                 SeatNo = x.SeatNo,
                 SeatStatus = x.SeatStatus,
-                SeatPrice=x.SeatPrice,
+                SeatPrice = x.SeatPrice,
             }).ToList();
             return seatVM;
 
 
+        }
+        private List<SeansVM> GetSeans()
+        {
+            return _seansRep.Select(x => new SeansVM
+            {
+                ID = x.ID,
+                SeansNumber = x.SeansNumber,
+            }).ToList();
         }
 
         public ActionResult Index()
@@ -85,11 +95,14 @@ namespace Project.MVCAdmin.Controllers
         public ActionResult AddSeat()
         {
             List<SaloonVM> saloons = GetSaloons();
+            List<SeansVM> seans = GetSeans();
 
             AddUpdateSeatPageVM spvm = new AddUpdateSeatPageVM
             {
                 Saloons = saloons,
+                Seans = seans,
                 Seat = new SeatVM()
+
             };
             return View(spvm);
 
@@ -97,6 +110,7 @@ namespace Project.MVCAdmin.Controllers
         [HttpPost]
         public ActionResult AddSeat(SeatVM seat)
         {
+            Seans seans = _seansRep.Find(seat.ID);
             Saloon saloon = _saloonRep.Find(seat.SaloonID);
 
             string seatRow = "abcdefgh";
@@ -115,9 +129,12 @@ namespace Project.MVCAdmin.Controllers
                     {
                         SeatNo = $"{j}",
                         Row = $"{seatRow[i]}",
-                        Saloon = saloon,
-                        SeatStatus= seat.SeatStatus,
-                        SeatPrice= seat.SeatPrice,
+                        SaloonID = saloon.ID,
+                        SeatStatus = seat.SeatStatus,
+                        SeatPrice = seat.SeatPrice,
+                        SeansID = seat.SeansID
+                        
+
                     };
                     _seatRep.Add(s);
                 }
@@ -136,7 +153,7 @@ namespace Project.MVCAdmin.Controllers
                 Row = x.Row,
                 SeatNo = x.SeatNo,
                 SaloonNumber = x.Saloon.SaloonNumber,
-                SaloonID=x.Saloon.ID
+                SaloonID = x.Saloon.ID
             }).FirstOrDefault();
             AddUpdateSeatPageVM spvm = new AddUpdateSeatPageVM
             {
@@ -151,9 +168,9 @@ namespace Project.MVCAdmin.Controllers
             Saloon saloon = _saloonRep.Find(seat.SaloonID);
 
             Seat updated = _seatRep.Find(seat.ID);
-            updated.SeatNo=seat.SeatNo;
+            updated.SeatNo = seat.SeatNo;
             updated.Row = seat.Row;
-            updated.Saloon=saloon;
+            updated.Saloon = saloon;
 
             _seatRep.Update(updated);
 
