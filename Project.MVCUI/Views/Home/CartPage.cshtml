@@ -1,0 +1,38 @@
+﻿@model CartPageVM
+
+
+
+<h2>Biletlerim</h2>
+
+@if (Model != null && Model.Cart.Sepetim.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Film Adı</th>
+                <th>Salon Numarası</th>
+                <th>Bölüm</th>
+                <th>Koltuk No</th>
+                <th>Toplam Fiyat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Cart.Sepetim)
+            {
+                <tr>
+                    <th>@TempData["FilmAdi"]</th>
+                    <th>@item.SaloonNo</th>
+                    <th>@item.Row</th>
+                    <td>@item.SeatNumber</td>
+                    <td>@item.SubTotal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Sepetinizde bilet bulunmuyor.</p>
+}
+
+<button type="submit" onclick="window.location.href='@Url.Action("TicketBuy","Home")'">Onayla</button>

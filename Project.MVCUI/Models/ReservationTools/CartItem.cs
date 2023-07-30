@@ -11,7 +11,10 @@ namespace Project.MVCUI.Models.ReservationTools
         public int ID { get; set; }
         public int SeatID { get; set; }
         public int? SeansID { get; set; }
+        public DateTime SeansStartTime { get; set; }
         public string SeatNumber { get; set; }
+        public string Row { get; set; }
+        public string SaloonNo { get; set; }
         public decimal Amount { get; set; }
         public decimal Price { get; set; }
         public decimal SubTotal

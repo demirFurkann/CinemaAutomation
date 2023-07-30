@@ -8,6 +8,7 @@ using Project.MVCUI.Models.ReservationTools;
 using Project.VM.PureVMs;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -148,11 +149,19 @@ namespace Project.MVCUI.Controllers
                 TempData["seansId"] = seansId;
             }
 
+          
+
+            TempData["FilmAdi"] = film.MovieName;
+            TempData["SalonAdi"] = seans.SaloonNumber;
+            TempData["SeansTarihi"] = seans.StartTime;
+
+
+
             return View(seansSeatsVM);
         }
 
 
-        public ActionResult AddToCart(int id)
+        public ActionResult AddToCart(int id, TicketBuyPageVM model)
         {
             if (id <= 0)
             {
@@ -172,19 +181,47 @@ namespace Project.MVCUI.Controllers
             {
                 ID = addSeat.ID,
                 SeatNumber = addSeat.SeatNo,
+                SeansStartTime= addSeat.Seans.StartTime,
                 Price = addSeat.SeatPrice,
                 SeatID = addSeat.ID,
                 SeansID = addSeat.Seans.ID,
+                SaloonNo = addSeat.Saloon.SaloonNumber,
+                Row=addSeat.Row,
 
             };
+
+            //List<SeatVM> selected = TempData["Seats"] as List<SeatVM>;
+
+            //selected.Add(new SeatVM
+            //{
+            //    SeatNo = addSeat.SeatNo,
+            //    Row=addSeat.Row
+            //});
+            //TempData["Seats"] = selected;
 
             c.ReservationAdd(ci);
             Session["add"] = c;
             addSeat.SeatStatus = SeatStatus.Reserved;
 
+
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        public ActionResult CartPage()
+        {
+            if (Session["add"] != null)
+            {
+                Cart c = Session["add"] as Cart;
+                CartPageVM cpvm = new CartPageVM
+                {
+                    Cart = c,
+                };
+                return View(cpvm);
+            }
+            ViewBag.SepetBos = "Sepette Bilet Bulunmamaktadır";
+
+            return RedirectToAction("TicketBuy");
+        }
 
         public ActionResult TicketBuy()
         {
@@ -196,23 +233,20 @@ namespace Project.MVCUI.Controllers
 
             return View();
         }
-        [HttpPost]
 
-        public ActionResult TicketBuy(TicketBuyPageVM seans)
+        [HttpPost]
+        public ActionResult TicketBuy(TicketBuyPageVM model)
         {
 
             Cart sepet = Session["add"] as Cart;
+
+            //SeansId'yi yakalamak için 
             int seansId = (int)TempData["seansId"];
 
             Ticket t = new Ticket();
-
             t.Price = sepet.TotalPrice;
             t.SeansID = seansId;
-            
-
-
-
-            _ticketRep.Add(t);
+            _ticketRep.Add(t); // Ticket Id'si ni oluşturmak için
 
             foreach (CartItem item in sepet.Sepetim)
             {
@@ -224,88 +258,17 @@ namespace Project.MVCUI.Controllers
                 seat.SeatStatus = SeatStatus.Occupied;
 
                 _ticketSeatRep.Add(ts);
-
             }
-
-           
 
             Session.Remove("add");
 
             TempData["odeme"] = "Ödemeniz Alınmıştır... Teşekkürler";
 
+
             return RedirectToAction("Index");
 
 
-
-
-            #region Api Section
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    client.BaseAddress = new Uri("http://localhost:58476/api/");
-            //    Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Payment/RecievePayment", model.PaymentRM);
-
-            //    HttpResponseMessage result;
-            //    try
-            //    {
-            //        result = postTask.Result;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        TempData["baglantiRed"] = "Banka Ödemeyi Reddetti";
-            //        return RedirectToAction("Index");
-            //    }
-
-            //    if (result.IsSuccessStatusCode) sonuc = true;
-            //    else sonuc = false;
-
-            //    if (sonuc)
-            //    {
-            //        //if (Session["BoxOfficeAttendant"] != null)
-            //        //{
-            //        //    AdminUser user = Session["BoxOfficeAttendant"] as AdminUser;
-            //        //    model.Ticket.AdminUserID = user.ID;
-
-            //        //}
-            //        _ticketRep.Add(model.Ticket);
-
-
-            //        foreach (CartItem item in ticket.Sepetim)
-            //        {
-            //            TicketSeat ts = new TicketSeat();
-            //            ts.SeatID = model.Seat.ID;
-            //            ts.TicketID = item.ID;
-            //            ts.Ticket.Price = item.SubTotal;
-            //            ts.Ticket.PurchaseDate = DateTime.Now;
-            //            ts.Ticket.BoxOffice.ID = model.BoxOffice.ID;
-            //            ts.Ticket.Seans.ID = model.Seans.ID;
-            //            ts.Ticket.ReservationID=model.Reservation.ID;
-            //            ts.Ticket.AdminUser = Session["BoxOfficeAttendant"] as AdminUser;
-            //            _ticketSeatRep.Add(ts);
-
-            //        }
-            //        model.Seat.SeatStatus = SeatStatus.Occupied;
-
-            //        TempData["odeme"] = "Ödemeniz Alınmiştır... Teşekkürler";
-
-
-            //        Session.Remove("add");
-            //        return RedirectToAction("Index");
-            //    }
-            //    else
-            //    {
-            //        Task<string> s = result.Content.ReadAsStringAsync();
-            //        TempData["sorun"] = s;
-            //        return RedirectToAction("Index");
-            //    }
-
-
-            //}
-
-            #endregion
-
         }
-
-
 
     }
 }
