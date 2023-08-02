@@ -17,6 +17,7 @@ namespace Project.MVCUI.Models.ReservationTools
         public string SaloonNo { get; set; }
         public decimal Amount { get; set; }
         public decimal Price { get; set; }
+        public SeatStatus SeatStatus { get; set; }
         public decimal SubTotal
         {
             get

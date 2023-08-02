@@ -5941,7 +5941,6 @@
     <Content Include="Views\RegisterUser\RegisterOk.cshtml" />
     <Content Include="Views\Home\SeansSeats.cshtml" />
     <Content Include="Views\Home\TicketBuy.cshtml" />
-    <Content Include="Views\Home\CartPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

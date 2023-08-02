@@ -49,12 +49,13 @@
         {
             foreach (var seat in Model.Seats.OrderBy(s => s.Row).ThenBy(s => s.SeatNo))
             {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="seat-container @GetSeatCssClasses(seat)" onclick="addToCart('@seat.ID', this)">
                     <!-- Koltuk ikonu veya içeriği burada eklenebilir -->
                     <span class="seat-row">@seat.Row</span><br />
                     <span class="seat-no">@seat.SeatNo</span>
                     <a href="@Url.Action("AddToCart", new { id = seat.ID })">Rezervasyon Yap</a>
-                    
+
                 </div>
             }
         }
@@ -64,11 +65,12 @@
         }
     </div>
 </div>
-<submit>
-    <button>
-        <a href="@Url.Action("CartPage")">Satın Alma</a>
-    </button>
-</submit>
+
+<button type="submit">
+    <a href="@Url.Action("TicketBuy")">Satın Alma</a>
+</button>
+<button id="j1"> Değiştir </button>
+
 @functions {
     // Koltuğa uygun CSS sınıflarını döndüren bir yardımcı fonksiyon
     string GetSeatCssClasses(SeatVM seat)
@@ -88,5 +90,35 @@
     }
 }
 
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+ $(document).ready(function () {
+    $("#j1").click(function () {
+        var seansId = SEANS_ID; // uygun seans kimliğiyle değiştirin
+        updateSeatsStatus(seansId);
+    });
+});
+
+function updateSeatsStatus(seansId) {
+    $.ajax({
+        url: '/Home/GetStatus',
+        type: "POST",
+        data: { seansId: seansId, id: 0 }, // id parametresini 0 olarak gönderdik, çünkü tüm koltukların durumunu değiştireceğiz
+        dataType: "json",
+        success: function (data) {
+            if (data.ErrorMessage) {
+                alert(data.ErrorMessage); // Hata mesajını göster
+            } else {
+                alert("Koltuk durumları başarıyla güncellendi."); // Başarı mesajını göster
+                location.reload(); // Sayfayı yeniden yükle, böylece güncellenmiş koltuk durumlarını görebilirsiniz
+            }
+        },
+        error: function () {
+            alert("Koltuk durumu alınırken bir hata oluştu."); // Hata mesajını göster
+        }
+    });
+}
+</script>
 

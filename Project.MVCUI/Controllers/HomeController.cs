@@ -149,11 +149,12 @@ namespace Project.MVCUI.Controllers
                 TempData["seansId"] = seansId;
             }
 
-          
+
+
 
             TempData["FilmAdi"] = film.MovieName;
-            TempData["SalonAdi"] = seans.SaloonNumber;
-            TempData["SeansTarihi"] = seans.StartTime;
+            //TempData["SalonAdi"] = seans.SaloonNumber;
+            //TempData["SeansTarihi"] = seans.StartTime;
 
 
 
@@ -163,6 +164,8 @@ namespace Project.MVCUI.Controllers
 
         public ActionResult AddToCart(int id, TicketBuyPageVM model)
         {
+
+
             if (id <= 0)
             {
                 return Content("Geçersiz Koltuk ID'si");
@@ -177,27 +180,26 @@ namespace Project.MVCUI.Controllers
                 return Content("Koltuk Bulunamadı");
             }
 
+            if (addSeat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Reserved || addSeat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Occupied)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+
+
             CartItem ci = new CartItem
             {
                 ID = addSeat.ID,
                 SeatNumber = addSeat.SeatNo,
-                SeansStartTime= addSeat.Seans.StartTime,
+                SeansStartTime = addSeat.Seans.StartTime,
                 Price = addSeat.SeatPrice,
                 SeatID = addSeat.ID,
                 SeansID = addSeat.Seans.ID,
                 SaloonNo = addSeat.Saloon.SaloonNumber,
-                Row=addSeat.Row,
+                Row = addSeat.Row,
 
             };
 
-            //List<SeatVM> selected = TempData["Seats"] as List<SeatVM>;
 
-            //selected.Add(new SeatVM
-            //{
-            //    SeatNo = addSeat.SeatNo,
-            //    Row=addSeat.Row
-            //});
-            //TempData["Seats"] = selected;
 
             c.ReservationAdd(ci);
             Session["add"] = c;
@@ -207,8 +209,15 @@ namespace Project.MVCUI.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        public ActionResult CartPage()
+
+
+        public ActionResult TicketBuy()
         {
+            //AdminUser currentUser;
+            //if (Session["BoxOfficeAttendant"] != null)
+            //{
+            //    currentUser = Session["BoxOfficeAttendant"] as AdminUser;
+            //}
             if (Session["add"] != null)
             {
                 Cart c = Session["add"] as Cart;
@@ -218,18 +227,6 @@ namespace Project.MVCUI.Controllers
                 };
                 return View(cpvm);
             }
-            ViewBag.SepetBos = "Sepette Bilet Bulunmamaktadır";
-
-            return RedirectToAction("TicketBuy");
-        }
-
-        public ActionResult TicketBuy()
-        {
-            AdminUser currentUser;
-            if (Session["BoxOfficeAttendant"] != null)
-            {
-                currentUser = Session["BoxOfficeAttendant"] as AdminUser;
-            }
 
             return View();
         }
@@ -238,6 +235,8 @@ namespace Project.MVCUI.Controllers
         public ActionResult TicketBuy(TicketBuyPageVM model)
         {
 
+
+            ViewBag.SepetBos = "Sepette Bilet Bulunmamaktadır";
             Cart sepet = Session["add"] as Cart;
 
             //SeansId'yi yakalamak için 
@@ -270,5 +269,41 @@ namespace Project.MVCUI.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult GetStatus(int seansId,int id)
+        {
+            List<Seat> seatsInSeans = _seatRep.Where(x => x.Seans.ID == seansId).ToList();
+
+            // Belirli bir koltuğu alın
+            Seat seat = _seatRep.Find(id);
+
+            if (seatsInSeans == null || seatsInSeans.Count == 0)
+            {
+                return Json(new { ErrorMessage = "Koltuklar bulunamadı." });
+            }
+
+            if (seat == null)
+            {
+                return Json(new { ErrorMessage = "Koltuk bulunamadı." });
+            }
+
+            // Tüm seans koltuklarını dolaşarak durumları "Empty" olarak güncelleyin
+            foreach (var seatInSeans in seatsInSeans)
+            {
+                if (seatInSeans.SeatStatus == SeatStatus.Occupied || seatInSeans.SeatStatus == SeatStatus.Reserved)
+                {
+                    seatInSeans.SeatStatus = SeatStatus.Empty;
+                }
+            }
+
+            // Değişiklikleri veritabanına kaydedin
+            _seatRep.Update(seat);
+
+            return Json(new { SuccessMessage = "Koltuk durumları güncellendi." });
+        }
+
+
     }
+
+
 }
