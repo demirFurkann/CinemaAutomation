@@ -50,7 +50,7 @@
     @foreach (var film in Model.Films)
     {
         <div class="film-card">
-            <img src="@film.ImagePath" alt="@film.MovieName" class="film-image" />
+            <img width="30" height="30"  src="@film.ImagePath" alt="@film.MovieName" class="film-image" />
             <div class="film-details">
                 <h3>@film.MovieName</h3>
                 <p>@film.Duration dakika</p>
@@ -119,4 +119,4 @@
         });
     </script>
 </body>
-    </html>
+</html>

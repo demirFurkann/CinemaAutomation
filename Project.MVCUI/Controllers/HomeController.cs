@@ -75,6 +75,26 @@ namespace Project.MVCUI.Controllers
 
         }
 
+
+        //Calısmnadı
+
+        //private List<FilmVM> GetFilms()
+        //{
+        //    string serverPath = "~/Project.MVCAdmin/Pictures/"; // Resimlerin yüklendiği klasör yolu
+        //    List<string> imagePaths = ImageUploader.GetImagePaths(serverPath);
+
+        //    return _filmRep.Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select((x, index) => new FilmVM
+        //    {
+        //        ID = x.ID,
+        //        MovieName = x.MovieName,
+        //        Duration = x.Duration,
+        //        Type = x.Type,
+        //        Info = x.Info,
+        //        ImagePath = (index < imagePaths.Count) ? imagePaths[index] : string.Empty
+        //    }).ToList();
+        //}
+
+
         private List<SeansVM> GetSeans(int filmId)
         {
             List<Seans> seanslar = _seansRep.Where(x => x.FilmId == filmId).ToList();
