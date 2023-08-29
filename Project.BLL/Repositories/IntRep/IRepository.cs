@@ -20,6 +20,7 @@ namespace Project.BLL.Repositories.IntRep
         // Crud işlemleri
 
         void Add(T item);
+        void AddRange(List<T> list);
         void Update(T item);
         void Delete(T item);
         void Destroy(T item);

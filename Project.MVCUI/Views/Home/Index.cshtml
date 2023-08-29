@@ -6,146 +6,7 @@
 }
 
 
-@*<div class="center-sign">
-        <a href="/" class="logo float-start">
-            <img src="~/Content/img/logo.png" height="70" alt="Porto Admin" />
-        </a>
 
-        <div class="panel card-sign">
-            <div class="card-title-sign mt-3 text-end">
-                <h2 class="title text-uppercase font-weight-bold m-0"><i class="bx bx-user-circle me-1 text-6 position-relative top-5"></i> Sign In</h2>
-            </div>
-            <div class="card-body">
-                <form action="index.html" method="post">
-                    <div class="form-group mb-3">
-                        <label>Username</label>
-                        <div class="input-group">
-                            <input name="username" type="text" class="form-control form-control-lg" />
-                            <span class="input-group-text">
-                                <i class="bx bx-user text-4"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <div class="clearfix">
-                            <label class="float-start">Password</label>
-                            <a href="pages-recover-password.html" class="float-end">Lost Password?</a>
-                        </div>
-                        <div class="input-group">
-                            <input name="pwd" type="password" class="form-control form-control-lg" />
-                            <span class="input-group-text">
-                                <i class="bx bx-lock text-4"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="checkbox-custom checkbox-default">
-                                <input id="RememberMe" name="rememberme" type="checkbox" />
-                                <label for="RememberMe">Remember Me</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 text-end">
-                            <button type="submit" class="btn btn-primary mt-2">Sign In</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <p class="text-center text-muted mt-3 mb-3">&copy; Copyright 2021. All Rights Reserved.</p>
-    </div>*@
-
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sinema Salonu Biletleme</title>
-    <style>
-        .seat {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            background-color: #ccc;
-            display: inline-block;
-            text-align: center;
-            line-height: 50px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .reserved {
-            background-color: #f00;
-        }
-
-        .selected {
-            background-color: #00f;
-        }
-
-        .disabled {
-            background-color: #666;
-        }
-    </style>
-</head>
-<body>
-    <h1>Filmi izlemek istediğiniz yeri seçin</h1>
-
-    <div>
-        <div class="row">
-            <div class="seat">A1</div>
-            <div class="seat reserved">A2</div>
-            <div class="seat selected">A3</div>
-            <div class="seat disabled">A4</div>
-            <div class="seat">A5</div>-->
-<!-- Daha fazla koltuk eklenebilir -->
-<!--</div>
-<div class="row">
-    <div class="seat">B1</div>
-    <div class="seat">B2</div>
-    <div class="seat reserved">B3</div>
-    <div class="seat">B4</div>
-    <div class="seat selected">B5</div>-->
-<!-- Daha fazla koltuk eklenebilir -->
-<!--</div>-->
-<!-- Daha fazla satır eklenebilir -->
-<!--</div>
-
-    <button id="reserveBtn">Rezerve Et</button>
-    <button id="buyBtn">Satın Al</button>
-    <button id="cancelBtn">İptal Et</button>
-
-    <script>
-        // JavaScript kodları buraya gelecek
-        const seats = document.querySelectorAll('.seat');
-
-        seats.forEach(seat => {
-            seat.addEventListener('click', () => {
-                if (!seat.classList.contains('reserved')) {
-                    seat.classList.toggle('selected');
-                }
-            });
-        });
-
-        const reserveBtn = document.getElementById('reserveBtn');
-        const buyBtn = document.getElementById('buyBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
-
-        reserveBtn.addEventListener('click', () => {
-            alert('Koltuk rezerve edildi!');
-        });
-
-        buyBtn.addEventListener('click', () => {
-            alert('Bilet satın alındı!');
-        });
-
-        cancelBtn.addEventListener('click', () => {
-            alert('Rezervasyon iptal edildi!');
-        });
-    </script>
-</body>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,85 +44,79 @@
     </style>
 </head>
 <body>
-    <h1>Filmi izlemek istediğiniz yeri seçin</h1>
 
-    <div class="row">
-        <div class="seat">A1</div>
-        <div class="seat">A2</div>
-        <div class="seat reserved">A3</div>
-        <div class="seat">A4</div>
-        <div class="seat">A5</div>
-        <!-- Daha fazla koltuk eklenebilir -->
-    </div>
+    <h2>Film Listesi</h2>
 
-    <div class="row">
-        <div class="seat">B1</div>
-        <div class="seat reserved">B2</div>
-        <div class="seat">B3</div>
-        <div class="seat selected">B4</div>
-        <div class="seat">B5</div>
-        <!-- Daha fazla koltuk eklenebilir -->
-    </div>
-    <div class="row">
-        <div class="seat">C1</div>
-        <div class="seat reserved">C2</div>
-        <div class="seat">C3</div>
-        <div class="seat selected">C4</div>
-        <div class="seat">C5</div>
-        <!-- Daha fazla koltuk eklenebilir -->
-    </div><!-- Daha fazla satır eklenebilir -->
-    <div class="row">
-        <div class="seat">D1</div>
-        <div class="seat">D2</div>
-        <div class="seat">D3</div>
-        <div class="seat">D4</div>
-        <div class="seat">D5</div>
-        <!-- Daha fazla koltuk eklenebilir -->
-    </div>
-    
-        <button id="reserveBtn">Rezerve Et</button>
-        <button id="buyBtn">Satın Al</button>
-        <button id="cancelBtn">İptal Et</button>
-
-        <script>
-            const seats = document.querySelectorAll('.seat');
-            let selectedSeats = [];
-
-            seats.forEach(seat => {
-                seat.addEventListener('click', () => {
-                    if (!seat.classList.contains('reserved')) {
-                        seat.classList.toggle('selected');
-                        const seatNumber = seat.textContent;
-                        if (selectedSeats.includes(seatNumber)) {
-                            selectedSeats = selectedSeats.filter(item => item !== seatNumber);
-                        } else {
-                            selectedSeats.push(seatNumber);
-                        }
+    @foreach (var film in Model.Films)
+    {
+        <div class="film-card">
+            <img width="30" height="30"  src="@film.ImagePath" alt="@film.MovieName" class="film-image" />
+            <div class="film-details">
+                <h3>@film.MovieName</h3>
+                <p>@film.Duration dakika</p>
+                <p>Tür: @film.Type</p>
+                <p>@film.Info</p>
+            </div>
+            <div class="film-seanslar">
+                <h4>Seanslar</h4>
+                <ul>
+                    @foreach (var seans in film.Seanslar)
+                    {
+                        <li>
+                            <a href="@Url.Action("SeansSeats", new { seansId = seans.ID, filmId = film.ID })">
+                                @seans.StartTime.ToString("hh:mm")
+                            </a>
+                        </li>
                     }
-                });
-            });
+                </ul>
+            </div>
+        </div>
+    }
 
-            const reserveBtn = document.getElementById('reserveBtn');
-            const buyBtn = document.getElementById('buyBtn');
-            const cancelBtn = document.getElementById('cancelBtn');
 
-            reserveBtn.addEventListener('click', () => {
-                alert('Seçili koltuklar rezerve edildi: ' + selectedSeats.join(', '));
-                selectedSeats = [];
-                seats.forEach(seat => seat.classList.remove('selected'));
-            });
+    <button id="reserveBtn">Rezerve Et</button>
+    <button id="buyBtn">Satın Al</button>
+    <button id="cancelBtn">İptal Et</button>
 
-            buyBtn.addEventListener('click', () => {
-                alert('Seçili koltuklar satın alındı: ' + selectedSeats.join(', '));
-                selectedSeats = [];
-                seats.forEach(seat => seat.classList.remove('selected'));
-            });
+    <script>
+        const seats = document.querySelectorAll('.seat');
+        let selectedSeats = [];
 
-            cancelBtn.addEventListener('click', () => {
-                selectedSeats = [];
-                seats.forEach(seat => seat.classList.remove('selected'));
-                alert('Seçili koltuklar iptal edildi.');
+        seats.forEach(seat => {
+            seat.addEventListener('click', () => {
+                if (!seat.classList.contains('reserved')) {
+                    seat.classList.toggle('selected');
+                    const seatNumber = seat.textContent;
+                    if (selectedSeats.includes(seatNumber)) {
+                        selectedSeats = selectedSeats.filter(item => item !== seatNumber);
+                    } else {
+                        selectedSeats.push(seatNumber);
+                    }
+                }
             });
-        </script>
-    </body>
-    </html>
+        });
+
+        const reserveBtn = document.getElementById('reserveBtn');
+        const buyBtn = document.getElementById('buyBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+
+        reserveBtn.addEventListener('click', () => {
+            alert('Seçili koltuklar rezerve edildi: ' + selectedSeats.join(', '));
+            selectedSeats = [];
+            seats.forEach(seat => seat.classList.remove('selected'));
+        });
+
+        buyBtn.addEventListener('click', () => {
+            alert('Seçili koltuklar satın alındı: ' + selectedSeats.join(', '));
+            selectedSeats = [];
+            seats.forEach(seat => seat.classList.remove('selected'));
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            selectedSeats = [];
+            seats.forEach(seat => seat.classList.remove('selected'));
+            alert('Seçili koltuklar iptal edildi.');
+        });
+    </script>
+</body>
+</html>

@@ -11,6 +11,7 @@ namespace Project.ENTITIES.Models
     {
         public string SeatNo { get; set; }
         public string Row { get; set; }
+        public decimal SeatPrice { get; set; }
 
         public SeatStatus SeatStatus { get; set; }
 
@@ -23,9 +24,15 @@ namespace Project.ENTITIES.Models
 
         public int? SaloonID { get; set; }
 
+        // koltukları seanslara gore listelemek için
+        public int? SeansID { get; set; }
+
         //Relational Properties
 
         public virtual Saloon Saloon { get; set; }
+
+        // koltukları seanslara gore listelemek için
+        public virtual Seans Seans { get; set; }
 
         public virtual List<ReservationSeat> ReservationSeats { get; set; }
 

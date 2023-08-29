@@ -25,7 +25,7 @@ namespace Project.MVCAdmin.Controllers
             List<SaloonVM> saloons = _saloonRep.
                 Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new SaloonVM
                 {
-                    ID=x.ID,
+                    ID = x.ID,
                     Capacity = x.Capacity,
                     SaloonNumber = x.SaloonNumber,
 
@@ -46,20 +46,20 @@ namespace Project.MVCAdmin.Controllers
             return View();
         }
 
-       
+
 
         [HttpPost]
-        public ActionResult AddSaloon(SaloonVM saloon,string SaloonNumber,string Capacity)
+        public ActionResult AddSaloon(SaloonVM saloon)
         {
-           Saloon s = new Saloon
+            Saloon s = new Saloon
             {
                 ID = saloon.ID,
-                SaloonNumber =saloon.SaloonNumber,
-               Capacity= saloon.Capacity,
-                
+                SaloonNumber = saloon.SaloonNumber,
+                Capacity = saloon.Capacity,
+
 
             };
-           _saloonRep.Add(s);
+            _saloonRep.Add(s);
             return View();
         }
         [HttpGet]
@@ -70,8 +70,8 @@ namespace Project.MVCAdmin.Controllers
                 Saloon = _saloonRep.Where(x => x.ID == id).Select(x => new SaloonVM
                 {
                     ID = x.ID,
-                    SaloonNumber=x.SaloonNumber,
-                    Capacity=x.Capacity,
+                    SaloonNumber = x.SaloonNumber,
+                    Capacity = x.Capacity,
 
                 }).FirstOrDefault()
             };

@@ -1,12 +1,9 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Project.BLL.Repositories.ConcRep;
-using Project.ENTITIES.Models;
-using Project.MVCAdmin.Models.PageVMs;
-using Project.VM.PureVMs;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Data.Entity;
+using Project.ENTITIES.Models;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -14,12 +11,14 @@ using System.Net;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
+using Project.VM.PureVMs;
+using Project.MVCAdmin.Models.PageVMs;
 
 namespace Project.MVCAdmin.Controllers
 {
     public class ReservationController : Controller
     {
-        ReservationRepository _reservationRep;
+      ReservationRepository _reservationRep;
         AppUserRepository _appuserRep;
         SeatRepository _seatRep;
         FilmRepository _filmRep;

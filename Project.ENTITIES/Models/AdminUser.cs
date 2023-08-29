@@ -15,5 +15,11 @@ namespace Project.ENTITIES.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public AdminRole AdminRole { get; set; }
+
+
+
+        //Relational Properties
+
+        public List<Ticket> Tickets { get; set; }
     }
 }
