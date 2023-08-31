@@ -133,15 +133,15 @@ namespace Project.MVCUI.Controllers
         public ActionResult Index()
         {
             List<FilmVM> films = GetFilms();
-            List<string> imageUrls = new List<string>
-            {
-    "1449215.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
-    "Elemental-Digital-Keyart-2400x2400-1.jpg",
-    "MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_ (2).jpg",
-    "john-wick-bolum-4.jpg",
-    "2012949-58861826.jpg",
-    "megan.jpg"
-            };
+    //        List<string> imageUrls = new List<string>
+    //        {
+    //"1449215.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
+    //"Elemental-Digital-Keyart-2400x2400-1.jpg",
+    //"MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_ (2).jpg",
+    //"john-wick-bolum-4.jpg",
+    //"2012949-58861826.jpg",
+    //"megan.jpg"
+    //        };
 
 
             for (int i = 0; i < films.Count; i++)
@@ -151,8 +151,8 @@ namespace Project.MVCUI.Controllers
                 List<SeansVM> seanslar = GetSeans(film.ID);
                 film.Seanslar = seanslar;
 
-                // Tüm resim yollarını her bir film nesnesine sıralı bir şekilde atayın
-                film.ImagePath = "/Pictures/" + imageUrls[i]; // Burada URL'leri kullanıyoruz
+                //// Tüm resim yollarını her bir film nesnesine sıralı bir şekilde atayın
+                //film.ImagePath = "/Pictures/" + imageUrls[i]; // Burada URL'leri kullanıyoruz
             }
 
             ListSeansPageVM lpvm = new ListSeansPageVM
@@ -212,11 +212,12 @@ namespace Project.MVCUI.Controllers
             {
                 Film = film,
                 Seans = new List<SeansVM> { seans },
-                Seats = seats
+                //Seats = seats
             };
 
             return View(seansSeatsVM);
         }
+
 
 
 
