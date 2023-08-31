@@ -1,0 +1,44 @@
+﻿@model CartPageVM
+
+
+<h2>Biletlerim</h2>
+
+@if (Model != null && Model.Cart.Sepetim.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Film Adı</th>
+                <th>Salon Numarası</th>
+                <th>Bölüm</th>
+                <th>Koltuk No</th>
+                <th>Bilet Fiyatı</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Project.MVCUI.Models.ReservationTools.CartItem item in Model.Cart.Sepetim)
+            {
+                <tr>
+                    <th>@TempData["FilmAdi"]</th>
+                    <th>@item.SaloonNo</th>
+                    <th>@item.Row</th>
+                    <td>@item.SeatNumber</td>
+                    <td>@item.SubTotal</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <th>Toptal Tutar =>  @Model.Cart.TotalPrice</th>
+
+}
+else
+{
+    <p>Sepetinizde bilet bulunmuyor.</p>
+}
+
+<form action="@Url.Action("TicketBuy", "Home")" method="post" id="myForm">
+    <button type="submit">Onayla</button>
+</form>
+@TempData["odeme"]

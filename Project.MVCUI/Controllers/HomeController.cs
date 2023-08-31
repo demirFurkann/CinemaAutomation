@@ -1,13 +1,20 @@
 ﻿using Project.BLL.Repositories.ConcRep;
+using Project.ENTITIES.Enums;
 using Project.ENTITIES.Models;
 using Project.MVCAdmin.Models.CustomTools;
 using Project.MVCAdmin.Models.PageVMs;
+using Project.MVCUI.Models.PageVMs;
+using Project.MVCUI.Models.ReservationTools;
 using Project.VM.PureVMs;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace Project.MVCUI.Controllers
 {
@@ -34,6 +41,8 @@ namespace Project.MVCUI.Controllers
                 SaloonNumber = x.Saloon.SaloonNumber
             }).ToList();
         }
+
+
 
         private List<FilmVM> GetFilms()
         {
@@ -198,7 +207,6 @@ namespace Project.MVCUI.Controllers
                 return RedirectToAction("Index");
             }
 
-            List<SeatVM> seats = GetSeats(seans.SaloonID);
 
             ListSeansPageVM seansSeatsVM = new ListSeansPageVM
             {

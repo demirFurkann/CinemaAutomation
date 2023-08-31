@@ -11,5 +11,6 @@ namespace Project.VM.PureVMs
         public int ID { get; set; }
         public string SaloonNumber { get; set; }
         public int Capacity { get; set; }
+        public string SeansNumber { get; set; }
     }
 }

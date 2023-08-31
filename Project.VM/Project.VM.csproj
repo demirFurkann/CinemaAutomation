@@ -74,6 +74,7 @@
     <Compile Include="PureVMs\SaloonVM.cs" />
     <Compile Include="PureVMs\SeansVM.cs" />
     <Compile Include="PureVMs\SeatVM.cs" />
+    <Compile Include="PureVMs\TicketVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

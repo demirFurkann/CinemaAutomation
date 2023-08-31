@@ -244,7 +244,7 @@
         </div>
     </div>
 </section>
-
+<html lang="en">
 <hr class="my-0">
 <section class="section section-height-3 bg-primary-darken border-0 m-0 appear-animation" data-appear-animation="fadeIn">
     <div class="container py-3">
@@ -264,3 +264,45 @@
         </div>
     </div>
 </section>
+        <script>
+            const seats = document.querySelectorAll('.seat');
+            let selectedSeats = [];
+
+            seats.forEach(seat => {
+                seat.addEventListener('click', () => {
+                    if (!seat.classList.contains('reserved')) {
+                        seat.classList.toggle('selected');
+                        const seatNumber = seat.textContent;
+                        if (selectedSeats.includes(seatNumber)) {
+                            selectedSeats = selectedSeats.filter(item => item !== seatNumber);
+                        } else {
+                            selectedSeats.push(seatNumber);
+                        }
+                    }
+                });
+            });
+
+            const reserveBtn = document.getElementById('reserveBtn');
+            const buyBtn = document.getElementById('buyBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+
+            reserveBtn.addEventListener('click', () => {
+                alert('Seçili koltuklar rezerve edildi: ' + selectedSeats.join(', '));
+                selectedSeats = [];
+                seats.forEach(seat => seat.classList.remove('selected'));
+            });
+
+            buyBtn.addEventListener('click', () => {
+                alert('Seçili koltuklar satın alındı: ' + selectedSeats.join(', '));
+                selectedSeats = [];
+                seats.forEach(seat => seat.classList.remove('selected'));
+            });
+
+            cancelBtn.addEventListener('click', () => {
+                selectedSeats = [];
+                seats.forEach(seat => seat.classList.remove('selected'));
+                alert('Seçili koltuklar iptal edildi.');
+            });
+        </script>
+    </body>
+    </html>

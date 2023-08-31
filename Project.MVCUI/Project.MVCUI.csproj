@@ -56,6 +56,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -133,7 +136,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PageVMs\CartPageVM.cs" />
     <Compile Include="Models\PageVMs\RegisterNowUserPageVM.cs" />
+    <Compile Include="Models\PageVMs\TicketBuyPageVM.cs" />
+    <Compile Include="Models\ReservationTools\Cart.cs" />
+    <Compile Include="Models\ReservationTools\CartItem.cs" />
+    <Compile Include="OutherRequestModel\PaymentRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -13256,6 +13264,7 @@
     <Content Include="Views\RegisterUser\RegisterNow.cshtml" />
     <Content Include="Views\RegisterUser\RegisterOk.cshtml" />
     <Content Include="Views\Home\SeansSeats.cshtml" />
+    <Content Include="Views\Home\TicketBuy.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>

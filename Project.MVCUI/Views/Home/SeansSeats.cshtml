@@ -1,41 +1,124 @@
 ﻿@model ListSeansPageVM
 
+
+
 <style>
-    .card.koltuk.empty-seat .card-body {
-        background-color: green;
+    .seat-container {
+        width: 60px;
+        height: 80px;
+        margin: 5px;
+        background-color: #ccc;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+
+    .yellow-seat {
+        background-color: yellow;
+    }
+
+    .row {
+        margin-bottom: 10px;
+    }
+
+
+    .selected {
+        background-color: #00F;
+    }
+
+    .empty-seat {
+        background-color: #fff; /* Boş beyaz koltuklar için */
+    }
+
+    .reserved {
+        background-color: yellow; /* Rezerve edilmiş sarı koltuklar için */
+    }
+
+    .occupied {
+        background-color: red; /* Dolu kırmızı koltuklar için */
     }
 </style>
 
 <div class="container mt-4">
-    <h2>@Model.Film.MovieName - @Model.Seans.FirstOrDefault()?.StartTime.ToString("HH:mm") - @Model.Seans.FirstOrDefault()?.EndTime.ToString("HH:mm")</h2>
-    <p>Salon: @Model.Seans.FirstOrDefault()?.SaloonNumber</p>
     <h4>Koltuklar</h4>
     <div class="row">
-        @foreach (var seat in Model.Seats.OrderBy(s => s.Row).ThenBy(s => s.SeatNo))
+        @if (Model != null)
         {
-            <div class="col-md-3 mb-3">
-                <div class="card koltuk @(GetSeatStatusColor(seat.SeatStatus))">
-                    <div class="card-body">
-                        <h5 class="card-title">Koltuk @seat.SeatNo</h5>
-                        <p class="card-text">Durum: @seat.SeatStatus</p>
-                        <p class="card-text">Row: @seat.Row</p>
-                    </div>
+            foreach (var seat in Model.Seats.OrderBy(s => s.Row).ThenBy(s => s.SeatNo))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="seat-container @GetSeatCssClasses(seat)" onclick="addToCart('@seat.ID', this)">
+                    <!-- Koltuk ikonu veya içeriği burada eklenebilir -->
+                    <span class="seat-row">@seat.Row</span><br />
+                    <span class="seat-no">@seat.SeatNo</span>
+                    <a href="@Url.Action("AddToCart", new { id = seat.ID })">Rezervasyon Yap</a>
+
                 </div>
-            </div>
+            }
+        }
+        else
+        {
+            <p>Boşta koltuk yok.</p>
         }
     </div>
 </div>
 
+<button type="submit">
+    <a href="@Url.Action("TicketBuy")">Satın Alma</a>
+</button>
+<button id="j1"> Değiştir </button>
+
 @functions {
-    public string GetSeatStatusColor(Project.ENTITIES.Enums.SeatStatus seatStatus)
+    // Koltuğa uygun CSS sınıflarını döndüren bir yardımcı fonksiyon
+    string GetSeatCssClasses(SeatVM seat)
     {
-        if (seatStatus == Project.ENTITIES.Enums.SeatStatus.Empty)
+        if (seat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Reserved)
         {
-            return "empty-seat";
+            return "reserved";
+        }
+        else if (seat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Occupied)
+        {
+            return "occupied";
         }
         else
         {
-            return "";
+            return "empty-seat";
         }
     }
 }
+
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+ $(document).ready(function () {
+    $("#j1").click(function () {
+        var seansId = SEANS_ID; // uygun seans kimliğiyle değiştirin
+        updateSeatsStatus(seansId);
+    });
+});
+
+function updateSeatsStatus(seansId) {
+    $.ajax({
+        url: '/Home/GetStatus',
+        type: "POST",
+        data: { seansId: seansId, id: 0 }, // id parametresini 0 olarak gönderdik, çünkü tüm koltukların durumunu değiştireceğiz
+        dataType: "json",
+        success: function (data) {
+            if (data.ErrorMessage) {
+                alert(data.ErrorMessage); // Hata mesajını göster
+            } else {
+                alert("Koltuk durumları başarıyla güncellendi."); // Başarı mesajını göster
+                location.reload(); // Sayfayı yeniden yükle, böylece güncellenmiş koltuk durumlarını görebilirsiniz
+            }
+        },
+        error: function () {
+            alert("Koltuk durumu alınırken bir hata oluştu."); // Hata mesajını göster
+        }
+    });
+}
+</script>
+

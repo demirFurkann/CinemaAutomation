@@ -112,5 +112,11 @@ namespace Project.BLL.Repositories.BaseRep
         {
             foreach(T item in lit) Update(item);
         }
+
+        public void AddRange(List<T> list)
+        {
+           _db.Set<T>().AddRange(list);
+            Save();
+        }
     }
 }
