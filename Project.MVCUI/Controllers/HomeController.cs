@@ -212,7 +212,7 @@ namespace Project.MVCUI.Controllers
             {
                 Film = film,
                 Seans = new List<SeansVM> { seans },
-                //Seats = seats
+                // Seats = seats
             };
 
             return View(seansSeatsVM);
