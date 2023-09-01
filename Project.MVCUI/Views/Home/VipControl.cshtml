@@ -1,0 +1,24 @@
+﻿@model TicketBuyPageVM 
+@{
+    ViewBag.Title = "VipControl";
+}
+
+<div class="container">
+    <h2>VIP Kontrolü</h2>
+    @if (!string.IsNullOrEmpty(ViewBag.Gecersiz))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Gecersiz
+        </div>
+    }
+    @using (Html.BeginForm("VipControl", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label for="VipCode">VIP Kodu:</label>
+            <input type="text" name="Ticket.VipCode" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kontrol Et</button>
+    }
+
+</div>

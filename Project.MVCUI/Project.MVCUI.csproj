@@ -132,6 +132,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterUserController.cs" />
+    <Compile Include="Controllers\TicketBuyController.cs" />
+    <Compile Include="Controllers\VipController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5940,7 +5942,11 @@
     <Content Include="Views\RegisterUser\RegisterNow.cshtml" />
     <Content Include="Views\RegisterUser\RegisterOk.cshtml" />
     <Content Include="Views\Home\SeansSeats.cshtml" />
-    <Content Include="Views\Home\TicketBuy.cshtml" />
+    <Content Include="Views\Vip\ActivationCode.cshtml" />
+    <Content Include="Views\TicketBuy\TicketReservation.cshtml" />
+    <Content Include="Views\Home\TicketType.cshtml" />
+    <Content Include="Views\Home\VipControl.cshtml" />
+    <Content Include="Views\Home\StudentControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

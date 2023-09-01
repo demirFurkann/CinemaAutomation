@@ -11,14 +11,20 @@ namespace Project.VM.PureVMs
     {
         public int ID { get; set; }
         public decimal TotalPrice { get; set; }
+        public int BirthYear { get; set; }
+        public int Quantity { get; set; }
         public TicketType Type { get; set; }
         public DateTime PurchaseDate { get; set; }
+        public string VipCode { get; set; }
+        public int StandardTicketQuantity { get; set; }
+        public int VipTicketQuantity { get; set; }
+        public int StudentTicketQuantity { get; set; }
 
         //Gişe işlemleri için
         public int BoxOfficeID { get; set; }
         public string BoxOfficeNumber { get; set; }
         //Koltuk işlemleri için
-        public int MyProperty { get; set; }
+       
 
 
         //Seans işlemleri için

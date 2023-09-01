@@ -47,6 +47,10 @@ namespace Project.MVCUI.Models.ReservationTools
             {
                 return _sepetim.Sum(x => x.Value.SubTotal);
             }
+            set
+            {
+                
+            }
         }
     }
 }

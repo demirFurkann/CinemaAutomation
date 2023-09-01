@@ -1,4 +1,5 @@
-﻿using Project.BLL.Repositories.ConcRep;
+﻿using Microsoft.Ajax.Utilities;
+using Project.BLL.Repositories.ConcRep;
 using Project.ENTITIES.Enums;
 using Project.ENTITIES.Models;
 using Project.MVCAdmin.Models.CustomTools;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -26,6 +28,7 @@ namespace Project.MVCUI.Controllers
         SeatRepository _seatRep;
         TicketSeatRepository _ticketSeatRep;
         TicketRepository _ticketRep;
+        AppUserRepository _appRep;
         public HomeController()
         {
             _filmRep = new FilmRepository();
@@ -33,6 +36,19 @@ namespace Project.MVCUI.Controllers
             _seatRep = new SeatRepository();
             _ticketSeatRep = new TicketSeatRepository();
             _ticketRep = new TicketRepository();
+            _appRep = new AppUserRepository();
+        }
+
+
+        private List<TicketVM> GetTickets()
+        {
+            return _ticketRep.Select(ticket => new TicketVM
+            {
+                ID = ticket.ID,
+                TotalPrice = ticket.Price,
+                Type = ticket.Type,
+
+            }).ToList();
         }
 
         private List<SeatVM> GetSeats(int? seansId)
@@ -60,6 +76,8 @@ namespace Project.MVCUI.Controllers
         private List<FilmVM> GetFilms()
         {
 
+
+
             return _filmRep.Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new FilmVM
             {
                 ID = x.ID,
@@ -67,7 +85,7 @@ namespace Project.MVCUI.Controllers
                 Duration = x.Duration,
                 Type = x.Type,
                 Info = x.Info,
-                ImagePath = x.ImagePath
+                ImagePath = x.ImagePath 
 
 
             }).ToList();
@@ -76,23 +94,6 @@ namespace Project.MVCUI.Controllers
         }
 
 
-        //Calısmnadı
-
-        //private List<FilmVM> GetFilms()
-        //{
-        //    string serverPath = "~/Project.MVCAdmin/Pictures/"; // Resimlerin yüklendiği klasör yolu
-        //    List<string> imagePaths = ImageUploader.GetImagePaths(serverPath);
-
-        //    return _filmRep.Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select((x, index) => new FilmVM
-        //    {
-        //        ID = x.ID,
-        //        MovieName = x.MovieName,
-        //        Duration = x.Duration,
-        //        Type = x.Type,
-        //        Info = x.Info,
-        //        ImagePath = (index < imagePaths.Count) ? imagePaths[index] : string.Empty
-        //    }).ToList();
-        //}
 
 
         private List<SeansVM> GetSeans(int filmId)
@@ -109,7 +110,8 @@ namespace Project.MVCUI.Controllers
                 SaloonNumber = seans.Saloon.SaloonNumber,
                 MovieName = seans.Film.MovieName,
                 Duration = seans.Film.Duration,
-                FilmID = seans.Film.ID
+                FilmID = seans.Film.ID,
+
 
             }).ToList();
 
@@ -134,6 +136,52 @@ namespace Project.MVCUI.Controllers
             };
             return View(lpvm);
         }
+        public ActionResult StudentControl()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult StudentControl(TicketVM ticket)
+        {
+            int currentYear = DateTime.Now.Year;
+            int age = currentYear - ticket.BirthYear;
+
+            if (age < 25)
+            {
+                Session["Student"] = age;
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Student = "Öğrenci için uygun değildir";
+            }
+            return View();
+        }
+
+        public ActionResult VipControl()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult VipControl(TicketVM ticket)
+        {
+            AppUser vipMi = _appRep.FirstOrDefault(x => x.VipCode == ticket.VipCode);
+
+            if (vipMi != null)
+            {
+
+                Session["VipUser"] = vipMi;
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Gecersiz = "Geçersiz Kod";
+            }
+
+            return View();
+        }
 
         public ActionResult SeansSeats(int? seansId, int filmId)
         {
@@ -153,6 +201,14 @@ namespace Project.MVCUI.Controllers
                 return RedirectToAction("Index");
             }
 
+            List<TicketVM> ticket = GetTickets();
+            if (ticket == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+
+
 
             List<SeatVM> seats = GetSeats(seansId);
 
@@ -161,6 +217,7 @@ namespace Project.MVCUI.Controllers
                 Film = film,
                 Seans = new List<SeansVM> { seans },
                 Seats = seats,
+                Tickets = ticket
 
             };
 
@@ -169,161 +226,13 @@ namespace Project.MVCUI.Controllers
                 TempData["seansId"] = seansId;
             }
 
-
-
-
             TempData["FilmAdi"] = film.MovieName;
-            //TempData["SalonAdi"] = seans.SaloonNumber;
-            //TempData["SeansTarihi"] = seans.StartTime;
-
-
 
             return View(seansSeatsVM);
         }
 
 
-        public ActionResult AddToCart(int id, TicketBuyPageVM model)
-        {
-
-
-            if (id <= 0)
-            {
-                return Content("Geçersiz Koltuk ID'si");
-            }
-
-            Cart c = Session["add"] == null ? new Cart() : Session["add"] as Cart;
-
-            Seat addSeat = _seatRep.Find(id);
-
-            if (addSeat == null)
-            {
-                return Content("Koltuk Bulunamadı");
-            }
-
-            if (addSeat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Reserved || addSeat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Occupied)
-            {
-                return Redirect(Request.UrlReferrer.ToString());
-            }
-
-
-            CartItem ci = new CartItem
-            {
-                ID = addSeat.ID,
-                SeatNumber = addSeat.SeatNo,
-                SeansStartTime = addSeat.Seans.StartTime,
-                Price = addSeat.SeatPrice,
-                SeatID = addSeat.ID,
-                SeansID = addSeat.Seans.ID,
-                SaloonNo = addSeat.Saloon.SaloonNumber,
-                Row = addSeat.Row,
-
-            };
-
-
-
-            c.ReservationAdd(ci);
-            Session["add"] = c;
-            addSeat.SeatStatus = SeatStatus.Reserved;
-
-
-            return Redirect(Request.UrlReferrer.ToString());
-        }
-
-
-
-        public ActionResult TicketBuy()
-        {
-            //AdminUser currentUser;
-            //if (Session["BoxOfficeAttendant"] != null)
-            //{
-            //    currentUser = Session["BoxOfficeAttendant"] as AdminUser;
-            //}
-            if (Session["add"] != null)
-            {
-                Cart c = Session["add"] as Cart;
-                CartPageVM cpvm = new CartPageVM
-                {
-                    Cart = c,
-                };
-                return View(cpvm);
-            }
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult TicketBuy(TicketBuyPageVM model)
-        {
-
-
-            ViewBag.SepetBos = "Sepette Bilet Bulunmamaktadır";
-            Cart sepet = Session["add"] as Cart;
-
-            //SeansId'yi yakalamak için 
-            int seansId = (int)TempData["seansId"];
-
-            Ticket t = new Ticket();
-            t.Price = sepet.TotalPrice;
-            t.SeansID = seansId;
-            _ticketRep.Add(t); // Ticket Id'si ni oluşturmak için
-
-            foreach (CartItem item in sepet.Sepetim)
-            {
-                TicketSeat ts = new TicketSeat();
-                ts.TicketID = t.ID;
-                ts.SeatID = item.SeatID;
-
-                Seat seat = _seatRep.Find(ts.SeatID);
-                seat.SeatStatus = SeatStatus.Occupied;
-
-                _ticketSeatRep.Add(ts);
-            }
-
-            Session.Remove("add");
-
-            TempData["odeme"] = "Ödemeniz Alınmıştır... Teşekkürler";
-
-
-            return RedirectToAction("Index");
-
-
-        }
-
-        [HttpPost]
-        public ActionResult GetStatus(int seansId,int id)
-        {
-            List<Seat> seatsInSeans = _seatRep.Where(x => x.Seans.ID == seansId).ToList();
-
-            // Belirli bir koltuğu alın
-            Seat seat = _seatRep.Find(id);
-
-            if (seatsInSeans == null || seatsInSeans.Count == 0)
-            {
-                return Json(new { ErrorMessage = "Koltuklar bulunamadı." });
-            }
-
-            if (seat == null)
-            {
-                return Json(new { ErrorMessage = "Koltuk bulunamadı." });
-            }
-
-            // Tüm seans koltuklarını dolaşarak durumları "Empty" olarak güncelleyin
-            foreach (var seatInSeans in seatsInSeans)
-            {
-                if (seatInSeans.SeatStatus == SeatStatus.Occupied || seatInSeans.SeatStatus == SeatStatus.Reserved)
-                {
-                    seatInSeans.SeatStatus = SeatStatus.Empty;
-                }
-            }
-
-            // Değişiklikleri veritabanına kaydedin
-            _seatRep.Update(seat);
-
-            return Json(new { SuccessMessage = "Koltuk durumları güncellendi." });
-        }
-
 
     }
-
 
 }

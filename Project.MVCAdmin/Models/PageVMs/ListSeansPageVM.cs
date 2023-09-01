@@ -13,6 +13,7 @@ namespace Project.MVCAdmin.Models.PageVMs
         public FilmVM Film { get; set; }
         public List<SeatVM> Seats { get; set; }
         public SeatVM Seat { get; set; }
+        public List<TicketVM> Tickets { get; set; }
 
     }
 }

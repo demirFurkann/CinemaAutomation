@@ -11,6 +11,8 @@ namespace Project.MVCUI.Models.PageVMs
     {
         public Cart Cart { get; set; }
         public SeansVM Seans { get; set; }
+        public ReservationVM Reservation { get; set; }
+        public SeatVM Seat { get; set; }
 
     }
 }

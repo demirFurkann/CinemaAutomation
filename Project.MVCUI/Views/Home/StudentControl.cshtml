@@ -1,0 +1,20 @@
+﻿@model TicketBuyPageVM
+@{
+    ViewBag.Title = "StudentControl";
+}
+@using (Html.BeginForm("StudentControl", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="BirthYear">Birth Year</label>
+       @Html.TextBoxFor(x => x.Ticket.BirthYear,new {@class="form-control"})
+    </div>
+
+    <button type="submit" class="btn btn-primary">Check</button>
+}
+
+@if (ViewBag.Student != null)
+{
+    <p>@ViewBag.Student</p>
+}

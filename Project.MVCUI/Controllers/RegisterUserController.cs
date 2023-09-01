@@ -96,7 +96,7 @@ namespace Project.MVCUI.Controllers
 
             if (login != null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             return View();
         }

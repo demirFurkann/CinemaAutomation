@@ -1,0 +1,18 @@
+﻿@model RegisterNowUserPageVM
+
+@{
+    ViewBag.Title = "Activation Code";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Activation Code</h2>
+
+<div class="activation-form">
+    <form method="post">
+        <div class="form-group">
+            <label for="activationCode">Activation Code:</label>
+            <input type="text" id="activationCode" name="activationCode" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

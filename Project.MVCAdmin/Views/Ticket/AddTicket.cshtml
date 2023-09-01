@@ -1,0 +1,97 @@
+﻿@model AddUpdateTicketPageVM
+
+@{
+    ViewBag.Title = "AddTicket";
+}
+
+
+<header class="page-header">
+    <h2>Bilet Ekle</h2>
+
+    <div class="right-wrapper text-end">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="index.html">
+                    <i class="bx bx-home-alt"></i>
+                </a>
+            </li>
+
+            <li><span>Biletler</span></li>
+
+            <li><span>Bilet Ekle</span></li>
+
+        </ol>
+
+    </div>
+</header>
+
+<!-- start: page -->
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+
+                <h2 class="card-title">Film Ekle</h2>
+            </header>
+            <div class="card-body">
+                @using (Html.BeginForm("AddTicket", "Ticket", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <form class="form-horizontal form-bordered" method="post" action="/Ticket/AddTicket">
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ticket.Type, "Ticket Type", new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.Ticket.Type, Enum.GetValues(typeof(Project.ENTITIES.Enums.TicketType)).Cast<Project.ENTITIES.Enums.TicketType>().Select(
+                                x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }),
+                                new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ticket.ID, "Ticket ID", new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Ticket.ID, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ticket.TotalPrice, "Ticket Price", new { @class = "control-label" })
+                            @Html.DisplayFor(model => model.Ticket.TotalPrice, new { @class = "form-control" })
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Ticket</button>
+
+                        @*<div class="form-group row pb-4">
+            <label class="col-lg-3 control-label text-lg-end pt-2"
+                   for="inputDefault">Bilet Fiyatı</label>
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.Ticket.TotalPrice, new { @class = "form-control" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group row pb-4">
+            <label class="col-lg-3 control-label text-lg-end pt-2"
+                   for="inputDefault">Bilet Türü</label>
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.Ticket.Type, new { @class = "form-control" })
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group row pb-4">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <button type="submit" class="mb-1 mt-1 me-1 btn btn-primary">Ekle</button>
+            </div>
+        </div>*@
+
+                    </form>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+

@@ -63,7 +63,7 @@ namespace Project.MVCAdmin.Controllers
                 MovieName = film.MovieName,
                 ID = film.ID,
                 Duration = film.Duration,
-                ImagePath = film.ImagePath = ImageUploader.UploadImage("/Pictures/", image, fileName),
+                ImagePath = film.ImagePath = ImageUploader.UploadImage(image, fileName),
                 Info = film.Info,
                 Type = film.Type,
 
@@ -97,7 +97,7 @@ namespace Project.MVCAdmin.Controllers
             Film updated = _filmRep.Find(film.ID);
             updated.MovieName = film.MovieName;
             updated.Duration = film.Duration;
-            updated.ImagePath = film.ImagePath = ImageUploader.UploadImage("/Pictures/", image, fileName);
+            updated.ImagePath = film.ImagePath = ImageUploader.UploadImage( image, fileName);
             updated.Type = film.Type;
             updated.Info = film.Info;
 

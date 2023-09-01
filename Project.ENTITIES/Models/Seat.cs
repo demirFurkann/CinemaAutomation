@@ -14,6 +14,7 @@ namespace Project.ENTITIES.Models
         public decimal SeatPrice { get; set; }
 
         public SeatStatus SeatStatus { get; set; }
+        public TicketType TicketType { get; set; }
 
         public Seat()
         {

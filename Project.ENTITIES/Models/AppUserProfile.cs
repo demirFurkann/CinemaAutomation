@@ -16,11 +16,6 @@ namespace Project.ENTITIES.Models
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
 
-
-
-        
-
-
         //Relational Properties
 
         public virtual AppUser AppUser { get; set; }

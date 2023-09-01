@@ -13,10 +13,12 @@ namespace Project.MVCUI.Models.PageVMs
     public class TicketBuyPageVM
     {
         public TicketVM Ticket { get; set; }
+
+        public List<TicketVM> Tickets { get; set; }
         //public BoxOfficeVM BoxOffice { get; set; }
         public SeansVM Seans { get; set; }
         //public AdminUserVM AdminUser { get; set; }
-        //public ReservationVM Reservation { get; set; }
+        public ReservationVM Reservation { get; set; }
         public FilmVM Film { get; set; }
         public SaloonVM Saloon { get; set; }
 

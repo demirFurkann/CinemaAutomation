@@ -6,7 +6,9 @@
 }
 
 
-
+<a class="btn btn-primary" href="@Url.Action("VipControl", "Home")">Vip Kontrol</a>
+<a class="btn btn-primary" href="@Url.Action("StudentControl", "Home")">Öğrenci Kontrol</a>
+@ViewBag.Gecersiz
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,16 +49,31 @@
 
     <h2>Film Listesi</h2>
 
+
+
+
     @foreach (var film in Model.Films)
     {
         <div class="film-card">
-            <img width="30" height="30"  src="@film.ImagePath" alt="@film.MovieName" class="film-image" />
+            @*<img width="30" height="30" src="@film.ImagePath" alt="@film.MovieName" class="film-image" />*@
+            @if (!string.IsNullOrEmpty(film.ImagePath))
+            {
+                <img src="@Url.Content(film.ImagePath)" alt="@film.MovieName" width="100" height="150" />
+            }
+
+
             <div class="film-details">
                 <h3>@film.MovieName</h3>
                 <p>@film.Duration dakika</p>
                 <p>Tür: @film.Type</p>
                 <p>@film.Info</p>
             </div>
+            @*<div class="modal-text">
+
+            <a href="@Url.Action("SeansSeats","Home", new { filmId = film.ID })">Bilet Al</a>
+        </div>*@
+
+
             <div class="film-seanslar">
                 <h4>Seanslar</h4>
                 <ul>
@@ -74,49 +91,6 @@
     }
 
 
-    <button id="reserveBtn">Rezerve Et</button>
-    <button id="buyBtn">Satın Al</button>
-    <button id="cancelBtn">İptal Et</button>
 
-    <script>
-        const seats = document.querySelectorAll('.seat');
-        let selectedSeats = [];
-
-        seats.forEach(seat => {
-            seat.addEventListener('click', () => {
-                if (!seat.classList.contains('reserved')) {
-                    seat.classList.toggle('selected');
-                    const seatNumber = seat.textContent;
-                    if (selectedSeats.includes(seatNumber)) {
-                        selectedSeats = selectedSeats.filter(item => item !== seatNumber);
-                    } else {
-                        selectedSeats.push(seatNumber);
-                    }
-                }
-            });
-        });
-
-        const reserveBtn = document.getElementById('reserveBtn');
-        const buyBtn = document.getElementById('buyBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
-
-        reserveBtn.addEventListener('click', () => {
-            alert('Seçili koltuklar rezerve edildi: ' + selectedSeats.join(', '));
-            selectedSeats = [];
-            seats.forEach(seat => seat.classList.remove('selected'));
-        });
-
-        buyBtn.addEventListener('click', () => {
-            alert('Seçili koltuklar satın alındı: ' + selectedSeats.join(', '));
-            selectedSeats = [];
-            seats.forEach(seat => seat.classList.remove('selected'));
-        });
-
-        cancelBtn.addEventListener('click', () => {
-            selectedSeats = [];
-            seats.forEach(seat => seat.classList.remove('selected'));
-            alert('Seçili koltuklar iptal edildi.');
-        });
-    </script>
 </body>
 </html>

@@ -10,8 +10,9 @@ namespace Project.ENTITIES.Models
     public class Ticket : BaseEntity
     {
         // Bilet işlemleri için alim tarihi ve onaylımı kontrolu
-        public decimal  Price { get; set; }
-        public DateTime PurchaseDate { get; set; }  
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public DateTime PurchaseDate { get; set; }
         public TicketType Type { get; set; }
 
         public Ticket()
