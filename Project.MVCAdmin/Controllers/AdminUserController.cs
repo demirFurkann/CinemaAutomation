@@ -24,14 +24,14 @@ namespace Project.MVCAdmin.Controllers
 
         public ActionResult Index()
         {
-            List<AdminUserVM> adminUsers= _adminUserRep.Where(x=>x.AdminRole != ENTITIES.Enums.AdminRole.Admin&& x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x=> new AdminUserVM
+            List<AdminUserVM> adminUsers = _adminUserRep.Where(x => x.AdminRole != ENTITIES.Enums.AdminRole.Admin && x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new AdminUserVM
             {
-                ID=x.ID,
-                UserName= x.UserName,
-                Password= x.Password,
-                AdminRole=x.AdminRole,
-                NameSurname=x.NameSurname,
-                
+                ID = x.ID,
+                UserName = x.UserName,
+                Password = x.Password,
+                AdminRole = x.AdminRole,
+                NameSurname = x.NameSurname,
+
 
             }).ToList();
 
@@ -43,6 +43,7 @@ namespace Project.MVCAdmin.Controllers
 
             return View(adminUserListPageVM);
         }
+
 
         public ActionResult AddAdminUser()
         {

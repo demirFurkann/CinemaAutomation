@@ -58,12 +58,14 @@ namespace Project.MVCAdmin.Controllers
 
         public ActionResult AddFilm(FilmVM film, HttpPostedFileBase image, string fileName)
         {
+          var _fileNameWithGuid=  ImageUploader.UploadImage("/Pictures/", image, fileName);
+
             Film f = new Film
             {
                 MovieName = film.MovieName,
                 ID = film.ID,
                 Duration = film.Duration,
-                ImagePath = film.ImagePath = ImageUploader.UploadImage("/Pictures/", image, fileName),
+                ImagePath = _fileNameWithGuid,
                 Info = film.Info,
                 Type = film.Type,
 
@@ -92,12 +94,13 @@ namespace Project.MVCAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateFilm(FilmVM film, HttpPostedFileBase image, string fileName)
+        public ActionResult UpdateFilm(FilmVM film, HttpPostedFileBase image)
         {
+            var _fileNameWithGuid = ImageUploader.UploadImage("/Pictures/", image, image.FileName);
             Film updated = _filmRep.Find(film.ID);
             updated.MovieName = film.MovieName;
             updated.Duration = film.Duration;
-            updated.ImagePath = film.ImagePath = ImageUploader.UploadImage("/Pictures/", image, fileName);
+            updated.ImagePath = _fileNameWithGuid;
             updated.Type = film.Type;
             updated.Info = film.Info;
 

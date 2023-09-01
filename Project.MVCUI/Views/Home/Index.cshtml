@@ -1,4 +1,4 @@
-﻿@model ListSeansPageVM
+﻿﻿@model ListSeansPageVM
 
 @{
     ViewBag.Title = "Home";
@@ -7,116 +7,302 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sinema Salonu Biletleme</title>
-    <style>
-        .seat {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            background-color: #ccc;
-            display: inline-block;
-            text-align: center;
-            line-height: 50px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .row {
-            margin-bottom: 10px;
-        }
-
-        .reserved {
-            background-color: #f00;
-        }
-
-        .selected {
-            background-color: #00f;
-        }
-
-        .disabled {
-            background-color: #666;
-        }
-    </style>
-</head>
-<body>
-
-    <h2>Film Listesi</h2>
-
-    @foreach (var film in Model.Films)
-    {
-        <div class="film-card">
-            <img width="30" height="30"  src="@film.ImagePath" alt="@film.MovieName" class="film-image" />
-            <div class="film-details">
-                <h3>@film.MovieName</h3>
-                <p>@film.Duration dakika</p>
-                <p>Tür: @film.Type</p>
-                <p>@film.Info</p>
-            </div>
-            <div class="film-seanslar">
-                <h4>Seanslar</h4>
-                <ul>
-                    @foreach (var seans in film.Seanslar)
-                    {
-                        <li>
-                            <a href="@Url.Action("SeansSeats", new { seansId = seans.ID, filmId = film.ID })">
-                                @seans.StartTime.ToString("hh:mm")
-                            </a>
-                        </li>
-                    }
-                </ul>
+<section class="section overlay overlay-show overlay-op-9 border-0 m-0" style="background-image: url(img/demos/law-firm-2/backgrounds/background-2.jpg); background-size: cover; background-position: center;">
+    <div class="container py-5 mb-5">
+        <div class="row pb-5 mb-4">
+            <div class="col text-center">
+                <h3 class="alternative-font-4 text-color-primary font-weight-semibold text-4 mb-2 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="200">Vizyondaki Filmler</h3>
+                <h2 class="text-transform-none text-color-light font-weight-bold text-10 negative-ls-1 mb-0 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="400">Sinemada</h2>
             </div>
         </div>
-    }
+    </div>
+</section>
 
+<div class="owl-carousel-wrapper position-relative z-index-3 pb-4 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="600" style="height: 373px; margin-top: -225px;">
+    <div class="owl-carousel owl-theme dots-horizontal-center custom-dots-style-1 dots-dark mb-0" data-plugin-options='{"responsive": {"0": {"items": 1}, "576": {"items": 2}, "768": {"items": 3}, "992": {"items": 4}, "1200": {"items": 5}}, "margin": 20, "stagePadding": 20, "loop": true, "nav": false, "dots": true, "autoplay": true, "autoplayTimeout": 7000}'>
+        @foreach (var film in Model.Films)
+        {
+            <div class="py-5">
+                <a href="demo-law-firm-2-attorney-detail.html" class="text-decoration-none">
+                    <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                        <img src="https://localhost:44341/Pictures/@film.ImagePath" class="card-img-top border-radius-0" alt="Film Afişi" />
+                        <div class="card-body text-center px-4 py-5">
+                            <h1 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-1">@film.MovieName</h1>
+                            <p class="text-color-grey positive-ls-3 mb-3">@film.Duration</p>
+                            <p class="font-weight-light text-color-dark line-height-7 mb-2">@film.Info</p>
+                            <span class="custom-read-more d-inline-flex justify-content-center align-items-center text-3 font-weight-medium svg-fill-color-primary">
+                                PROFİLÜ GÖRÜNTÜLE
+                                <svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <polygon stroke="#777" stroke-width="0.1" fill="#777" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
 
-    <button id="reserveBtn">Rezerve Et</button>
-    <button id="buyBtn">Satın Al</button>
-    <button id="cancelBtn">İptal Et</button>
+<div class="owl-carousel-wrapper position-relative z-index-1 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="2000" style="margin-top: -222px; height: 470px;">
+    <div class="owl-carousel owl-theme dots-horizontal-center custom-dots-style-1 dots-dark mb-0" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 2}, '992': {'items': 3}, '1200': {'items': 4}, '1440': {'items': 5}}, 'margin': 20, 'stagePadding': 20, 'loop': true, 'nav': false, 'dots': true, 'autoplay': true, 'autoplayTimeout': 7000}">
+        <div class="py-5">
+            <a href="demo-law-firm-2-practice-areas-detail.html" class="text-decoration-none">
+                <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                    <div class="card-body text-center px-4 py-5">
+                        <img width="60" height="60" src="img/demos/law-firm-2/icons/icon-group.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary mt-2 mb-4 pb-3'}" />
+                        <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">Family Law</h2>
+                        <p class="font-weight-light text-color-dark line-height-7 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra erat orci, ac auctor lacus tincidunt ut...</p>
+                        <span class="custom-read-more d-inline-flex justify-content-center align-items-center text-3 font-weight-medium svg-fill-color-primary">
+                            READ MORE
+                            <svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <polygon stroke="#777" stroke-width="0.1" fill="#777" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353 " />
+											</svg>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="py-5">
+            <a href="demo-law-firm-2-practice-areas-detail.html" class="text-decoration-none">
+                <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                    <div class="card-body text-center px-4 py-5">
+                        <img width="60" height="60" src="img/demos/law-firm-2/icons/icon-exchange.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-stroke-color-primary mt-2 mb-4 pb-3'}" />
+                        <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">Capital Law</h2>
+                        <p class="font-weight-light text-color-dark line-height-7 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra erat orci, ac auctor lacus tincidunt ut...</p>
+                        <span class="custom-read-more d-inline-flex justify-content-center align-items-center text-3 font-weight-medium svg-fill-color-primary">
+                            READ MORE
+                            <svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <polygon stroke="#777" stroke-width="0.1" fill="#777" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353 " />
+											</svg>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="py-5">
+            <a href="demo-law-firm-2-practice-areas-detail.html" class="text-decoration-none">
+                <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                    <div class="card-body text-center px-4 py-5">
+                        <img width="60" height="60" src="img/demos/law-firm-2/icons/icon-magnific-dollar.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-stroke-color-primary mt-2 mb-4 pb-3'}" />
+                        <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">Business Law</h2>
+                        <p class="font-weight-light text-color-dark line-height-7 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra erat orci, ac auctor lacus tincidunt ut...</p>
+                        <span class="custom-read-more d-inline-flex justify-content-center align-items-center text-3 font-weight-medium svg-fill-color-primary">
+                            READ MORE
+                            <svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <polygon stroke="#777" stroke-width="0.1" fill="#777" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353 " />
+											</svg>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="py-5">
+            <a href="demo-law-firm-2-practice-areas-detail.html" class="text-decoration-none">
+                <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                    <div class="card-body text-center px-4 py-5">
+                        <img width="60" height="60" src="img/demos/law-firm-2/icons/icon-car-accident.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary mt-2 mb-4 pb-3'}" />
+                        <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">Accident & Injury Law</h2>
+                        <p class="font-weight-light text-color-dark line-height-7 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra erat orci, ac auctor lacus tincidunt ut...</p>
+                        <span class="custom-read-more d-inline-flex justify-content-center align-items-center text-3 font-weight-medium svg-fill-color-primary">
+                            READ MORE
+                            <svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <polygon stroke="#777" stroke-width="0.1" fill="#777" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353 " />
+											</svg>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="py-5">
+            <a href="demo-law-firm-2-practice-areas-detail.html" class="text-decoration-none">
+                <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                    <div class="card-body text-center px-4 py-5">
+                        <img width="60" height="60" src="img/demos/law-firm-2/icons/icon-heart-hands.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-stroke-color-primary custom-stroke-width-1 mt-2 mb-4 pb-3'}" />
+                        <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">Health Law</h2>
+                        <p class="font-weight-light text-color-dark line-height-7 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra erat orci, ac auctor lacus tincidunt ut...</p>
+                        <span class="custom-read-more d-inline-flex justify-content-center align-items-center text-3 font-weight-medium svg-fill-color-primary">
+                            READ MORE
+                            <svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <polygon stroke="#777" stroke-width="0.1" fill="#777" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353 " />
+											</svg>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="py-5">
+            <a href="demo-law-firm-2-practice-areas-detail.html" class="text-decoration-none">
+                <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                    <div class="card-body text-center px-4 py-5">
+                        <img width="60" height="60" src="img/demos/law-firm-2/icons/icon-group.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary mt-2 mb-4 pb-3'}" />
+                        <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">Family Law</h2>
+                        <p class="font-weight-light text-color-dark line-height-7 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra erat orci, ac auctor lacus tincidunt ut...</p>
+                        <span class="custom-read-more d-inline-flex justify-content-center align-items-center text-3 font-weight-medium svg-fill-color-primary">
+                            READ MORE
+                            <svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <polygon stroke="#777" stroke-width="0.1" fill="#777" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353 " />
+											</svg>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 
-    <script>
-        const seats = document.querySelectorAll('.seat');
-        let selectedSeats = [];
+<div class="container py-5 mt-3">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+            <h2 class="text-color-dark font-weight-extra-bold text-10 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200"><em>Sinema: Duyguların ve Hayallerin Beyaz Perdesi</em></h2>
+            <p class="font-weight-light text-color-dark mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400">
+                Bir film izlemek, duygusal bir yolculuğa çıkmak gibidir. Romantik filmler, sevginin gücünü hissettirirken, dramatik yapıtlar hayatın zorlukları ve insanın iç dünyasına dair derin düşüncelere sevk eder. Komedi filmleri ise kahkahalarla dolu keyifli anlar yaşatır. Aksiyon ve macera filmleri ise izleyicilere adrenalini yükselten heyecan dolu bir deneyim sunar.Sinemanın en büyülü yanı, izleyiciyi hayal dünyasına götürmesi ve karakterlerle duygusal bir bağ kurmasına olanak tanımasıdır. Unutulmaz karakterler, sinema tarihinde izleyicinin kalbinde yer eder. Charlie Chaplin'in ikonik Tramp karakteri, hâlâ sinema tarihinde unutulmazların arasındadır.
 
-        seats.forEach(seat => {
-            seat.addEventListener('click', () => {
-                if (!seat.classList.contains('reserved')) {
-                    seat.classList.toggle('selected');
-                    const seatNumber = seat.textContent;
-                    if (selectedSeats.includes(seatNumber)) {
-                        selectedSeats = selectedSeats.filter(item => item !== seatNumber);
-                    } else {
-                        selectedSeats.push(seatNumber);
+                Sinema aynı zamanda toplumsal mesajların aktarılmasında güçlü bir araçtır. Filmler, çeşitli toplumsal konuları ele alarak izleyicileri düşünmeye ve tartışmaya yönlendirir. Sosyal adalet, eşitlik, çevre sorunları gibi önemli meseleler, sinema sayesinde daha geniş kitlelere ulaşır ve farkındalık oluşturur.
+            </p>
+            <p class="positive-ls-3 text-color-grey mb-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">Yasemin&Furkan - CEO & FOUNDER</p>
+            <img src="/img/demos/law-firm-2/signature.png" class="img-fluid appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="700" alt="" />
+        </div>
+        <div class="col-md-9 col-lg-6 ps-lg-5">
+            <div class="position-relative">
+                <div class="custom-shape-1 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="1100">
+                    <div class="position-absolute top-0 left-0 right-0 bottom-0 bg-primary" data-plugin-float-element data-plugin-options="{'startPos': 'top', 'speed': 0.1, 'transition': true, 'transitionDuration': 1000, 'isInsideSVG': true}"></div>
+                </div>
+                <div data-plugin-float-element data-plugin-options="{'startPos': 'top', 'speed': 0.3, 'transition': true, 'transitionDuration': 1000, 'isInsideSVG': true}">
+                    <img src="https://iis-akakce.akamaized.net/p.z?%2F%2Fproductimages%2Ehepsiburada%2Enet%2Fs%2F137%2F600%2F110000089359478%2Ejpg" class="img-fluid position-relative z-index-1 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="900" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<section class="section overlay overlay-show overlay-op-9 border-0 m-0 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="300" style="background-image: url(img/demos/law-firm-2/backgrounds/background-1.jpg); background-size: cover; background-position: center;">
+    <div class="container pt-5 pb-3">
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="alternative-font-4 text-color-primary font-weight-semibold text-4 mb-2">GÖRÜŞLER & YORUMLAR</h2>
+                <h3 class="text-transform-none text-color-light font-weight-bold text-10 negative-ls-1 pb-3 mb-5">Memnun Müşteri Hikayeleri</h3>
+                <p class="custom-font-secondary text-color-light custom-font-size-1 font-weight-extra-bold">“</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-7 text-center px-lg-0">
+                <div class="owl-carousel owl-theme dots-horizontal-center custom-dots-style-1 dots-light mb-0" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 1}, '992': {'items': 1}, '1200': {'items': 1}}, 'loop': true, 'nav': false, 'dots': true, 'autoplay': false, 'autoplayTimeout': 7000}">
+                    <div>
+                        <p class="text-color-light text-6 custom-font-secondary line-height-4 opacity-8 pb-2 mb-0">“ Sinema, beni gerçek dünyadan uzaklaştırarak, hayal dünyasına götüren büyülü bir deneyimdir. Her film, farklı duyguları ve düşünceleri içinde barındırır, izledikçe kendimi karakterlerin yerine koyup onlarla birlikte hissediyorum. ”</p>
+                        <div class="divider divider-primary divider-small mt-2 mb-4 pb-2">
+                            <hr class="my-4 mx-auto">
+                        </div>
+                        <strong class="d-block text-color-light text-4 mb-4">- John Doe, Los Angeles, CA</strong>
+                    </div>
+                    <div>
+                        <p class="text-color-light text-6 custom-font-secondary line-height-4 opacity-8 pb-2 mb-0">“Hayatımızın karmaşıklığından kaçmak için izlediğim filmler, içimdeki duygusal boşluğu doldurur ve beni başka bir boyuta taşır. Her film, benim için yeni bir macera ve öğrenme deneyimidir. ”</p>
+                        <div class="divider divider-primary divider-small mt-2 mb-4 pb-2">
+                            <hr class="my-4 mx-auto">
+                        </div>
+                        <strong class="d-block text-color-light text-4 mb-4">- John Doe, Los Angeles, CA</strong>
+                    </div>
+                    <div>
+                        <p class="text-color-light text-6 custom-font-secondary line-height-4 opacity-8 pb-2 mb-0">“ Sinema, başka birinin ayakkabılarında yürüme şansı verir. Farklı karakterlerin yaşamlarına tanık olmak, kendi deneyimlerimi zenginleştirir ve empati kurma yeteneğimi güçlendirir.”</p>
+                        <div class="divider divider-primary divider-small mt-2 mb-4 pb-2">
+                            <hr class="my-4 mx-auto">
+                        </div>
+                        <strong class="d-block text-color-light text-4 mb-4">- John Doe, Los Angeles, CA</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row counters counters-sm py-5">
+            <div class="col-sm-6 col-lg-3 mb-5 mb-lg-0">
+                <div class="counter">
+                    <strong class="text-color-light font-weight-bold line-height-1 text-13 mb-1" data-to="50" data-append="+" data-plugin-options="{'appendWrapper': '<span class=text-color-primary></span>'}">0</strong>
+                    <label class="text-color-light font-weight-bold text-4 mb-0">İş Yılı</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-5 mb-lg-0">
+                <div class="counter">
+                    <strong class="text-color-light font-weight-bold line-height-1 text-13 mb-1" data-to="240" data-append="+" data-plugin-options="{'appendWrapper': '<span class=text-color-primary></span>'}">0</strong>
+                    <label class="text-color-light font-weight-bold text-4 mb-0">
+                        Memnun Müşteriler
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-5 mb-sm-0">
+                <div class="counter">
+                    <strong class="text-color-light font-weight-bold line-height-1 text-13 mb-1" data-to="2000" data-append="+" data-plugin-options="{'appendWrapper': '<span class=text-color-primary></span>'}">0</strong>
+                    <label class="text-color-light font-weight-bold text-4 mb-0">Başarılı Vakalar</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="counter">
+                    <strong class="text-color-light font-weight-bold line-height-1 text-13 mb-1" data-to="20" data-append="+" data-plugin-options="{'appendWrapper': '<span class=text-color-primary></span>'}">0</strong>
+                    <label class="text-color-light font-weight-bold text-4 mb-0">Profesyonel Görüşler</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<html lang="en">
+<hr class="my-0">
+<section class="section section-height-3 bg-primary-darken border-0 m-0 appear-animation" data-appear-animation="fadeIn">
+    <div class="container py-3">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-xl-5 text-center mb-5 mb-xl-0">
+                <div class="appear-animation" data-appear-animation="blurIn" data-appear-animation-delay="500">
+                    <h3 class="alternative-font-4 text-color-light font-weight-semibold text-4 opacity-9 mb-1">Duyguların Adresi: Sinema</h3>
+                </div>
+                <h2 class="text-transform-none text-color-light font-weight-bold text-10 negative-ls-1 mb-2 appear-animation" data-appear-animation="blurIn" data-appear-animation-delay="750">Sinema: İyi Bir Filmle Bağlanırsın, Harika Bir Hikayeyle</h2>
+                <div class="appear-animation" data-appear-animation="blurIn" data-appear-animation-delay="950">
+                    <p class="text-color-light text-3-5 opacity-8 mb-0">Sahne Sende, Film Senin</p>
+                </div>
+            </div>
+            <div class="col-xl-3 text-center text-xl-end">
+                <a href="demo-law-firm-2-contact.html" data-hash data-hash-offset="0" data-hash-offset-lg="100" class="btn btn-primary font-weight-bold btn-px-5 btn-py-3 appear-animation" data-appear-animation="fadeInRightShorterPlus" data-appear-animation-delay="1600">Perde Açılsın, Düşler Başlasın</a>
+            </div>
+        </div>
+    </div>
+</section>
+        <script>
+            const seats = document.querySelectorAll('.seat');
+            let selectedSeats = [];
+
+            seats.forEach(seat => {
+                seat.addEventListener('click', () => {
+                    if (!seat.classList.contains('reserved')) {
+                        seat.classList.toggle('selected');
+                        const seatNumber = seat.textContent;
+                        if (selectedSeats.includes(seatNumber)) {
+                            selectedSeats = selectedSeats.filter(item => item !== seatNumber);
+                        } else {
+                            selectedSeats.push(seatNumber);
+                        }
                     }
-                }
+                });
             });
-        });
 
-        const reserveBtn = document.getElementById('reserveBtn');
-        const buyBtn = document.getElementById('buyBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
+            const reserveBtn = document.getElementById('reserveBtn');
+            const buyBtn = document.getElementById('buyBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
 
-        reserveBtn.addEventListener('click', () => {
-            alert('Seçili koltuklar rezerve edildi: ' + selectedSeats.join(', '));
-            selectedSeats = [];
-            seats.forEach(seat => seat.classList.remove('selected'));
-        });
+            reserveBtn.addEventListener('click', () => {
+                alert('Seçili koltuklar rezerve edildi: ' + selectedSeats.join(', '));
+                selectedSeats = [];
+                seats.forEach(seat => seat.classList.remove('selected'));
+            });
 
-        buyBtn.addEventListener('click', () => {
-            alert('Seçili koltuklar satın alındı: ' + selectedSeats.join(', '));
-            selectedSeats = [];
-            seats.forEach(seat => seat.classList.remove('selected'));
-        });
+            buyBtn.addEventListener('click', () => {
+                alert('Seçili koltuklar satın alındı: ' + selectedSeats.join(', '));
+                selectedSeats = [];
+                seats.forEach(seat => seat.classList.remove('selected'));
+            });
 
-        cancelBtn.addEventListener('click', () => {
-            selectedSeats = [];
-            seats.forEach(seat => seat.classList.remove('selected'));
-            alert('Seçili koltuklar iptal edildi.');
-        });
-    </script>
-</body>
-</html>
+            cancelBtn.addEventListener('click', () => {
+                selectedSeats = [];
+                seats.forEach(seat => seat.classList.remove('selected'));
+                alert('Seçili koltuklar iptal edildi.');
+            });
+        </script>
+    </body>
+    </html>

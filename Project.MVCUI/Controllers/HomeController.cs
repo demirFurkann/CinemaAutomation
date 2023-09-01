@@ -16,7 +16,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
-
 namespace Project.MVCUI.Controllers
 {
     public class HomeController : Controller
@@ -24,36 +23,24 @@ namespace Project.MVCUI.Controllers
         FilmRepository _filmRep;
         SeansRepository _seansRep;
         SeatRepository _seatRep;
-        TicketSeatRepository _ticketSeatRep;
-        TicketRepository _ticketRep;
         public HomeController()
         {
             _filmRep = new FilmRepository();
             _seansRep = new SeansRepository();
             _seatRep = new SeatRepository();
-            _ticketSeatRep = new TicketSeatRepository();
-            _ticketRep = new TicketRepository();
         }
 
-        private List<SeatVM> GetSeats(int? seansId)
+        private List<SeatVM> GetSeats(int saloonID)
         {
-            List<Seat> seat = _seatRep.Where(x => x.SeansID == seansId).ToList();
-
-            List<SeatVM> seats = seat.Where(x => x.Status != DataStatus.Deleted).Select(x => new SeatVM
+            return _seatRep.Where(x => x.Saloon.ID == saloonID).Select(x => new SeatVM
             {
                 ID = x.ID,
                 SeatNo = x.SeatNo,
                 SeatStatus = x.SeatStatus,
                 Row = x.Row,
-                SaloonNumber = x.Saloon.SaloonNumber,
-                SeatPrice = x.SeatPrice,
-                SaloonID = x.Saloon.ID,
-                SeansID = x.SeansID.Value,
-
+                SaloonNumber = x.Saloon.SaloonNumber
             }).ToList();
-            return seats;
         }
-
 
 
 
@@ -76,23 +63,6 @@ namespace Project.MVCUI.Controllers
         }
 
 
-        //Calısmnadı
-
-        //private List<FilmVM> GetFilms()
-        //{
-        //    string serverPath = "~/Project.MVCAdmin/Pictures/"; // Resimlerin yüklendiği klasör yolu
-        //    List<string> imagePaths = ImageUploader.GetImagePaths(serverPath);
-
-        //    return _filmRep.Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select((x, index) => new FilmVM
-        //    {
-        //        ID = x.ID,
-        //        MovieName = x.MovieName,
-        //        Duration = x.Duration,
-        //        Type = x.Type,
-        //        Info = x.Info,
-        //        ImagePath = (index < imagePaths.Count) ? imagePaths[index] : string.Empty
-        //    }).ToList();
-        //}
 
 
         private List<SeansVM> GetSeans(int filmId)
@@ -115,30 +85,114 @@ namespace Project.MVCUI.Controllers
 
             return seansVMs;
         }
+        //    private List<string> GetImagePathsForFilms()
+        //    {
+        //        string[] imageUrls = {
+        //    "1449215.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
+        //    "81J1DaRKzUL._AC_UF894,1000_QL80_.jpg",
+        //    "indir (1).jpg",
+        //    "indir (2).jpg",
+        //    "indir.jpg",
+        //    "megan.jpg"
+        //};
+
+        //        List<string> imagePaths = new List<string>();
+
+        //        foreach (string imageUrl in imageUrls)
+        //        {
+        //            string imagePath = "Pictures/" + imageUrl;
+        //            imagePaths.Add(imagePath);
+        //        }
+
+        //        return imagePaths;
+        //    }
+
+
+        //    public ActionResult Index()
+        //    {
+        //        List<FilmVM> films = GetFilms();
+
+        //        for (int i = 0; i < films.Count; i++)
+        //        {
+        //            FilmVM film = films[i];
+
+        //            List<SeansVM> seanslar = GetSeans(film.ID);
+        //            film.Seanslar = seanslar;
+
+        //            Tüm resim yollarını her bir film nesnesine sıralı bir şekilde atayın
+        //            film.ImagePath = "Pictures/" + film.ID + ".jpg"; // Burada her filme özel bir afiş adı kullanılıyor
+        //        }
+
+        //        ListSeansPageVM lpvm = new ListSeansPageVM
+        //        {
+        //            Films = films,
+        //        };
+        //        return View(lpvm);
+        //    }
 
         public ActionResult Index()
         {
             List<FilmVM> films = GetFilms();
+    //        List<string> imageUrls = new List<string>
+    //        {
+    //"1449215.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
+    //"Elemental-Digital-Keyart-2400x2400-1.jpg",
+    //"MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_ (2).jpg",
+    //"john-wick-bolum-4.jpg",
+    //"2012949-58861826.jpg",
+    //"megan.jpg"
+    //        };
 
-            foreach (FilmVM film in films)
+
+            for (int i = 0; i < films.Count; i++)
             {
+                FilmVM film = films[i];
+
                 List<SeansVM> seanslar = GetSeans(film.ID);
                 film.Seanslar = seanslar;
 
+                //// Tüm resim yollarını her bir film nesnesine sıralı bir şekilde atayın
+                //film.ImagePath = "/Pictures/" + imageUrls[i]; // Burada URL'leri kullanıyoruz
             }
 
             ListSeansPageVM lpvm = new ListSeansPageVM
             {
                 Films = films,
-
             };
             return View(lpvm);
         }
 
-        public ActionResult SeansSeats(int? seansId, int filmId)
+
+
+        //public ActionResult Index()
+        //{
+        //    List<FilmVM> films = GetFilms();
+
+        //    foreach (FilmVM film in films)
+        //    {
+        //        List<SeansVM> seanslar = GetSeans(film.ID);
+        //        film.Seanslar = seanslar;
+        //        List<string> imagePaths = new List<string>
+        //        {
+        //    "Pictures/164658698-elemental.jpeg",
+        //    "Pictures/81J1DaRKzUL._AC_UF894",
+        //    "Pictures/1000_QL80_.jpg",
+        //    "Pictures/megan.jpg",
+        //    "Pictures/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg"
+        //};
+        //        film.ImagePaths = imagePaths;
+        //    }
+
+        //    ListSeansPageVM lpvm = new ListSeansPageVM
+        //    {
+        //        Films = films,
+
+        //    };
+        //    return View(lpvm);
+        //}
+
+        public ActionResult SeansSeats(int seansId, int filmId)
         {
-
-
             FilmVM film = GetFilms().FirstOrDefault(f => f.ID == filmId);
 
             if (film == null)
@@ -154,176 +208,18 @@ namespace Project.MVCUI.Controllers
             }
 
 
-            List<SeatVM> seats = GetSeats(seansId);
-
             ListSeansPageVM seansSeatsVM = new ListSeansPageVM
             {
                 Film = film,
                 Seans = new List<SeansVM> { seans },
-                Seats = seats,
-
+                // Seats = seats
             };
-
-            if (seansId != null)
-            {
-                TempData["seansId"] = seansId;
-            }
-
-
-
-
-            TempData["FilmAdi"] = film.MovieName;
-            //TempData["SalonAdi"] = seans.SaloonNumber;
-            //TempData["SeansTarihi"] = seans.StartTime;
-
-
 
             return View(seansSeatsVM);
         }
 
 
-        public ActionResult AddToCart(int id, TicketBuyPageVM model)
-        {
-
-
-            if (id <= 0)
-            {
-                return Content("Geçersiz Koltuk ID'si");
-            }
-
-            Cart c = Session["add"] == null ? new Cart() : Session["add"] as Cart;
-
-            Seat addSeat = _seatRep.Find(id);
-
-            if (addSeat == null)
-            {
-                return Content("Koltuk Bulunamadı");
-            }
-
-            if (addSeat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Reserved || addSeat.SeatStatus == Project.ENTITIES.Enums.SeatStatus.Occupied)
-            {
-                return Redirect(Request.UrlReferrer.ToString());
-            }
-
-
-            CartItem ci = new CartItem
-            {
-                ID = addSeat.ID,
-                SeatNumber = addSeat.SeatNo,
-                SeansStartTime = addSeat.Seans.StartTime,
-                Price = addSeat.SeatPrice,
-                SeatID = addSeat.ID,
-                SeansID = addSeat.Seans.ID,
-                SaloonNo = addSeat.Saloon.SaloonNumber,
-                Row = addSeat.Row,
-
-            };
-
-
-
-            c.ReservationAdd(ci);
-            Session["add"] = c;
-            addSeat.SeatStatus = SeatStatus.Reserved;
-
-
-            return Redirect(Request.UrlReferrer.ToString());
-        }
-
-
-
-        public ActionResult TicketBuy()
-        {
-            //AdminUser currentUser;
-            //if (Session["BoxOfficeAttendant"] != null)
-            //{
-            //    currentUser = Session["BoxOfficeAttendant"] as AdminUser;
-            //}
-            if (Session["add"] != null)
-            {
-                Cart c = Session["add"] as Cart;
-                CartPageVM cpvm = new CartPageVM
-                {
-                    Cart = c,
-                };
-                return View(cpvm);
-            }
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult TicketBuy(TicketBuyPageVM model)
-        {
-
-
-            ViewBag.SepetBos = "Sepette Bilet Bulunmamaktadır";
-            Cart sepet = Session["add"] as Cart;
-
-            //SeansId'yi yakalamak için 
-            int seansId = (int)TempData["seansId"];
-
-            Ticket t = new Ticket();
-            t.Price = sepet.TotalPrice;
-            t.SeansID = seansId;
-            _ticketRep.Add(t); // Ticket Id'si ni oluşturmak için
-
-            foreach (CartItem item in sepet.Sepetim)
-            {
-                TicketSeat ts = new TicketSeat();
-                ts.TicketID = t.ID;
-                ts.SeatID = item.SeatID;
-
-                Seat seat = _seatRep.Find(ts.SeatID);
-                seat.SeatStatus = SeatStatus.Occupied;
-
-                _ticketSeatRep.Add(ts);
-            }
-
-            Session.Remove("add");
-
-            TempData["odeme"] = "Ödemeniz Alınmıştır... Teşekkürler";
-
-
-            return RedirectToAction("Index");
-
-
-        }
-
-        [HttpPost]
-        public ActionResult GetStatus(int seansId,int id)
-        {
-            List<Seat> seatsInSeans = _seatRep.Where(x => x.Seans.ID == seansId).ToList();
-
-            // Belirli bir koltuğu alın
-            Seat seat = _seatRep.Find(id);
-
-            if (seatsInSeans == null || seatsInSeans.Count == 0)
-            {
-                return Json(new { ErrorMessage = "Koltuklar bulunamadı." });
-            }
-
-            if (seat == null)
-            {
-                return Json(new { ErrorMessage = "Koltuk bulunamadı." });
-            }
-
-            // Tüm seans koltuklarını dolaşarak durumları "Empty" olarak güncelleyin
-            foreach (var seatInSeans in seatsInSeans)
-            {
-                if (seatInSeans.SeatStatus == SeatStatus.Occupied || seatInSeans.SeatStatus == SeatStatus.Reserved)
-                {
-                    seatInSeans.SeatStatus = SeatStatus.Empty;
-                }
-            }
-
-            // Değişiklikleri veritabanına kaydedin
-            _seatRep.Update(seat);
-
-            return Json(new { SuccessMessage = "Koltuk durumları güncellendi." });
-        }
 
 
     }
-
-
 }

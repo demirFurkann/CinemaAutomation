@@ -93,60 +93,6 @@ namespace Project.MVCAdmin.Controllers
             return View(reservations);
         }
 
-        ////GET Index
-        //public ActionResult Index()
-        //{
-        //    List<ReservationVM> reservations = GetReservations();
-        //    List<FilmVM> films = GetFilms();
-        //    List<SeansVM> seans = GetSeans(0); // Seansları almak için gerekli olan seansID'yi buraya eklemelisiniz.
-
-        //    ListReservationPageVM model = new ListReservationPageVM
-        //    {
-        //        Reservations = reservations,
-        //        Films = films,
-        //        Seans = seans
-        //    };
-
-        //    return View(model);
-        //}
-
-
-        //// POST Index
-        //[HttpPost]
-        //public ActionResult Index(ListReservationPageVM model)
-        //{
-        //    if (model.Reservation != null && model.Reservation.ID != 0)
-        //    {
-        //        List<SeansVM> seansListesi = GetSeans(model.Reservation.ID);
-        //        model.Seans = seansListesi;
-
-        //    }
-        //    else
-        //    {
-        //        model.Seans = null;
-        //    }
-
-        //    model.Reservations = GetReservations();
-
-        //    return View(model);
-        //}
-
-        //public ActionResult AddReservation()
-        //{
-        //    AddUpdateReservationPageVM model = new AddUpdateReservationPageVM
-        //    {
-        //        Reservation = new ReservationVM(),
-        //        Reservations = GetReservations(),
-        //        Films = GetFilms(),
-        //        Seans = GetAllSeans()
-        //    };
-
-        //    // ConfirmationCode oluştur
-        //    model.Reservation.ConfirmationCode = GenerateConfirmationCode();
-
-        //    return View(model);
-        //}
-
         private List<SeansVM> GetAllSeans()
         {
             return _seansRep.Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).Select(x => new SeansVM
@@ -177,27 +123,6 @@ namespace Project.MVCAdmin.Controllers
         }
 
 
-
-
-        //[HttpPost]
-        //public ActionResult AddReservation(ReservationVM reservation, AppUserVM appUser)
-        //{
-        //    AppUser ap = new AppUser
-        //    {
-        //        UserName = appUser.UserName,
-        //    };
-        //    _appuserRep.Add(ap);
-
-        //    Reservation r = new Reservation
-        //    {
-        //        ID = ap.ID,
-        //        ConfirmationCode = GenerateConfirmationCode(), // Rastgele doğrulama kodu oluşturuluyor
-        //        TotalPrice = reservation.TotalPrice,
-        //    };
-        //    _reservationRep.Add(r);
-
-        //    return RedirectToAction("Index");
-        //}
         [HttpGet]
         public ActionResult AddReservation()
         {
@@ -289,51 +214,7 @@ namespace Project.MVCAdmin.Controllers
             // "Index" sayfasına yönlendirme yapıyoruz, güncelleme işlemi tamamlandıktan sonra bu sayfaya gideceğini belirtiyoruz
             return RedirectToAction("Index");
         }
-        //[HttpGet]
-        //public ActionResult UpdateReservation(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-
-        //    Reservation reservation = _reservationRep.Find(id.Value);
-        //    if (reservation == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    AddUpdateReservationPageVM updatereservationpagevm = new AddUpdateReservationPageVM
-        //    {
-        //        Reservation = new ReservationVM
-        //        {
-        //            ID = reservation.ID,
-        //            ConfirmationCode = reservation.ConfirmationCode,
-        //            IsApproved = reservation.IsApproved,
-        //            TotalPrice = reservation.TotalPrice
-        //        }
-        //    };
-
-        //    return View(updatereservationpagevm);
-        //}
-
-        //[HttpPost]
-        //public ActionResult UpdateReservation(ReservationVM reservation)
-        //{
-        //    Reservation updated = _reservationRep.Find(reservation.ID);
-        //    if (updated == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    updated.ConfirmationCode = reservation.ConfirmationCode;
-        //    updated.IsApproved = reservation.IsApproved;
-        //    updated.TotalPrice = reservation.TotalPrice;
-
-        //    _reservationRep.Update(updated);
-        //    return RedirectToAction("Index");
-        //}
-
+        
         public ActionResult DeleteReservation(int id)
         {
             _reservationRep.Delete(_reservationRep.Find(id));

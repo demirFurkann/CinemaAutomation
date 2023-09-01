@@ -14,14 +14,13 @@ namespace Project.MVCAdmin.Models.CustomTools
             if (file != null)
             {
                 Guid uniqueName = Guid.NewGuid();
+               
 
-                string[] fileArrey = file.FileName.Split('.');
+                string extension =Path.GetExtension(name);
 
-                string extansion = fileArrey[fileArrey.Length - 1].ToLower();
+                string fileName = $"{uniqueName}_{Path.GetFileNameWithoutExtension(name)}{extension}";
 
-                string fileName = $"{uniqueName}.{name}.{extansion}";
-
-                if (extansion == "jpg" || extansion == "gif" || extansion == "png" || extansion == "jpeg")
+                if (extension == ".jpg" || extension == ".gif" || extension == ".png" || extension == ".jpeg")
                 {
                     if (File.Exists(HttpContext.Current.Server.MapPath(serverPath + fileName)))
                     {
@@ -31,7 +30,7 @@ namespace Project.MVCAdmin.Models.CustomTools
                     {
                         string filePath = HttpContext.Current.Server.MapPath(serverPath + fileName);
                         file.SaveAs(filePath);
-                        return $"{serverPath}{fileName}";
+                        return fileName;
                     }
                 }
                 else
