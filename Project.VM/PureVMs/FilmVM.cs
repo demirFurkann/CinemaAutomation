@@ -13,14 +13,19 @@ namespace Project.VM.PureVMs
         public double Duration { get; set; }
         public string Type { get; set; }
         public string Info { get; set; }
-        public string ImagePath { get; set; }
-
+        public string ImagePath { get; set; } // Sadece bir tane resim yolu tutulacak
         public List<SeansVM> Seanslar { get; set; }
-
+        public List<string> ImagePaths { get; set; }
         public FilmVM()
         {
             Seanslar = new List<SeansVM>();
+            ImagePaths = new List<string>();
         }
-
     }
+
+
+
+
 }
+
+

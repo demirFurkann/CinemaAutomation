@@ -18,7 +18,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
-
 namespace Project.MVCUI.Controllers
 {
     public class HomeController : Controller
@@ -26,50 +25,24 @@ namespace Project.MVCUI.Controllers
         FilmRepository _filmRep;
         SeansRepository _seansRep;
         SeatRepository _seatRep;
-        TicketSeatRepository _ticketSeatRep;
-        TicketRepository _ticketRep;
-        AppUserRepository _appRep;
         public HomeController()
         {
             _filmRep = new FilmRepository();
             _seansRep = new SeansRepository();
             _seatRep = new SeatRepository();
-            _ticketSeatRep = new TicketSeatRepository();
-            _ticketRep = new TicketRepository();
-            _appRep = new AppUserRepository();
         }
 
-
-        private List<TicketVM> GetTickets()
+        private List<SeatVM> GetSeats(int saloonID)
         {
-            return _ticketRep.Select(ticket => new TicketVM
-            {
-                ID = ticket.ID,
-                TotalPrice = ticket.Price,
-                Type = ticket.Type,
-
-            }).ToList();
-        }
-
-        private List<SeatVM> GetSeats(int? seansId)
-        {
-            List<Seat> seat = _seatRep.Where(x => x.SeansID == seansId).ToList();
-
-            List<SeatVM> seats = seat.Where(x => x.Status != DataStatus.Deleted).Select(x => new SeatVM
+            return _seatRep.Where(x => x.Saloon.ID == saloonID).Select(x => new SeatVM
             {
                 ID = x.ID,
                 SeatNo = x.SeatNo,
                 SeatStatus = x.SeatStatus,
                 Row = x.Row,
-                SaloonNumber = x.Saloon.SaloonNumber,
-                SeatPrice = x.SeatPrice,
-                SaloonID = x.Saloon.ID,
-                SeansID = x.SeansID.Value,
-
+                SaloonNumber = x.Saloon.SaloonNumber
             }).ToList();
-            return seats;
         }
-
 
 
 
@@ -117,22 +90,79 @@ namespace Project.MVCUI.Controllers
 
             return seansVMs;
         }
+        //    private List<string> GetImagePathsForFilms()
+        //    {
+        //        string[] imageUrls = {
+        //    "1449215.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
+        //    "81J1DaRKzUL._AC_UF894,1000_QL80_.jpg",
+        //    "indir (1).jpg",
+        //    "indir (2).jpg",
+        //    "indir.jpg",
+        //    "megan.jpg"
+        //};
+
+        //        List<string> imagePaths = new List<string>();
+
+        //        foreach (string imageUrl in imageUrls)
+        //        {
+        //            string imagePath = "Pictures/" + imageUrl;
+        //            imagePaths.Add(imagePath);
+        //        }
+
+        //        return imagePaths;
+        //    }
+
+
+        //    public ActionResult Index()
+        //    {
+        //        List<FilmVM> films = GetFilms();
+
+        //        for (int i = 0; i < films.Count; i++)
+        //        {
+        //            FilmVM film = films[i];
+
+        //            List<SeansVM> seanslar = GetSeans(film.ID);
+        //            film.Seanslar = seanslar;
+
+        //            Tüm resim yollarını her bir film nesnesine sıralı bir şekilde atayın
+        //            film.ImagePath = "Pictures/" + film.ID + ".jpg"; // Burada her filme özel bir afiş adı kullanılıyor
+        //        }
+
+        //        ListSeansPageVM lpvm = new ListSeansPageVM
+        //        {
+        //            Films = films,
+        //        };
+        //        return View(lpvm);
+        //    }
 
         public ActionResult Index()
         {
             List<FilmVM> films = GetFilms();
+    //        List<string> imageUrls = new List<string>
+    //        {
+    //"1449215.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
+    //"Elemental-Digital-Keyart-2400x2400-1.jpg",
+    //"MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_ (2).jpg",
+    //"john-wick-bolum-4.jpg",
+    //"2012949-58861826.jpg",
+    //"megan.jpg"
+    //        };
 
-            foreach (FilmVM film in films)
+
+            for (int i = 0; i < films.Count; i++)
             {
+                FilmVM film = films[i];
+
                 List<SeansVM> seanslar = GetSeans(film.ID);
                 film.Seanslar = seanslar;
 
+                //// Tüm resim yollarını her bir film nesnesine sıralı bir şekilde atayın
+                //film.ImagePath = "/Pictures/" + imageUrls[i]; // Burada URL'leri kullanıyoruz
             }
 
             ListSeansPageVM lpvm = new ListSeansPageVM
             {
                 Films = films,
-
             };
             return View(lpvm);
         }
